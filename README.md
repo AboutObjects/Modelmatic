@@ -8,7 +8,7 @@ Modelmatic automates your app's model layer. It serializes model objects to JSON
 
 Modelmatic allows you to specify custom mappings between the names of JSON data elements and the names of corresponding properties of your model objects. The framework also automatically applies any value transformers (instances of `NSValueTransformer` subclasses) you specify in your model.
 
-![](robo-small.png)
+<img src="robo-small.png" height: 200px/>
 
 *Image courtesy Christopher T. Howlett, the Noun Project*
 
