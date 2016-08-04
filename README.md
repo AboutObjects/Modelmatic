@@ -1,9 +1,12 @@
 # Modelmatic
-Modelmatic automates your app's model layer. It can serialize model objects to JSON, and deserialize model objects from JSON. Just add MOGenerator to automate generation of model object base classes from an external data model.
+
+A framework that allows you to use a Core Data model to define mappings between JSON data elements and properties of non-Core Data model objects.
 
 [![Modelmatic Version][modelmatic-image]][modelmatic-url]
 
-One to two paragraph statement about your product and what it does.
+Modelmatic automates your app's model layer. It serializes model objects to JSON, and deserializes model objects from JSON, based on metadata you provide by configuring a Core Data model describing your model's entities, attributes, and relationships.
+
+Modelmatic allows you to specify custom mappings between the names of JSON data elements and the names of corresponding properties of your model objects. The framework also automatically applies any value transformers (instances of `NSValueTransformer` subclasses) you specify in your model.
 
 ![](robo-small.png)
 
