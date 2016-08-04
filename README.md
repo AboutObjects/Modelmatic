@@ -43,7 +43,7 @@ Jonathan Lehr – [@jlehr](https://twitter.com/jlehr) – info@aboutobjects.com
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+[About Objects on Github](https://github.com/AboutObjects/)
 
 [modelmatic-image]: https://img.shields.io/badge/modelmatic-v0.1.0-orange.svg
 [modelmatic-url]: http://blog.aboutobjects.com
