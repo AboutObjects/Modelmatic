@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'modelmatic'
   s.version          = '0.1.0'
-  s.summary          = 'Adds automatic JSON serialization/deserialization to Swift model objects'
+  s.summary          = 'Adds automatic JSON serialization/deserialization to Swift model objects.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
