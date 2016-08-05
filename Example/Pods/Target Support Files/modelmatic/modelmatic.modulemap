@@ -1,0 +1,6 @@
+framework module modelmatic {
+  umbrella header "modelmatic-umbrella.h"
+
+  export *
+  module * { export * }
+}

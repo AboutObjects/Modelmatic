@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'modelmatic_Example' do
+  pod 'modelmatic', :path => '../'
+
+  target 'modelmatic_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

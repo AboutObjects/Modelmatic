@@ -1,8 +1,11 @@
-# Modelmatic
+# modelmatic
 
-A framework that allows you to use a Core Data model to define mappings between JSON data elements and properties of non-Core Data model objects.
+Adds automatic JSON serialization/deserialization to Swift model objects.
 
-[![Modelmatic Version][modelmatic-image]][modelmatic-url]
+[![CI Status](http://img.shields.io/travis/JonathanLehr/modelmatic.svg?style=flat)](https://travis-ci.org/JonathanLehr/modelmatic)
+[![Version](https://img.shields.io/cocoapods/v/modelmatic.svg?style=flat)](http://cocoapods.org/pods/modelmatic)
+[![License](https://img.shields.io/cocoapods/l/modelmatic.svg?style=flat)](http://cocoapods.org/pods/modelmatic)
+[![Platform](https://img.shields.io/cocoapods/p/modelmatic.svg?style=flat)](http://cocoapods.org/pods/modelmatic)
 
 Modelmatic automates your app's model layer. It serializes model objects to JSON, and deserializes model objects from JSON, based on metadata you provide by configuring a Core Data model describing your model's entities, attributes, and relationships.
 
@@ -12,38 +15,26 @@ Modelmatic allows you to specify custom mappings between the names of JSON data 
 
 *Image courtesy Christopher T. Howlett, the Noun Project*
 
+
+## Example
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+## Requirements
+
 ## Installation
 
-```sh
-pod install modelmatic
+Modelmatic is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "modelmatic"
 ```
 
+## Author
 
-## Usage example
+Jonathan Lehr, jonathan@aboutobjects.com
 
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
+## License
 
-## Development setup
-
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
-
-```sh
-make install
-```
-
-## Release History
-
-* 0.0.1
-    * Initial setup
-    * ADD: LICENSE and README
-
-## Meta
-
-Jonathan Lehr – [@jlehr](https://twitter.com/jlehr) – info@aboutobjects.com
-
-Distributed under the MIT license. See ``LICENSE`` for more information.
-
-[About Objects on Github](https://github.com/AboutObjects/)
-
-[modelmatic-image]: https://img.shields.io/badge/modelmatic-v0.1.0-orange.svg
-[modelmatic-url]: http://blog.aboutobjects.com
+Modelmatic is available under the MIT license. See the LICENSE file for more info.

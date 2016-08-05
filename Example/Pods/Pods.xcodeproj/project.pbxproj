@@ -1,0 +1,699 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09EE445EA45EF100D70518E08778C440 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		154EA138AC7639899A6334998C095583 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110092BA1933E7EBDBD881EAB149374 /* ReplaceMe.swift */; };
+		41F4E71BDA3D6ECB169A33D207A64FCE /* Pods-modelmatic_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F82E81740928F6D1E66402FED81B5 /* Pods-modelmatic_Example-dummy.m */; };
+		443A4DA9833A244B349574C3474294C8 /* Pods-modelmatic_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B2706967564509254C638694BDDAF209 /* Pods-modelmatic_Tests-dummy.m */; };
+		9652FF4298AE0C52EE89CCE9FE16CA82 /* Pods-modelmatic_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FA3E8DC86DE205D6FE2F7DB8866D5AA /* Pods-modelmatic_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1F6B3531BDDE56992570F4B09AC2614 /* modelmatic-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C232F68E6F44742BF3B71139B1B000BA /* modelmatic-dummy.m */; };
+		A71449FD49D2A597F55320DE0FDCA724 /* Pods-modelmatic_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F7B63549B77FECB2F386F362264A9A6 /* Pods-modelmatic_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA1FCFDE8CD6F3D9540C43A7CEE5DAD4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		C6204843039E50385C4B29FDDFFA9FB2 /* modelmatic-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A7C9CD63F5B56687797154B3F8AB8FC3 /* modelmatic-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8CABE5B560B5BBF9ABDAD3C0FE4852F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0F8C1E7E31B17A63B27A90F9BEAA3159 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 89977BB671E00F8E5C3C99B3DD04174D;
+			remoteInfo = modelmatic;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01FFC8C768D5DF4C4376AAA516484EA9 /* modelmatic-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "modelmatic-prefix.pch"; sourceTree = "<group>"; };
+		0BA424B41F582B1B8D3CF844858E7D33 /* Pods-modelmatic_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-modelmatic_Example-frameworks.sh"; sourceTree = "<group>"; };
+		0BDC96C68F1A7B7FC728A4CD1A899315 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FA3E8DC86DE205D6FE2F7DB8866D5AA /* Pods-modelmatic_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-modelmatic_Example-umbrella.h"; sourceTree = "<group>"; };
+		13D868BE38CBEEFEB1D4B586A6669325 /* Pods-modelmatic_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-modelmatic_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		23E4DCC3040B3A1A46A869CDFC0C3325 /* Pods-modelmatic_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-modelmatic_Example.release.xcconfig"; sourceTree = "<group>"; };
+		273E800387571BD765F4517BF753E2D6 /* Pods-modelmatic_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-modelmatic_Tests-resources.sh"; sourceTree = "<group>"; };
+		2B6336B57204CAA82D45EEC22F715209 /* Pods-modelmatic_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-modelmatic_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		2F7B63549B77FECB2F386F362264A9A6 /* Pods-modelmatic_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-modelmatic_Tests-umbrella.h"; sourceTree = "<group>"; };
+		3321C8BC2647EDD352F317F6DFDFAB3A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BB610268C28B12CDFD80A61DDC9D90C /* modelmatic.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = modelmatic.xcconfig; sourceTree = "<group>"; };
+		659D81275AA81C2C2C0E604F2B6DC082 /* Pods-modelmatic_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-modelmatic_Tests.modulemap"; sourceTree = "<group>"; };
+		701BE64A77FB8233A4A79FB964C7D1F9 /* Pods-modelmatic_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-modelmatic_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		834B980D17B727F5604509A9EB6A6354 /* Pods-modelmatic_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-modelmatic_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		912533CF829B1C6E17600B6B41E85D3E /* Pods-modelmatic_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-modelmatic_Example-resources.sh"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		970B6443DD7C977F5593C160D8078214 /* Pods-modelmatic_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-modelmatic_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		97BC70921D5459521A172FA241B2DC55 /* Pods_modelmatic_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_modelmatic_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		97C01276861AFB67B6F0A5E13E8BC54C /* Pods-modelmatic_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-modelmatic_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		9C7144119A5E48655C38056D483E9FBA /* Pods-modelmatic_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-modelmatic_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		9DCBB04F69199DE540F3904F849EEC04 /* Pods-modelmatic_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-modelmatic_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9E0F82E81740928F6D1E66402FED81B5 /* Pods-modelmatic_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-modelmatic_Example-dummy.m"; sourceTree = "<group>"; };
+		A110092BA1933E7EBDBD881EAB149374 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReplaceMe.swift; sourceTree = "<group>"; };
+		A7C9CD63F5B56687797154B3F8AB8FC3 /* modelmatic-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "modelmatic-umbrella.h"; sourceTree = "<group>"; };
+		A89007A689EC72442229231B1B0F9073 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2706967564509254C638694BDDAF209 /* Pods-modelmatic_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-modelmatic_Tests-dummy.m"; sourceTree = "<group>"; };
+		C232F68E6F44742BF3B71139B1B000BA /* modelmatic-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "modelmatic-dummy.m"; sourceTree = "<group>"; };
+		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D282A9873BF1754E890C527FA7167841 /* modelmatic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = modelmatic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBEBB6AE9135A8024311E74E8A83705D /* Pods-modelmatic_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-modelmatic_Example.modulemap"; sourceTree = "<group>"; };
+		ED3557F9B3D4BD270F5894F9AE0599A0 /* modelmatic.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = modelmatic.modulemap; sourceTree = "<group>"; };
+		FB0938406CCA754ED6BF9C6ECA57D7E0 /* Pods_modelmatic_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_modelmatic_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A249FF6B589C86FE719FC909148D3170 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA1FCFDE8CD6F3D9540C43A7CEE5DAD4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD591D030283EF01816AC356054D1814 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8CABE5B560B5BBF9ABDAD3C0FE4852F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDBD42D5705D522BE47007F841BB4B3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09EE445EA45EF100D70518E08778C440 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		03792D54EC503C3CDF076B6887FD28E7 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				19DE1284915E6E6A25D125BAF6190C08 /* modelmatic */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		13E4DFE1DDE2FAE45F1A42F3315AF0FA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3321C8BC2647EDD352F317F6DFDFAB3A /* Info.plist */,
+				ED3557F9B3D4BD270F5894F9AE0599A0 /* modelmatic.modulemap */,
+				5BB610268C28B12CDFD80A61DDC9D90C /* modelmatic.xcconfig */,
+				C232F68E6F44742BF3B71139B1B000BA /* modelmatic-dummy.m */,
+				01FFC8C768D5DF4C4376AAA516484EA9 /* modelmatic-prefix.pch */,
+				A7C9CD63F5B56687797154B3F8AB8FC3 /* modelmatic-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/modelmatic";
+			sourceTree = "<group>";
+		};
+		1889F2512493E114E37123F820678872 /* modelmatic */ = {
+			isa = PBXGroup;
+			children = (
+				58C91C768DE8AFB2E1BEC826B1A9392B /* Classes */,
+			);
+			path = modelmatic;
+			sourceTree = "<group>";
+		};
+		19DE1284915E6E6A25D125BAF6190C08 /* modelmatic */ = {
+			isa = PBXGroup;
+			children = (
+				1889F2512493E114E37123F820678872 /* modelmatic */,
+				13E4DFE1DDE2FAE45F1A42F3315AF0FA /* Support Files */,
+			);
+			name = modelmatic;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		252EF2F4F8C6DBD3D48FA96889044006 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7A79D7F0D01A392E78B053E0A0834B77 /* Pods-modelmatic_Example */,
+				853D591F89FBC9E43D214A4EC3B26A82 /* Pods-modelmatic_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		58C91C768DE8AFB2E1BEC826B1A9392B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A110092BA1933E7EBDBD881EAB149374 /* ReplaceMe.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		7A79D7F0D01A392E78B053E0A0834B77 /* Pods-modelmatic_Example */ = {
+			isa = PBXGroup;
+			children = (
+				A89007A689EC72442229231B1B0F9073 /* Info.plist */,
+				EBEBB6AE9135A8024311E74E8A83705D /* Pods-modelmatic_Example.modulemap */,
+				701BE64A77FB8233A4A79FB964C7D1F9 /* Pods-modelmatic_Example-acknowledgements.markdown */,
+				13D868BE38CBEEFEB1D4B586A6669325 /* Pods-modelmatic_Example-acknowledgements.plist */,
+				9E0F82E81740928F6D1E66402FED81B5 /* Pods-modelmatic_Example-dummy.m */,
+				0BA424B41F582B1B8D3CF844858E7D33 /* Pods-modelmatic_Example-frameworks.sh */,
+				912533CF829B1C6E17600B6B41E85D3E /* Pods-modelmatic_Example-resources.sh */,
+				0FA3E8DC86DE205D6FE2F7DB8866D5AA /* Pods-modelmatic_Example-umbrella.h */,
+				97C01276861AFB67B6F0A5E13E8BC54C /* Pods-modelmatic_Example.debug.xcconfig */,
+				23E4DCC3040B3A1A46A869CDFC0C3325 /* Pods-modelmatic_Example.release.xcconfig */,
+			);
+			name = "Pods-modelmatic_Example";
+			path = "Target Support Files/Pods-modelmatic_Example";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				03792D54EC503C3CDF076B6887FD28E7 /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				E847046A78099C1D61CC83B9C5CDDC4F /* Products */,
+				252EF2F4F8C6DBD3D48FA96889044006 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		853D591F89FBC9E43D214A4EC3B26A82 /* Pods-modelmatic_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0BDC96C68F1A7B7FC728A4CD1A899315 /* Info.plist */,
+				659D81275AA81C2C2C0E604F2B6DC082 /* Pods-modelmatic_Tests.modulemap */,
+				9DCBB04F69199DE540F3904F849EEC04 /* Pods-modelmatic_Tests-acknowledgements.markdown */,
+				970B6443DD7C977F5593C160D8078214 /* Pods-modelmatic_Tests-acknowledgements.plist */,
+				B2706967564509254C638694BDDAF209 /* Pods-modelmatic_Tests-dummy.m */,
+				2B6336B57204CAA82D45EEC22F715209 /* Pods-modelmatic_Tests-frameworks.sh */,
+				273E800387571BD765F4517BF753E2D6 /* Pods-modelmatic_Tests-resources.sh */,
+				2F7B63549B77FECB2F386F362264A9A6 /* Pods-modelmatic_Tests-umbrella.h */,
+				834B980D17B727F5604509A9EB6A6354 /* Pods-modelmatic_Tests.debug.xcconfig */,
+				9C7144119A5E48655C38056D483E9FBA /* Pods-modelmatic_Tests.release.xcconfig */,
+			);
+			name = "Pods-modelmatic_Tests";
+			path = "Target Support Files/Pods-modelmatic_Tests";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E847046A78099C1D61CC83B9C5CDDC4F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D282A9873BF1754E890C527FA7167841 /* modelmatic.framework */,
+				97BC70921D5459521A172FA241B2DC55 /* Pods_modelmatic_Example.framework */,
+				FB0938406CCA754ED6BF9C6ECA57D7E0 /* Pods_modelmatic_Tests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0681505B1F0C751E5D60D2DF9857AC44 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9652FF4298AE0C52EE89CCE9FE16CA82 /* Pods-modelmatic_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F3573A33908126F3FD95A6408D4915B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6204843039E50385C4B29FDDFFA9FB2 /* modelmatic-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A19FB092FA645CC9205E1D1559D9E91C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A71449FD49D2A597F55320DE0FDCA724 /* Pods-modelmatic_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		231AF1B0A80C87B1403479BB8E24176D /* Pods-modelmatic_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9483274F76DCB3E2A0DC19F9CFDB312 /* Build configuration list for PBXNativeTarget "Pods-modelmatic_Example" */;
+			buildPhases = (
+				545812F3B3760DD1DCCD1A10EE7E98F6 /* Sources */,
+				A249FF6B589C86FE719FC909148D3170 /* Frameworks */,
+				0681505B1F0C751E5D60D2DF9857AC44 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE51DA83E121C4FFA3A2934E1060A600 /* PBXTargetDependency */,
+			);
+			name = "Pods-modelmatic_Example";
+			productName = "Pods-modelmatic_Example";
+			productReference = 97BC70921D5459521A172FA241B2DC55 /* Pods_modelmatic_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		89977BB671E00F8E5C3C99B3DD04174D /* modelmatic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F92C989C4B27BFCB3800CAF94C8173DE /* Build configuration list for PBXNativeTarget "modelmatic" */;
+			buildPhases = (
+				A4C18095A01DDDBA39F6A3C6C363C953 /* Sources */,
+				CD591D030283EF01816AC356054D1814 /* Frameworks */,
+				0F3573A33908126F3FD95A6408D4915B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = modelmatic;
+			productName = modelmatic;
+			productReference = D282A9873BF1754E890C527FA7167841 /* modelmatic.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CC381DFD00E6E365797D8884F4552FAE /* Pods-modelmatic_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9BB718EA3B438A9B9E3A43041012774 /* Build configuration list for PBXNativeTarget "Pods-modelmatic_Tests" */;
+			buildPhases = (
+				4A47DAD82ADCBE512A11148B0CD6B0F6 /* Sources */,
+				DDBD42D5705D522BE47007F841BB4B3B /* Frameworks */,
+				A19FB092FA645CC9205E1D1559D9E91C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-modelmatic_Tests";
+			productName = "Pods-modelmatic_Tests";
+			productReference = FB0938406CCA754ED6BF9C6ECA57D7E0 /* Pods_modelmatic_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					231AF1B0A80C87B1403479BB8E24176D = {
+						LastSwiftMigration = 0800;
+					};
+					89977BB671E00F8E5C3C99B3DD04174D = {
+						LastSwiftMigration = 0800;
+					};
+				};
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = E847046A78099C1D61CC83B9C5CDDC4F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				89977BB671E00F8E5C3C99B3DD04174D /* modelmatic */,
+				231AF1B0A80C87B1403479BB8E24176D /* Pods-modelmatic_Example */,
+				CC381DFD00E6E365797D8884F4552FAE /* Pods-modelmatic_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4A47DAD82ADCBE512A11148B0CD6B0F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				443A4DA9833A244B349574C3474294C8 /* Pods-modelmatic_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		545812F3B3760DD1DCCD1A10EE7E98F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41F4E71BDA3D6ECB169A33D207A64FCE /* Pods-modelmatic_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A4C18095A01DDDBA39F6A3C6C363C953 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1F6B3531BDDE56992570F4B09AC2614 /* modelmatic-dummy.m in Sources */,
+				154EA138AC7639899A6334998C095583 /* ReplaceMe.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FE51DA83E121C4FFA3A2934E1060A600 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = modelmatic;
+			target = 89977BB671E00F8E5C3C99B3DD04174D /* modelmatic */;
+			targetProxy = 0F8C1E7E31B17A63B27A90F9BEAA3159 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0ACDCBCB0B6796575F46FFA2F5410C6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		29E9226D21E9AA915901CAB65D5A8E69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97C01276861AFB67B6F0A5E13E8BC54C /* Pods-modelmatic_Example.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-modelmatic_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-modelmatic_Example/Pods-modelmatic_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_modelmatic_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3156B631DC823F2BD9218269B091C7E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BB610268C28B12CDFD80A61DDC9D90C /* modelmatic.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/modelmatic/modelmatic-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/modelmatic/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/modelmatic/modelmatic.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = modelmatic;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		49A82C8023F667973A760B4FDEAA9D28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23E4DCC3040B3A1A46A869CDFC0C3325 /* Pods-modelmatic_Example.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-modelmatic_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-modelmatic_Example/Pods-modelmatic_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_modelmatic_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		769A4547C1824E097EBFAC0271C18067 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C7144119A5E48655C38056D483E9FBA /* Pods-modelmatic_Tests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-modelmatic_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-modelmatic_Tests/Pods-modelmatic_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_modelmatic_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7B3A00F2D51FE361DEFDB44F18E1A595 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BB610268C28B12CDFD80A61DDC9D90C /* modelmatic.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/modelmatic/modelmatic-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/modelmatic/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/modelmatic/modelmatic.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = modelmatic;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9FC72F85ED7470AE70B9C6350F70E77D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 834B980D17B727F5604509A9EB6A6354 /* Pods-modelmatic_Tests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-modelmatic_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-modelmatic_Tests/Pods-modelmatic_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_modelmatic_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D3E3D092A3FF7311A98E44BBA36FFD12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3E3D092A3FF7311A98E44BBA36FFD12 /* Debug */,
+				0ACDCBCB0B6796575F46FFA2F5410C6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9483274F76DCB3E2A0DC19F9CFDB312 /* Build configuration list for PBXNativeTarget "Pods-modelmatic_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29E9226D21E9AA915901CAB65D5A8E69 /* Debug */,
+				49A82C8023F667973A760B4FDEAA9D28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9BB718EA3B438A9B9E3A43041012774 /* Build configuration list for PBXNativeTarget "Pods-modelmatic_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9FC72F85ED7470AE70B9C6350F70E77D /* Debug */,
+				769A4547C1824E097EBFAC0271C18067 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F92C989C4B27BFCB3800CAF94C8173DE /* Build configuration list for PBXNativeTarget "modelmatic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B3A00F2D51FE361DEFDB44F18E1A595 /* Debug */,
+				3156B631DC823F2BD9218269B091C7E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
