@@ -1,9 +1,9 @@
 {
   "name": "modelmatic",
   "version": "0.1.0",
-  "summary": "A short description of modelmatic.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/modelmatic",
+  "summary": "Adds automatic JSON serialization/deserialization to Swift model objects.",
+  "description": "Modelmatic automates your app's model layer. It serializes model objects to JSON, and deserializes model objects from JSON, based on metadata you provide by configuring a Core Data model describing your model's entities, attributes, and relationships.\n\nModelmatic allows you to specify custom mappings between the names of JSON data elements and the names of corresponding properties of your model objects. The framework also automatically applies any value transformers (instances of `NSValueTransformer` subclasses) you specify in your model.",
+  "homepage": "https://github.com/AboutObjects/modelmatic",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,12 @@
     "Jonathan Lehr": "jonathan@aboutobjects.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/modelmatic.git",
+    "git": "https://github.com/AboutObjects/modelmatic.git",
     "tag": "0.1.0"
   },
+  "social_media_url": "https://twitter.com/aboutobjects",
   "platforms": {
-    "ios": "8.0"
+    "ios": "8.3"
   },
   "source_files": "modelmatic/Classes/**/*"
 }

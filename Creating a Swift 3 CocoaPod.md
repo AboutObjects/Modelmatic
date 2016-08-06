@@ -18,13 +18,6 @@ Changed **osx_image** setting in **.travis.yml** to point to `xcode8` instead of
 osx_image: xcode8
 ```
 
-Also updated deployment target in podspec:
-
-```
-s.ios.deployment_target = '10.0'
-```
-
-
 ## Fixing Local Command-Line Builds
 
 ### Issue: Compiler warnings and errors for Swift 3 syntax and APIs.

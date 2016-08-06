@@ -30,7 +30,7 @@ Modelmatic allows you to specify custom mappings between the names of JSON data 
   s.source           = { :git => 'https://github.com/AboutObjects/modelmatic.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/aboutobjects'
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '8.3'
 
   s.source_files = 'modelmatic/Classes/**/*'
   
