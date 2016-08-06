@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
 
-FOUNDATION_EXPORT double modelmaticVersionNumber;
-FOUNDATION_EXPORT const unsigned char modelmaticVersionString[];
+FOUNDATION_EXPORT double ModelmaticVersionNumber;
+FOUNDATION_EXPORT const unsigned char ModelmaticVersionString[];
 

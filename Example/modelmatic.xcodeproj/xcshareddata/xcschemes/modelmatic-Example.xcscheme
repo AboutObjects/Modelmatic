@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0720"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "modelmatic_Example.app"
-               BlueprintName = "modelmatic_Example"
-               ReferencedContainer = "container:modelmatic.xcodeproj">
+               BuildableName = "Modelmatic_Example.app"
+               BlueprintName = "Modelmatic_Example"
+               ReferencedContainer = "container:Modelmatic.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "modelmatic_Tests.xctest"
-               BlueprintName = "modelmatic_Tests"
-               ReferencedContainer = "container:modelmatic.xcodeproj">
+               BuildableName = "Modelmatic_Tests.xctest"
+               BlueprintName = "Modelmatic_Tests"
+               ReferencedContainer = "container:Modelmatic.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "modelmatic_Tests.xctest"
-               BlueprintName = "modelmatic_Tests"
-               ReferencedContainer = "container:modelmatic.xcodeproj">
+               BuildableName = "Modelmatic_Tests.xctest"
+               BlueprintName = "Modelmatic_Tests"
+               ReferencedContainer = "container:Modelmatic.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "modelmatic_Example.app"
-            BlueprintName = "modelmatic_Example"
-            ReferencedContainer = "container:modelmatic.xcodeproj">
+            BuildableName = "Modelmatic_Example.app"
+            BlueprintName = "Modelmatic_Example"
+            ReferencedContainer = "container:Modelmatic.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "modelmatic_Example.app"
-            BlueprintName = "modelmatic_Example"
-            ReferencedContainer = "container:modelmatic.xcodeproj">
+            BuildableName = "Modelmatic_Example.app"
+            BlueprintName = "Modelmatic_Example"
+            ReferencedContainer = "container:Modelmatic.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -99,9 +99,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "modelmatic_Example.app"
-            BlueprintName = "modelmatic_Example"
-            ReferencedContainer = "container:modelmatic.xcodeproj">
+            BuildableName = "Modelmatic_Example.app"
+            BlueprintName = "Modelmatic_Example"
+            ReferencedContainer = "container:Modelmatic.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

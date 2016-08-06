@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
 
-FOUNDATION_EXPORT double Pods_modelmatic_TestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_modelmatic_TestsVersionString[];
+FOUNDATION_EXPORT double Pods_Modelmatic_TestsVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_Modelmatic_TestsVersionString[];
 

@@ -1,5 +1,5 @@
-framework module modelmatic {
-  umbrella header "modelmatic-umbrella.h"
+framework module Modelmatic {
+  umbrella header "Modelmatic-umbrella.h"
 
   export *
   module * { export * }

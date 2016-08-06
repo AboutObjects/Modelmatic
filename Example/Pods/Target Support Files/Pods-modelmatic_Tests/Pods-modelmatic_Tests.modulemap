@@ -1,5 +1,5 @@
-framework module Pods_modelmatic_Tests {
-  umbrella header "Pods-modelmatic_Tests-umbrella.h"
+framework module Pods_Modelmatic_Tests {
+  umbrella header "Pods-Modelmatic_Tests-umbrella.h"
 
   export *
   module * { export * }

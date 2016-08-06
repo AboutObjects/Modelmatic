@@ -1,7 +1,7 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## modelmatic
+## Modelmatic
 
 Copyright (c) 2016 Jonathan Lehr <jonathan@aboutobjects.com>
 

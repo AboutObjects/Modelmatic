@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-@interface PodsDummy_Pods_modelmatic_Example : NSObject
+@interface PodsDummy_Pods_Modelmatic_Example : NSObject
 @end
-@implementation PodsDummy_Pods_modelmatic_Example
+@implementation PodsDummy_Pods_Modelmatic_Example
 @end

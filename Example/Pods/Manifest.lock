@@ -1,16 +1,16 @@
 PODS:
-  - modelmatic (0.1.0)
+  - Modelmatic (0.1.0)
 
 DEPENDENCIES:
-  - modelmatic (from `../`)
+  - Modelmatic (from `../`)
 
 EXTERNAL SOURCES:
-  modelmatic:
+  Modelmatic:
     :path: "../"
 
 SPEC CHECKSUMS:
-  modelmatic: 3cc573f10094c3293321acc222c6b5766add6830
+  Modelmatic: 8ea2a157b0df480a298fb0eaadce6f4b4016f42b
 
-PODFILE CHECKSUM: 2c121ec27dc49184ef5935cc72e5ab8b696105f7
+PODFILE CHECKSUM: 665e6519f43d546743f56a5db01b91da07418f00
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.0.0

@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  modelmatic
+//  Modelmatic
 //
-//  Created by Jonathan Lehr on 08/05/2016.
+//  Created by Jonathan Lehr on 08/06/2016.
 //  Copyright (c) 2016 Jonathan Lehr. All rights reserved.
 //
 
