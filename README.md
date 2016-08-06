@@ -1,4 +1,4 @@
-# modelmatic
+# Modelmatic
 
 Adds automatic JSON serialization/deserialization to Swift model objects.
 
@@ -28,7 +28,7 @@ Modelmatic is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "modelmatic"
+pod "Modelmatic"
 ```
 
 ## Author
