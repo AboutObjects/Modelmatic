@@ -18,6 +18,16 @@ Changed **osx_image** setting in **.travis.yml** to point to `xcode8` instead of
 osx_image: xcode8
 ```
 
+To fix Travis build, in Xcode Build Settings, set `Use Legacy Swift Language Version` to **NO**.
+
+## Git repo
+
+Some **.gitignore** file somewhere is excluding either the `xcshareddata` or `xcshemes` directory, so I had to manually add the **xcscheme** file:
+
+```sh
+git add -f <xcscheme file name>
+```
+
 ## Fixing Local Command-Line Builds
 
 ### Issue: Compiler warnings and errors for Swift 3 syntax and APIs.
