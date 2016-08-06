@@ -20,6 +20,18 @@ osx_image: xcode8
 
 To fix Travis build, in Xcode Build Settings, set `Use Legacy Swift Language Version` to **NO**.
 
+Also added the following to Podfile:
+
+```ruby
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = '3.0'
+        end
+    end
+  end
+```
+
 ## Git repo
 
 Some **.gitignore** file somewhere is excluding either the `xcshareddata` or `xcshemes` directory, so I had to manually add the **xcscheme** file:
