@@ -7,7 +7,7 @@ Adds automatic JSON serialization/deserialization to Swift model objects.
 [![License](https://img.shields.io/cocoapods/l/modelmatic.svg?style=flat)](http://cocoapods.org/pods/modelmatic)
 [![Platform](https://img.shields.io/cocoapods/p/modelmatic.svg?style=flat)](http://cocoapods.org/pods/modelmatic)
 
-Modelmatic automates your app's model layer. It serializes model objects to JSON, and deserializes model objects from JSON, based on metadata you provide by configuring a Core Data model describing your model's entities, attributes, and relationships.
+Modelmatic automates your app's model layer. It enables model objects to be deserialized from JSON and serialized to JSON, based on metadata you provide by configuring a Core Data model that describes your model's entities, attributes, and relationships.
 
 Modelmatic allows you to specify custom mappings between the names of JSON data elements and the names of corresponding properties of your model objects. The framework also automatically applies any value transformers (instances of `NSValueTransformer` subclasses) you specify in your model.
 

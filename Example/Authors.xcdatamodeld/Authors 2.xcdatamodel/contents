@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Xcode 7.0">
+    <entity name="Author" representedClassName="Author" syncable="YES">
+        <attribute name="dateOfBirth" optional="YES" attributeType="Transformable" valueTransformerName="CDXDateTransformer" syncable="YES">
+            <userInfo>
+                <entry key="externalKeyPath" value="born"/>
+            </userInfo>
+        </attribute>
+        <attribute name="externalID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="externalKeyPath" value="author_id"/>
+            </userInfo>
+        </attribute>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="Transformable" valueTransformerName="CDXURLTransformer" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="author" inverseEntity="Book" syncable="YES"/>
+    </entity>
+    <entity name="Book" representedClassName="Book" syncable="YES">
+        <attribute name="externalID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="externalKeyPath" value="book_id"/>
+            </userInfo>
+        </attribute>
+        <attribute name="tags" optional="YES" attributeType="Transformable" valueTransformerName="CSVTransformer" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Author" inverseName="books" inverseEntity="Author" syncable="YES"/>
+        <userInfo>
+            <entry key="externalKeyPath" value="book_id"/>
+        </userInfo>
+    </entity>
+    <elements>
+        <element name="Author" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Book" positionX="0" positionY="0" width="128" height="120"/>
+    </elements>
+</model>

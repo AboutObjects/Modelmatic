@@ -7,14 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
-		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		626E8A21A01DE11E3F45FAA2 /* Pods_Modelmatic_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2865B2F5896318140F5597C /* Pods_Modelmatic_Example.framework */; };
-		A0E85F9EEE8C80F9D35FD2BF /* Pods_Modelmatic_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FDE9884895A8148EED6705 /* Pods_Modelmatic_Tests.framework */; };
+		607FACEC1AFB9204008FA782 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* ModelTests.swift */; };
+		626E8A21A01DE11E3F45FAA2 /* Pods_Modelmatic_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2865B2F5896318140F5597C /* Pods_Modelmatic_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A0E85F9EEE8C80F9D35FD2BF /* Pods_Modelmatic_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FDE9884895A8148EED6705 /* Pods_Modelmatic_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		AB056D1C1D57F5E300C5D7A6 /* Authors.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7ECE1D57CFFD005B8A26 /* Authors.plist */; };
+		AB056D1D1D57F5E300C5D7A6 /* Authors.json in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7EDA1D57D861005B8A26 /* Authors.json */; };
+		AB056D1E1D57F5FA00C5D7A6 /* Authors.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7ED01D57D203005B8A26 /* Authors.xcdatamodeld */; };
+		AB9D7EBB1D57CD95005B8A26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB31D57CD95005B8A26 /* AppDelegate.swift */; };
+		AB9D7EBC1D57CD95005B8A26 /* AuthorObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB41D57CD95005B8A26 /* AuthorObjectStore.swift */; };
+		AB9D7EBD1D57CD95005B8A26 /* AuthorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB51D57CD95005B8A26 /* AuthorDataSource.swift */; };
+		AB9D7EBE1D57CD95005B8A26 /* BooksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB61D57CD95005B8A26 /* BooksController.swift */; };
+		AB9D7EBF1D57CD95005B8A26 /* BookDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB71D57CD95005B8A26 /* BookDetailController.swift */; };
+		AB9D7EC01D57CD95005B8A26 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB81D57CD95005B8A26 /* BookCell.swift */; };
+		AB9D7EC11D57CD95005B8A26 /* UIImage+CodexAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB91D57CD95005B8A26 /* UIImage+CodexAdditions.swift */; };
+		AB9D7EC21D57CD95005B8A26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7EBA1D57CD95005B8A26 /* Main.storyboard */; };
+		AB9D7EC61D57CE43005B8A26 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EC41D57CE43005B8A26 /* Book.swift */; };
+		AB9D7EC71D57CE43005B8A26 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EC51D57CE43005B8A26 /* Author.swift */; };
+		AB9D7ECF1D57CFFD005B8A26 /* Authors.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7ECE1D57CFFD005B8A26 /* Authors.plist */; };
+		AB9D7ED31D57D203005B8A26 /* Authors.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7ED01D57D203005B8A26 /* Authors.xcdatamodeld */; };
+		AB9D7ED51D57D5A0005B8A26 /* CSVTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7ED41D57D5A0005B8A26 /* CSVTransformer.swift */; };
+		AB9D7ED81D57D7FA005B8A26 /* Books.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7ED61D57D7FA005B8A26 /* Books.xcassets */; };
+		AB9D7ED91D57D7FA005B8A26 /* Authors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7ED71D57D7FA005B8A26 /* Authors.xcassets */; };
+		AB9D7EDB1D57D861005B8A26 /* Authors.json in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7EDA1D57D861005B8A26 /* Authors.json */; };
+		AB9D7EDC1D57EC96005B8A26 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EC41D57CE43005B8A26 /* Book.swift */; };
+		AB9D7EDD1D57EC96005B8A26 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EC51D57CE43005B8A26 /* Author.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,17 +51,31 @@
 		17CF927E78B6E6BC7E4B8E89 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Modelmatic_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Modelmatic_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* Modelmatic_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Modelmatic_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		607FACEB1AFB9204008FA782 /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		6459486008F0E44EE3AB12D6 /* Modelmatic.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Modelmatic.podspec; path = ../Modelmatic.podspec; sourceTree = "<group>"; };
 		710A016F29DB331C9141B96B /* Pods-Modelmatic_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Modelmatic_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Modelmatic_Example/Pods-Modelmatic_Example.release.xcconfig"; sourceTree = "<group>"; };
 		96FDE9884895A8148EED6705 /* Pods_Modelmatic_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Modelmatic_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB9D7EB31D57CD95005B8A26 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AB9D7EB41D57CD95005B8A26 /* AuthorObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorObjectStore.swift; sourceTree = "<group>"; };
+		AB9D7EB51D57CD95005B8A26 /* AuthorDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorDataSource.swift; sourceTree = "<group>"; };
+		AB9D7EB61D57CD95005B8A26 /* BooksController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksController.swift; sourceTree = "<group>"; };
+		AB9D7EB71D57CD95005B8A26 /* BookDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailController.swift; sourceTree = "<group>"; };
+		AB9D7EB81D57CD95005B8A26 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		AB9D7EB91D57CD95005B8A26 /* UIImage+CodexAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+CodexAdditions.swift"; sourceTree = "<group>"; };
+		AB9D7EBA1D57CD95005B8A26 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		AB9D7EC41D57CE43005B8A26 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		AB9D7EC51D57CE43005B8A26 /* Author.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
+		AB9D7ECE1D57CFFD005B8A26 /* Authors.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Authors.plist; sourceTree = "<group>"; };
+		AB9D7ED11D57D203005B8A26 /* Authors 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Authors 2.xcdatamodel"; sourceTree = "<group>"; };
+		AB9D7ED21D57D203005B8A26 /* Authors.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Authors.xcdatamodel; sourceTree = "<group>"; };
+		AB9D7ED41D57D5A0005B8A26 /* CSVTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVTransformer.swift; sourceTree = "<group>"; };
+		AB9D7ED61D57D7FA005B8A26 /* Books.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Books.xcassets; sourceTree = "<group>"; };
+		AB9D7ED71D57D7FA005B8A26 /* Authors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Authors.xcassets; sourceTree = "<group>"; };
+		AB9D7EDA1D57D861005B8A26 /* Authors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Authors.json; sourceTree = "<group>"; };
 		B83A21C0E329B499A5302035 /* Pods-Modelmatic_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Modelmatic_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Modelmatic_Example/Pods-Modelmatic_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D2865B2F5896318140F5597C /* Pods_Modelmatic_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Modelmatic_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F68DB0B063205CDF24771D42 /* Pods-Modelmatic_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Modelmatic_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Modelmatic_Tests/Pods-Modelmatic_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,10 +145,22 @@
 		607FACD21AFB9204008FA782 /* Example for Modelmatic */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				AB9D7ECE1D57CFFD005B8A26 /* Authors.plist */,
+				AB9D7EDA1D57D861005B8A26 /* Authors.json */,
+				AB9D7ED01D57D203005B8A26 /* Authors.xcdatamodeld */,
+				AB9D7EC31D57CE1B005B8A26 /* Model Classes */,
+				AB9D7EB31D57CD95005B8A26 /* AppDelegate.swift */,
+				AB9D7EB41D57CD95005B8A26 /* AuthorObjectStore.swift */,
+				AB9D7EB51D57CD95005B8A26 /* AuthorDataSource.swift */,
+				AB9D7EB61D57CD95005B8A26 /* BooksController.swift */,
+				AB9D7EB71D57CD95005B8A26 /* BookDetailController.swift */,
+				AB9D7EB81D57CD95005B8A26 /* BookCell.swift */,
+				AB9D7EB91D57CD95005B8A26 /* UIImage+CodexAdditions.swift */,
+				AB9D7ED41D57D5A0005B8A26 /* CSVTransformer.swift */,
+				AB9D7EBA1D57CD95005B8A26 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				AB9D7ED61D57D7FA005B8A26 /* Books.xcassets */,
+				AB9D7ED71D57D7FA005B8A26 /* Authors.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
@@ -135,7 +179,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				607FACEB1AFB9204008FA782 /* ModelTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -157,6 +201,15 @@
 				10546D7E2F262EFB4FD46821 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		AB9D7EC31D57CE1B005B8A26 /* Model Classes */ = {
+			isa = PBXGroup;
+			children = (
+				AB9D7EC41D57CE43005B8A26 /* Book.swift */,
+				AB9D7EC51D57CE43005B8A26 /* Author.swift */,
+			);
+			name = "Model Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,7 +262,7 @@
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
@@ -246,9 +299,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				AB9D7EC21D57CD95005B8A26 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				AB9D7ED81D57D7FA005B8A26 /* Books.xcassets in Resources */,
+				AB9D7ED91D57D7FA005B8A26 /* Authors.xcassets in Resources */,
+				AB9D7ECF1D57CFFD005B8A26 /* Authors.plist in Resources */,
+				AB9D7EDB1D57D861005B8A26 /* Authors.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +313,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB056D1C1D57F5E300C5D7A6 /* Authors.plist in Resources */,
+				AB056D1D1D57F5E300C5D7A6 /* Authors.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,8 +418,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
-				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				AB9D7EC61D57CE43005B8A26 /* Book.swift in Sources */,
+				AB9D7EC11D57CD95005B8A26 /* UIImage+CodexAdditions.swift in Sources */,
+				AB9D7ED51D57D5A0005B8A26 /* CSVTransformer.swift in Sources */,
+				AB9D7EC01D57CD95005B8A26 /* BookCell.swift in Sources */,
+				AB9D7EC71D57CE43005B8A26 /* Author.swift in Sources */,
+				AB9D7EBB1D57CD95005B8A26 /* AppDelegate.swift in Sources */,
+				AB9D7EBF1D57CD95005B8A26 /* BookDetailController.swift in Sources */,
+				AB9D7EBD1D57CD95005B8A26 /* AuthorDataSource.swift in Sources */,
+				AB9D7EBE1D57CD95005B8A26 /* BooksController.swift in Sources */,
+				AB9D7ED31D57D203005B8A26 /* Authors.xcdatamodeld in Sources */,
+				AB9D7EBC1D57CD95005B8A26 /* AuthorObjectStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +436,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				AB056D1E1D57F5FA00C5D7A6 /* Authors.xcdatamodeld in Sources */,
+				AB9D7EDC1D57EC96005B8A26 /* Book.swift in Sources */,
+				AB9D7EDD1D57EC96005B8A26 /* Author.swift in Sources */,
+				607FACEC1AFB9204008FA782 /* ModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,14 +454,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		607FACD91AFB9204008FA782 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				607FACDA1AFB9204008FA782 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		607FACDE1AFB9204008FA782 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -489,11 +552,13 @@
 			baseConfigurationReference = B83A21C0E329B499A5302035 /* Pods-Modelmatic_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Modelmatic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -502,6 +567,7 @@
 			baseConfigurationReference = 710A016F29DB331C9141B96B /* Pods-Modelmatic_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Modelmatic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -514,6 +580,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F68DB0B063205CDF24771D42 /* Pods-Modelmatic_Tests.debug.xcconfig */;
 			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -523,6 +590,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Modelmatic_Example.app/Modelmatic_Example";
 			};
 			name = Debug;
 		};
@@ -530,11 +598,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 10B4D5AE51A4E7650665C300 /* Pods-Modelmatic_Tests.release.xcconfig */;
 			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Modelmatic_Example.app/Modelmatic_Example";
 			};
 			name = Release;
 		};
@@ -569,6 +639,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AB9D7ED01D57D203005B8A26 /* Authors.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AB9D7ED11D57D203005B8A26 /* Authors 2.xcdatamodel */,
+				AB9D7ED21D57D203005B8A26 /* Authors.xcdatamodel */,
+			);
+			currentVersion = AB9D7ED11D57D203005B8A26 /* Authors 2.xcdatamodel */;
+			path = Authors.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 607FACC81AFB9204008FA782 /* Project object */;
 }

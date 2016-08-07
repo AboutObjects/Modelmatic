@@ -1,0 +1,191 @@
+{
+    version = 2;
+    batchSize = 10;
+    authors = (
+    	{
+        	author_id = 101;
+        	born = "1564-04-01";
+        	imageURL = "https://www.foo.com?id=xyz123";
+    		books = (
+    			{
+        			book_id = 3001;
+    				title = "The Tempest";
+    				year = 2013;
+    				tags = "drama,fantasy";
+    			},
+    			{
+        			book_id = 3002;
+    				title = "The Taming of the Shrew";
+    				year = 2011;
+    				tags = "drama,comedy";
+    			},
+    			{
+        			book_id = 3003;
+    				title = Hamlet;
+    				year = 2011;
+    				tags = "drama,tragedy,semi-historical";    				
+    			},
+    			{
+        			book_id = 3004;
+    				title = "A Midsummer Night's Dream";
+    				year = 2012;
+    			},
+    			{
+        			book_id = 3005;
+    				title = "As You Like It";
+    				year = 2011;
+    			},
+    			{
+        			book_id = 3006;
+    				title = "Henry V";
+    				year = 2011;
+    			},
+    		);
+    		firstName = William;
+    		lastName = Shakespeare;
+    	},
+    	{
+        	author_id = 102;
+        	born = "1775-12-16";
+    		books = (
+    			{
+        			book_id = 3101;
+    				title = "Pride and Prejudice";
+    				year = 2000;
+    			},
+    			{
+        			book_id = 3102;
+    				title = "Sense and Sensibility";
+    				year = 2010;
+    			},
+    			{
+        			book_id = 3103;
+    				title = "Mansfield Park";
+    				year = 2014;
+    			},
+    			{
+        			book_id = 3104;
+    				title = Persuasion;
+    				year = 2015;
+    			},
+    		);
+    		firstName = Jane;
+    		lastName = Austen;
+    	},
+    	{
+        	author_id = 103;
+    		books = (
+    			{
+        			book_id = 3201;
+    				title = "For Whom the Bell Tolls";
+    				year = 2009;
+    			},
+    			{
+        			book_id = 3202;
+    				title = "The Old Man and the Sea";
+    				year = 2010;
+    			},
+    			{
+        			book_id = 3203;
+    				title = "To Have and Have Not";
+    				year = 2014;
+    			},
+    			{
+        			book_id = 3204;
+    				title = "The Snows of Kilamanjaro";
+    				year = 2014;
+    			},
+    		);
+    		firstName = Ernest;
+    		lastName = Hemingway;
+    	},
+    	{
+        	author_id = 104;
+    		books = (
+    			{
+        			book_id = 3301;
+    				title = "A Tale of Two Cities";
+    				year = 2012;
+    			},
+    			{
+        			book_id = 3302;
+    				title = "Great Expectations";
+    				year = 2014;
+    			},
+    			{
+        			book_id = 3303;
+    				title = "A Christmas Carol";
+    				year = 2011;
+    			},
+    		);
+    		firstName = Charles;
+    		lastName = Dickens;
+    	},
+    	{
+        	author_id = 105;
+    		books = (
+    			{
+        			book_id = 3401;
+    				title = "War of the Worlds";
+    				year = 2000;
+    			},
+    			{
+        			book_id = 3402;
+    				title = "The Time Machine";
+    				year = 2010;
+    			},
+    			{
+        			book_id = 3403;
+    				title = "The Invisible Man";
+    				year = 2014;
+    			},
+    		);
+    		firstName = "H. G.";
+    		lastName = Wells;
+    	},
+    	{
+        	author_id = 106;
+    		books = (
+    			{
+        			book_id = 3501;
+    				title = "Adventures of Huckleberry Finn";
+    				year = 2014;
+    			},
+    			{
+        			book_id = 3502;
+    				title = "The Prince and the Pauper";
+    				year = 2015;
+    			},
+    		);
+    		firstName = Mark;
+    		lastName = Twain;
+    	},
+    	{
+        	author_id = 107;
+    		books = (
+    			{
+        			book_id = 3601;
+    				title = Middlemarch;
+    				year = 1997;
+    			},
+    			{
+        			book_id = 3602;
+    				title = "Silas Marner";
+    				year = 2009;
+    			},
+    			{
+        			book_id = 3603;
+    				title = "Daniel Deronda";
+    				year = 2012;
+    			},
+    			{
+        			book_id = 3604;
+    				title = "The Mill on the Floss";
+    				year = 1998;
+    			},
+    		);
+    		firstName = George;
+    		lastName = Eliot;
+    	},
+    );
+}
