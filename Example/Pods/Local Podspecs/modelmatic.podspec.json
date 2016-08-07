@@ -9,7 +9,7 @@
     "file": "LICENSE"
   },
   "authors": {
-    "Jonathan Lehr": "jonathanlehr@aboutobjects.com"
+    "Jonathan Lehr": "jlehr@aboutobjects.com"
   },
   "source": {
     "git": "https://github.com/AboutObjects/Modelmatic.git",
@@ -18,8 +18,5 @@
   "platforms": {
     "ios": "8.3"
   },
-  "source_files": "Modelmatic/Classes/**/*",
-  "user_target_xcconfig": {
-    "FRAMEWORK_SEARCH_PATHS": "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-  }
+  "source_files": "Modelmatic/Classes/**/*"
 }

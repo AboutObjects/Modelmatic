@@ -24,7 +24,7 @@ DESC
 s.homepage         = 'https://github.com/AboutObjects/Modelmatic'
 # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
 s.license          = { :type => 'MIT', :file => 'LICENSE' }
-s.author           = { 'Jonathan Lehr' => 'jonathanlehr@aboutobjects.com' }
+s.author           = { 'Jonathan Lehr' => 'jlehr@aboutobjects.com' }
 s.source           = { :git => 'https://github.com/AboutObjects/Modelmatic.git', :tag => s.version.to_s }
 # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
@@ -39,8 +39,5 @@ s.source_files = 'Modelmatic/Classes/**/*'
 # s.public_header_files = 'Pod/Classes/**/*.h'
 # s.frameworks = 'UIKit', 'MapKit'
 # s.dependency 'AFNetworking', '~> 2.3'
-
-# s.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PLATFORM_DIR)/Developer/Library/Frameworks' }
-# s.pod_target_xcconfig = { 'OTHER_LDFLAGS' => '-weak-lswiftXCTest', 'FRAMEWORK_SEARCH_PATHS' => '$(inherited) "$(PLATFORM_DIR)/Developer/Library/Frameworks"' }
 
 end
