@@ -37,7 +37,7 @@ s.source_files = 'Modelmatic/Classes/**/*'
 # }
 
 # s.public_header_files = 'Pod/Classes/**/*.h'
-# s.frameworks = 'UIKit', 'MapKit'
+s.frameworks = 'CoreData'
 # s.dependency 'AFNetworking', '~> 2.3'
 
 end

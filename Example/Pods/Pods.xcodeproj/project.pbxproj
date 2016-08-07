@@ -8,15 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		09D93298C142611CB861D16983A03411 /* Pods-Modelmatic_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D837C517CF29A53C8D4DFB4F799AC75A /* Pods-Modelmatic_Example-dummy.m */; };
-		16FE90D8FE741830D02C6E71970DB800 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		719413F15D3CE3F5473AFF673333424A /* Modelmatic-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C8ED0851B40FED5877CCC2AF27AFEF /* Modelmatic-dummy.m */; };
-		7C82E05749656DBB60B20D753C5240C0 /* Modelmatic-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 32787F5F4FD7943E9A2904A6CC5B7FB5 /* Modelmatic-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16FE90D8FE741830D02C6E71970DB800 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D07389E2A49322AA4B20E3817DD9B326 /* Foundation.framework */; };
+		80C60FE92222DFCE4689BB0B440271DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D07389E2A49322AA4B20E3817DD9B326 /* Foundation.framework */; };
 		A02284801CC61F8FF8AAE4CFB88CFD66 /* Pods-Modelmatic_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C216E5F9FFF4BB897B8081373C6BB /* Pods-Modelmatic_Tests-dummy.m */; };
+		CADE45122270241C9E82D8CBD5FF2D4A /* Modelmatic-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 32787F5F4FD7943E9A2904A6CC5B7FB5 /* Modelmatic-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD0E33E5B054D5723A60DCA6948867AF /* ModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C2604A345BF8C3C30814398B4C388 /* ModelObject.swift */; };
 		D267EF0FD7C9B5DA189486216681788A /* Pods-Modelmatic_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4104D7EBD0B19218ECE1A92298C625FD /* Pods-Modelmatic_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D869E149C9EB8673C1C99B87906A9A6F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F62877F6F8B2EC922EE9414A5FFAFFC1 /* CoreData.framework */; };
 		E0C0B20B6073E9F82573E18EE34A92E4 /* Pods-Modelmatic_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EEF8BE6E3E80E8C5EEB111DC8F21EA /* Pods-Modelmatic_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E91523D303A5AC25F913FFAE1EE54E0F /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6410F0E7556045E3BD09C04E0FB5A681 /* ReplaceMe.swift */; };
-		EBACAFBC79D73A829FD4A2F97C5549E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		F6A9D20974B906ACD4FA190E4171E9DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		E4B0E1A107A221590E00C32A085EAC14 /* Modelmatic-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C8ED0851B40FED5877CCC2AF27AFEF /* Modelmatic-dummy.m */; };
+		F6A9D20974B906ACD4FA190E4171E9DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D07389E2A49322AA4B20E3817DD9B326 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,7 +25,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D93710C62BBC5105FEED48BAFAC6B533;
+			remoteGlobalIDString = 60302BD4D138FB8FD5502572F5DE5468;
 			remoteInfo = Modelmatic;
 		};
 /* End PBXContainerItemProxy section */
@@ -40,10 +41,10 @@
 		3A10B9B5606359E65A4A6F481498167C /* Pods-Modelmatic_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Modelmatic_Tests-resources.sh"; sourceTree = "<group>"; };
 		400EE9D4CE83240F9EDAD3CEA39BD3D0 /* Pods_Modelmatic_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Modelmatic_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4104D7EBD0B19218ECE1A92298C625FD /* Pods-Modelmatic_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Modelmatic_Tests-umbrella.h"; sourceTree = "<group>"; };
+		432C2604A345BF8C3C30814398B4C388 /* ModelObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelObject.swift; sourceTree = "<group>"; };
 		457274D23D4D3CC1D9D8E815F0146705 /* Pods-Modelmatic_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Modelmatic_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		4811E7F0868D5BB56F4CE2A2175FC76B /* Pods-Modelmatic_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Modelmatic_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C7C216E5F9FFF4BB897B8081373C6BB /* Pods-Modelmatic_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Modelmatic_Tests-dummy.m"; sourceTree = "<group>"; };
-		6410F0E7556045E3BD09C04E0FB5A681 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReplaceMe.swift; sourceTree = "<group>"; };
 		75EB7D16D8230B6D27D6B4B590FE8420 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		820F2D71684F9B400C2510735FEFE65F /* Pods-Modelmatic_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Modelmatic_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -55,21 +56,23 @@
 		AD5911B429CC2495D7245638D7B66E34 /* Pods-Modelmatic_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Modelmatic_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B0BCD4809493920EB8D96EF2A52435ED /* Pods-Modelmatic_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Modelmatic_Example-frameworks.sh"; sourceTree = "<group>"; };
 		B9312B50935A5D38FC8C11355A6F22C4 /* Modelmatic.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Modelmatic.modulemap; sourceTree = "<group>"; };
-		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D07389E2A49322AA4B20E3817DD9B326 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D39CF740A1EA153733ACE1AFB5001D78 /* Pods-Modelmatic_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Modelmatic_Example-resources.sh"; sourceTree = "<group>"; };
 		D6C8ED0851B40FED5877CCC2AF27AFEF /* Modelmatic-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Modelmatic-dummy.m"; sourceTree = "<group>"; };
 		D837C517CF29A53C8D4DFB4F799AC75A /* Pods-Modelmatic_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Modelmatic_Example-dummy.m"; sourceTree = "<group>"; };
 		E20160B81F728AE586E0110F5EF8CD2F /* Modelmatic.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Modelmatic.xcconfig; sourceTree = "<group>"; };
 		E52F1F859EF4A96B5A421A28E762BB6B /* Pods-Modelmatic_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Modelmatic_Tests.modulemap"; sourceTree = "<group>"; };
 		EF10DF4156C2C1F30B91777B08E4F363 /* Pods-Modelmatic_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Modelmatic_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		F62877F6F8B2EC922EE9414A5FFAFFC1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		84FAE0B65D7640B66C668AFA801A0B95 /* Frameworks */ = {
+		9A5EBCE2B06E619DDB40514059D6B1EF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBACAFBC79D73A829FD4A2F97C5549E4 /* Foundation.framework in Frameworks */,
+				D869E149C9EB8673C1C99B87906A9A6F /* CoreData.framework in Frameworks */,
+				80C60FE92222DFCE4689BB0B440271DD /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,17 +108,34 @@
 		3C2BCD748256C2B82596240B6224E0DD /* Modelmatic */ = {
 			isa = PBXGroup;
 			children = (
-				C2196478DA7A5DBE5B94C01A8A68A02F /* Classes */,
+				46145F63F0534E4FBDE3725BF98A188D /* Classes */,
 			);
 			path = Modelmatic;
 			sourceTree = "<group>";
 		};
-		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
+				456545A12F33492FB25F7F125EF7F5C0 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		456545A12F33492FB25F7F125EF7F5C0 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F62877F6F8B2EC922EE9414A5FFAFFC1 /* CoreData.framework */,
+				D07389E2A49322AA4B20E3817DD9B326 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		46145F63F0534E4FBDE3725BF98A188D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				432C2604A345BF8C3C30814398B4C388 /* ModelObject.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		547B74F817D793C891C84E00993532B3 /* Products */ = {
@@ -133,7 +153,7 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				E80987D85FFFA825F9003E8D7F34B3A0 /* Development Pods */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
 				547B74F817D793C891C84E00993532B3 /* Products */,
 				E8C0DC722947390EFDB468D4FFF089A2 /* Targets Support Files */,
 			);
@@ -169,22 +189,6 @@
 			);
 			name = "Pods-Modelmatic_Example";
 			path = "Target Support Files/Pods-Modelmatic_Example";
-			sourceTree = "<group>";
-		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C2196478DA7A5DBE5B94C01A8A68A02F /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				6410F0E7556045E3BD09C04E0FB5A681 /* ReplaceMe.swift */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		E80987D85FFFA825F9003E8D7F34B3A0 /* Development Pods */ = {
@@ -225,6 +229,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		87B35BBCAF85C5E5EC322033D9F67BD8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CADE45122270241C9E82D8CBD5FF2D4A /* Modelmatic-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8BC9BE976ACDB396E1F7623765634B1A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,17 +253,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D5B7A8A57FB29B9ED76767158CE124B5 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7C82E05749656DBB60B20D753C5240C0 /* Modelmatic-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		60302BD4D138FB8FD5502572F5DE5468 /* Modelmatic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E08C656CBECC50420777D4C9DB5FEB1 /* Build configuration list for PBXNativeTarget "Modelmatic" */;
+			buildPhases = (
+				74232DC1BE45122B68FB98D9BA60641D /* Sources */,
+				9A5EBCE2B06E619DDB40514059D6B1EF /* Frameworks */,
+				87B35BBCAF85C5E5EC322033D9F67BD8 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Modelmatic;
+			productName = Modelmatic;
+			productReference = 30DDF3CAAB75BD6125456184453BCD6E /* Modelmatic.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		761F78C36D576F4361E7E77045493C9E /* Pods-Modelmatic_Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B3C5F4683FB3D5330E4B5F46362F5B03 /* Build configuration list for PBXNativeTarget "Pods-Modelmatic_Tests" */;
@@ -287,23 +308,6 @@
 			productReference = 400EE9D4CE83240F9EDAD3CEA39BD3D0 /* Pods_Modelmatic_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D93710C62BBC5105FEED48BAFAC6B533 /* Modelmatic */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D4325707650B78CDE85A6BBEBACA0C1A /* Build configuration list for PBXNativeTarget "Modelmatic" */;
-			buildPhases = (
-				6255106FE4B25BD2DB32F3946E0F781E /* Sources */,
-				84FAE0B65D7640B66C668AFA801A0B95 /* Frameworks */,
-				D5B7A8A57FB29B9ED76767158CE124B5 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Modelmatic;
-			productName = Modelmatic;
-			productReference = 30DDF3CAAB75BD6125456184453BCD6E /* Modelmatic.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -325,7 +329,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D93710C62BBC5105FEED48BAFAC6B533 /* Modelmatic */,
+				60302BD4D138FB8FD5502572F5DE5468 /* Modelmatic */,
 				78C02DAAE1A6E69C9D9308F8117A9372 /* Pods-Modelmatic_Example */,
 				761F78C36D576F4361E7E77045493C9E /* Pods-Modelmatic_Tests */,
 			);
@@ -341,12 +345,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6255106FE4B25BD2DB32F3946E0F781E /* Sources */ = {
+		74232DC1BE45122B68FB98D9BA60641D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				719413F15D3CE3F5473AFF673333424A /* Modelmatic-dummy.m in Sources */,
-				E91523D303A5AC25F913FFAE1EE54E0F /* ReplaceMe.swift in Sources */,
+				E4B0E1A107A221590E00C32A085EAC14 /* Modelmatic-dummy.m in Sources */,
+				CD0E33E5B054D5723A60DCA6948867AF /* ModelObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,7 +368,7 @@
 		AD5A17B5296C8FA3243969FBE7792068 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Modelmatic;
-			target = D93710C62BBC5105FEED48BAFAC6B533 /* Modelmatic */;
+			target = 60302BD4D138FB8FD5502572F5DE5468 /* Modelmatic */;
 			targetProxy = 52997EACADBD770DADD07E06E1F352BA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -441,7 +445,7 @@
 			};
 			name = Release;
 		};
-		65664520CFA0DD910844B1F0EA0FB018 /* Release */ = {
+		4C13506E2B4A13F8898F9652B84F082F /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E20160B81F728AE586E0110F5EF8CD2F /* Modelmatic.xcconfig */;
 			buildSettings = {
@@ -470,7 +474,7 @@
 			};
 			name = Release;
 		};
-		8F7E4061D1535434844F56F390F5CB84 /* Debug */ = {
+		AEF270D937446DEE8C032FB32171C66A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E20160B81F728AE586E0110F5EF8CD2F /* Modelmatic.xcconfig */;
 			buildSettings = {
@@ -654,6 +658,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		8E08C656CBECC50420777D4C9DB5FEB1 /* Build configuration list for PBXNativeTarget "Modelmatic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AEF270D937446DEE8C032FB32171C66A /* Debug */,
+				4C13506E2B4A13F8898F9652B84F082F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A7906AA6CB1B30DF52BCFB293DC40785 /* Build configuration list for PBXNativeTarget "Pods-Modelmatic_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -668,15 +681,6 @@
 			buildConfigurations = (
 				FAA31A2CF3D9D0A2775B80BF167837E2 /* Debug */,
 				EC16070A3114F6ED0B0F5F9B507E2E7E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D4325707650B78CDE85A6BBEBACA0C1A /* Build configuration list for PBXNativeTarget "Modelmatic" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8F7E4061D1535434844F56F390F5CB84 /* Debug */,
-				65664520CFA0DD910844B1F0EA0FB018 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
