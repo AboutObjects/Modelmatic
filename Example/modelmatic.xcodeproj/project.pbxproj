@@ -15,7 +15,6 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		626E8A21A01DE11E3F45FAA2 /* Pods_Modelmatic_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2865B2F5896318140F5597C /* Pods_Modelmatic_Example.framework */; };
 		A0E85F9EEE8C80F9D35FD2BF /* Pods_Modelmatic_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FDE9884895A8148EED6705 /* Pods_Modelmatic_Tests.framework */; };
-		AB9D7EAA1D5791E7005B8A26 /* robo-small.png in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7EA91D5791E7005B8A26 /* robo-small.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +44,6 @@
 		6459486008F0E44EE3AB12D6 /* Modelmatic.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Modelmatic.podspec; path = ../Modelmatic.podspec; sourceTree = "<group>"; };
 		710A016F29DB331C9141B96B /* Pods-Modelmatic_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Modelmatic_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Modelmatic_Example/Pods-Modelmatic_Example.release.xcconfig"; sourceTree = "<group>"; };
 		96FDE9884895A8148EED6705 /* Pods_Modelmatic_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Modelmatic_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB9D7EA91D5791E7005B8A26 /* robo-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "robo-small.png"; sourceTree = "<group>"; };
 		B83A21C0E329B499A5302035 /* Pods-Modelmatic_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Modelmatic_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Modelmatic_Example/Pods-Modelmatic_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D2865B2F5896318140F5597C /* Pods_Modelmatic_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Modelmatic_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F68DB0B063205CDF24771D42 /* Pods-Modelmatic_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Modelmatic_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Modelmatic_Tests/Pods-Modelmatic_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				AB9D7EA91D5791E7005B8A26 /* robo-small.png */,
 				6459486008F0E44EE3AB12D6 /* Modelmatic.podspec */,
 				17CF927E78B6E6BC7E4B8E89 /* README.md */,
 				10546D7E2F262EFB4FD46821 /* LICENSE */,
@@ -250,7 +247,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
-				AB9D7EAA1D5791E7005B8A26 /* robo-small.png in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
