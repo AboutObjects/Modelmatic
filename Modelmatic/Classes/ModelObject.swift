@@ -7,14 +7,14 @@ import Foundation
 import CoreData
 
 
-extension NSPropertyDescription
+public extension NSPropertyDescription
 {
     public var externalKeyPath: String {
         return userInfo?["externalKeyPath"] as? String ?? name
     }
 }
 
-extension NSArray
+public extension NSArray
 {
     // An array of dictionary representations of any elements that are instances of `ModelObject`.
     public var dictionaryRepresentation: [[String: AnyObject]] {
@@ -43,7 +43,7 @@ public class ModelObject : NSObject
 
 // MARK: - Serializing
 
-extension ModelObject
+public extension ModelObject
 {
     /// A dictionary representation of the receiver's state that can be serialized as JSON or plist.
     public var dictionaryRepresentation: [String: AnyObject] {
@@ -155,12 +155,13 @@ extension ModelObject
         }
     }
 
-    func deserialize(value: AnyObject?, forAttribute attribute: NSAttributeDescription)
+    public func deserialize(value: AnyObject?, forAttribute attribute: NSAttributeDescription)
     {
         guard let val = value where val !== NSNull(),
             let transformerName = attribute.valueTransformerName,
             let transformer = NSValueTransformer(forName: transformerName) where
             transformer.dynamicType.allowsReverseTransformation() else {
+                // TODO: Provide error messages for failure cases
                 setValue(value, forKey: attribute.name)
                 return
         }

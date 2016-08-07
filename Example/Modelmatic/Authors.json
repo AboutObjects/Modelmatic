@@ -1,0 +1,191 @@
+{
+  "version" : "2",
+  "batchSize" : "10",
+  "authors" : [
+    {
+      "firstName" : "William",
+      "lastName" : "Shakespeare",
+      "born" : "1564-04-01",
+      "author_id" : "101",
+      "imageURL" : "https:\/\/www.foo.com?id=xyz123",
+      "books" : [
+        {
+          "tags" : "drama,fantasy",
+          "title" : "The Tempest",
+          "year" : "2013",
+          "book_id" : "3001"
+        },
+        {
+          "tags" : "drama,comedy",
+          "title" : "The Taming of the Shrew",
+          "year" : "2011",
+          "book_id" : "3002"
+        },
+        {
+          "tags" : "drama,tragedy,semi-historical",
+          "title" : "Hamlet",
+          "year" : "2011",
+          "book_id" : "3003"
+        },
+        {
+          "book_id" : "3004",
+          "title" : "A Midsummer Night's Dream",
+          "year" : "2012"
+        },
+        {
+          "book_id" : "3005",
+          "title" : "As You Like It",
+          "year" : "2011"
+        },
+        {
+          "book_id" : "3006",
+          "title" : "Henry V",
+          "year" : "2011"
+        }
+      ]
+    },
+    {
+      "firstName" : "Jane",
+      "lastName" : "Austen",
+      "born" : "1775-12-16",
+      "author_id" : "102",
+      "books" : [
+        {
+          "book_id" : "3101",
+          "title" : "Pride and Prejudice",
+          "year" : "2000"
+        },
+        {
+          "book_id" : "3102",
+          "title" : "Sense and Sensibility",
+          "year" : "2010"
+        },
+        {
+          "book_id" : "3103",
+          "title" : "Mansfield Park",
+          "year" : "2014"
+        },
+        {
+          "book_id" : "3104",
+          "title" : "Persuasion",
+          "year" : "2015"
+        }
+      ]
+    },
+    {
+      "firstName" : "Ernest",
+      "lastName" : "Hemingway",
+      "books" : [
+        {
+          "book_id" : "3201",
+          "title" : "For Whom the Bell Tolls",
+          "year" : "2009"
+        },
+        {
+          "book_id" : "3202",
+          "title" : "The Old Man and the Sea",
+          "year" : "2010"
+        },
+        {
+          "book_id" : "3203",
+          "title" : "To Have and Have Not",
+          "year" : "2014"
+        },
+        {
+          "book_id" : "3204",
+          "title" : "The Snows of Kilamanjaro",
+          "year" : "2014"
+        }
+      ],
+      "author_id" : "103"
+    },
+    {
+      "firstName" : "Charles",
+      "lastName" : "Dickens",
+      "books" : [
+        {
+          "book_id" : "3301",
+          "title" : "A Tale of Two Cities",
+          "year" : "2012"
+        },
+        {
+          "book_id" : "3302",
+          "title" : "Great Expectations",
+          "year" : "2014"
+        },
+        {
+          "book_id" : "3303",
+          "title" : "A Christmas Carol",
+          "year" : "2011"
+        }
+      ],
+      "author_id" : "104"
+    },
+    {
+      "firstName" : "H. G.",
+      "lastName" : "Wells",
+      "books" : [
+        {
+          "book_id" : "3401",
+          "title" : "War of the Worlds",
+          "year" : "2000"
+        },
+        {
+          "book_id" : "3402",
+          "title" : "The Time Machine",
+          "year" : "2010"
+        },
+        {
+          "book_id" : "3403",
+          "title" : "The Invisible Man",
+          "year" : "2014"
+        }
+      ],
+      "author_id" : "105"
+    },
+    {
+      "firstName" : "Mark",
+      "lastName" : "Twain",
+      "books" : [
+        {
+          "book_id" : "3501",
+          "title" : "Adventures of Huckleberry Finn",
+          "year" : "2014"
+        },
+        {
+          "book_id" : "3502",
+          "title" : "The Prince and the Pauper",
+          "year" : "2015"
+        }
+      ],
+      "author_id" : "106"
+    },
+    {
+      "firstName" : "George",
+      "lastName" : "Eliot",
+      "books" : [
+        {
+          "book_id" : "3601",
+          "title" : "Middlemarch",
+          "year" : "1997"
+        },
+        {
+          "book_id" : "3602",
+          "title" : "Silas Marner",
+          "year" : "2009"
+        },
+        {
+          "book_id" : "3603",
+          "title" : "Daniel Deronda",
+          "year" : "2012"
+        },
+        {
+          "book_id" : "3604",
+          "title" : "The Mill on the Floss",
+          "year" : "1998"
+        }
+      ],
+      "author_id" : "107"
+    }
+  ]
+}
