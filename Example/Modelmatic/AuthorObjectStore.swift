@@ -5,18 +5,19 @@
 
 import Foundation
 import CoreData
+import Modelmatic
 
 let ModelName = "Authors"
 let FileName = "Authors"
 
 extension Dictionary
 {
-    static func byLoading(fileName: String) -> [String: AnyObject]?
+    static func byLoading(fileName: String) -> JsonDictionary?
     {
         return self.byLoadingJSON(fileName) ?? self.byLoadingPropertyList(fileName)
     }
 
-    static func byLoadingJSON(fileName: String) -> [String: AnyObject]?
+    static func byLoadingJSON(fileName: String) -> JsonDictionary?
     {
         if let dict = self.byLoadingJSON(NSURL.documentDirectoryURL(forFileName: fileName, type: "plist")) {
             return dict
@@ -24,16 +25,16 @@ extension Dictionary
         return self.byLoadingJSON(NSURL.bundleDirectoryURL(forFileName: fileName, type: "plist"))
     }
 
-    static func byLoadingJSON(fileUrl: NSURL?) -> [String: AnyObject]?
+    static func byLoadingJSON(fileUrl: NSURL?) -> JsonDictionary?
     {
-        guard let url = fileUrl, data = NSData(contentsOfURL: url),
-        dict = try? NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as? [String: AnyObject] else {
+        guard let url = fileUrl, data = NSData(contentsOfURL: url), dict = try? data.deserializeJson() else {
+            print("Unable to deserialize JSON from \(fileUrl)")
             return nil
         }
-        return dict
+        return dict as? JsonDictionary
     }
     
-    static func byLoadingPropertyList(fileName: String) -> [String: AnyObject]?
+    static func byLoadingPropertyList(fileName: String) -> JsonDictionary?
     {
         if let dict = self.byLoadingPropertyList(NSURL.documentDirectoryURL(forFileName: fileName, type: "plist")) {
             return dict
@@ -41,86 +42,114 @@ extension Dictionary
         return self.byLoadingPropertyList(NSURL.bundleDirectoryURL(forFileName: fileName, type: "plist"))
     }
     
-    static func byLoadingPropertyList(fileUrl: NSURL?) -> [String: AnyObject]?
+    static func byLoadingPropertyList(fileUrl: NSURL?) -> JsonDictionary?
     {
         guard let url = fileUrl else { return nil }
-        return NSDictionary(contentsOfURL: url) as? [String: AnyObject]
+        return NSDictionary(contentsOfURL: url) as? JsonDictionary
     }
-    
-    static func hello() -> String {
-        return "Hello"
+}
+
+extension NSDictionary
+{
+    public class func dictionary(contentsOfPropertyListFile fileName: String) -> NSDictionary?
+    {
+        if  let URL = NSURL.documentDirectoryURL(forFileName: fileName, type: "plist"),
+            let dict = NSDictionary(contentsOfURL: URL) {
+            return dict
+        }
+        
+        guard let URL = NSURL.bundleDirectoryURL(forFileName: fileName, type: "plist") else { return nil }
+        return NSDictionary(contentsOfURL: URL)
     }
 }
 
 extension NSURL
 {
-    class func documentDirectoryURL(forFileName fileName: String, type: String) -> NSURL?
+    public class func documentDirectoryURL(forFileName fileName: String, type: String) -> NSURL?
     {
         let URLs = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         return URLs.first?.URLByAppendingPathComponent(fileName).URLByAppendingPathExtension(type)
     }
     
-    class func bundleDirectoryURL(forFileName fileName: String, type: String) -> NSURL?
+    public class func bundleDirectoryURL(forFileName fileName: String, type: String) -> NSURL?
     {
         return NSBundle(forClass: AuthorObjectStore.self).URLForResource(fileName, withExtension: type)
     }
 }
-
-typealias JSONDictionary = [String: AnyObject]
 
 public class AuthorObjectStore: NSObject
 {
     let model: NSManagedObjectModel!
     let entity: NSEntityDescription!
     
-    var serializedAuthors: [[String: AnyObject]]!
-    var authors: [Author]!
+    var version: NSNumber
+    var authors: [Author]?
     
     required override public init()
     {
         let modelURL = NSBundle(forClass: AuthorObjectStore.self).URLForResource(ModelName, withExtension: "momd")
         model = NSManagedObjectModel(contentsOfURL: modelURL!) // Crash here if model URL is invalid.
-        
         entity = model.entitiesByName[Author.entityName]
         
-        guard let dict = JSONDictionary.byLoading(FileName) else {
-            fatalError("Unable to load authors from file named \(FileName)")
-        }
+        //let dict = NSDictionary.dictionary(contentsOfPropertyListFile: FileName)
+        let dict = JsonDictionary.byLoading("Book")
         
-        serializedAuthors = dict["authors"] as? [[String: AnyObject]]
-        
+        version = dict?["version"] as? NSNumber ?? NSNumber(int: 0)
         super.init()
         
-        authors = serializedAuthors.map {
+        let serializedAuthors = dict?["authors"] as? [JsonDictionary]
+        authors = serializedAuthors?.map {
             Author(dictionary: $0, entity: self.entity)
+        }
+    }
+    
+    override public class func initialize()
+    {
+        guard self === AuthorObjectStore.self else { return }
+        configureValueTransformers()
+    }
+    
+    public func save()
+    {
+        guard let authors = self.authors else { return }
+        
+        let serializedAuthors = [
+            "version": version,
+            "authors": authors.dictionaryRepresentation]
+        
+        if let URL = NSURL.documentDirectoryURL(forFileName: FileName, type: "plist") {
+            (serializedAuthors as NSDictionary).writeToURL(URL, atomically: true)
         }
     }
 }
 
+// MARK: - Configuring Value Transformers
+extension AuthorObjectStore
+{
+    public class func configureValueTransformers()
+    {
+        NSValueTransformer.setValueTransformer(DateTransformer(), forName: String(DateTransformer.transformerName))
+        NSValueTransformer.setValueTransformer(StringArrayTransformer(), forName: String(StringArrayTransformer.transformerName))
+    }
+}
 
 // MARK: - DataSource Support
 
 public extension AuthorObjectStore
 {
-    public func titleForSection(section: NSInteger) -> String
-    {
-        return authors[section].fullName
+    public func titleForSection(section: NSInteger) -> String {
+        return authors?[section].fullName ?? ""
     }
     
-    public func numberOfSections() -> NSInteger
-    {
-        return authors.count
+    public func numberOfSections() -> NSInteger {
+        return authors?.count ?? 0
     }
     
-    public func numberOfRows(inSection section: NSInteger) -> NSInteger
-    {
-        let books = authors[section].books
-        return books == nil ? 0 : books!.count
+    public func numberOfRows(inSection section: NSInteger) -> NSInteger {
+        return authors?[section].books?.count ?? 0
     }
     
-    public func bookAtIndexPath(indexPath: NSIndexPath) -> Book?
-    {
-        let books = authors[indexPath.section].books
-        return books == nil ? nil : books![indexPath.row]
+    public func bookAtIndexPath(indexPath: NSIndexPath) -> Book? {
+        return authors?[indexPath.section].books?[indexPath.row]
     }
 }

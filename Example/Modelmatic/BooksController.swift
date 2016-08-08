@@ -21,3 +21,22 @@ public class BooksController: UITableViewController
         controller.book = book
     }
 }
+
+extension BooksController
+{
+    @IBAction func doneEditingBook(segue: UIStoryboardSegue)
+    {
+        dataSource.save()
+        tableView.reloadData()
+    }
+}
+
+// MARK: - UITableViewDelegate Methods
+
+extension BooksController
+{
+    override public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.oddRowColor() : UIColor.evenRowColor()
+    }
+}
