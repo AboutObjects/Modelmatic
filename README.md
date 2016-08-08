@@ -2,7 +2,7 @@
 
 Adds automatic JSON serialization/deserialization to Swift model objects.
 
-[![CI Status](http://img.shields.io/travis/JonathanLehr/modelmatic.svg?style=flat)](https://travis-ci.org/AboutObjects/Modelmatic)
+[![CI Status](http://img.shields.io/travis/AboutObjects/modelmatic.svg?style=flat)](https://travis-ci.org/AboutObjects/Modelmatic)
 [![Version](https://img.shields.io/cocoapods/v/modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
 [![License](https://img.shields.io/cocoapods/l/modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
 [![Platform](https://img.shields.io/cocoapods/p/modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
