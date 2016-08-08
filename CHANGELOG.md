@@ -6,6 +6,8 @@
 
 **Implemented enhancements:**
 
+- Merge Example from current Codex baseline [\#7](https://github.com/AboutObjects/Modelmatic/issues/7)
+- Add a change log \(CHANGELOG.md\) [\#4](https://github.com/AboutObjects/Modelmatic/issues/4)
 - Publish Cocoapod [\#2](https://github.com/AboutObjects/Modelmatic/issues/2)
 - Version 0.2.0 - Publish Cocoapod [\#3](https://github.com/AboutObjects/Modelmatic/pull/3) ([jonathanlehr](https://github.com/jonathanlehr))
 

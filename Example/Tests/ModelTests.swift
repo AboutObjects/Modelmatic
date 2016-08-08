@@ -29,87 +29,50 @@ class ModelTests: XCTestCase
     }
     
     
-    func testDeserializeBookDataAndEncode()
-    {
-        guard let fileUrl = NSBundle(forClass: self.dynamicType).URLForResource("Authors", withExtension: "json"),
-            data = NSData(contentsOfURL: fileUrl) else {
-                return
-        }
-        
-        guard let dict = try? data.deserializeJson() else {
-            print("Unable to load JSON from Authors.json")
-            return
-        }
-        
-        guard let authors = dict["authors"] as AnyObject as? [AnyObject],
-            author = authors[0] as AnyObject as? JsonDictionary,
-            books = author["books"]! as AnyObject as? [JsonDictionary],
-            book = books[0] as AnyObject as? JsonDictionary else {
-                return
-        }
-        
-        print(book)
-        
-        let modelName = "Authors"
-        
-        guard let modelURL = NSBundle(forClass: Book.self).URLForResource(modelName, withExtension: "momd"),
-            model = NSManagedObjectModel(contentsOfURL: modelURL) else {
-                print("Unable to load model \(modelName)")
-                return
-        }
-        
-        guard let entity = model.entitiesByName[Book.entityName] else {
-                return
-        }
-
-        let bookObj = Book(dictionary: book, entity: entity)
-        print(bookObj)
-    }
-    
-    func testDecodeBookObjectAndSerializeData()
-    {
-        guard let fileUrl = NSBundle(forClass: self.dynamicType).URLForResource("Authors", withExtension: "json"),
-            data = NSData(contentsOfURL: fileUrl) else {
-                return
-        }
-        
-        guard let dict = try? data.deserializeJson() else {
-            print("Unable to load JSON from Authors.json")
-            return
-        }
-        
-        guard let authors = dict["authors"] as AnyObject as? [AnyObject],
-            author = authors[0] as AnyObject as? JsonDictionary,
-            books = author["books"]! as AnyObject as? [JsonDictionary],
-            book = books[0] as AnyObject as? JsonDictionary else {
-                return
-        }
-        
-        print(book)
-        
-        let modelName = "Authors"
-        
-        guard let modelURL = NSBundle(forClass: Book.self).URLForResource(modelName, withExtension: "momd"),
-            model = NSManagedObjectModel(contentsOfURL: modelURL) else {
-                print("Unable to load model \(modelName)")
-                return
-        }
-        
-        guard let entity = model.entitiesByName[Book.entityName] else {
-            return
-        }
-        
-        let bookObj = Book(dictionary: book, entity: entity)
-        print(bookObj)
-        
-        // Decode model object(s)
-        let bookDict = bookObj.dictionaryRepresentation
-        
-        // Serialize data
-        if let data = try? NSJSONSerialization.dataWithJSONObject(bookDict, options: NSJSONWritingOptions(rawValue: 0)) {
-            // Do something with the data...
-        }
-    }
+//    func testDecodeBookObjectAndSerializeData()
+//    {
+//        guard let fileUrl = NSBundle(forClass: self.dynamicType).URLForResource("Authors", withExtension: "json"),
+//            data = NSData(contentsOfURL: fileUrl) else {
+//                return
+//        }
+//        
+//        guard let dict = try? data.deserializeJson() else {
+//            print("Unable to load JSON from Authors.json")
+//            return
+//        }
+//        
+//        guard let authors = dict["authors"] as AnyObject as? [AnyObject],
+//            author = authors[0] as AnyObject as? JsonDictionary,
+//            books = author["books"]! as AnyObject as? [JsonDictionary],
+//            book = books[0] as AnyObject as? JsonDictionary else {
+//                return
+//        }
+//        
+//        print(book)
+//        
+//        let modelName = "Authors"
+//        
+//        guard let modelURL = NSBundle(forClass: Book.self).URLForResource(modelName, withExtension: "momd"),
+//            model = NSManagedObjectModel(contentsOfURL: modelURL) else {
+//                print("Unable to load model \(modelName)")
+//                return
+//        }
+//        
+//        guard let entity = model.entitiesByName[Book.entityName] else {
+//            return
+//        }
+//        
+//        let bookObj = Book(dictionary: book, entity: entity)
+//        print(bookObj)
+//        
+//        // Decode model object(s)
+//        let bookDict = bookObj.dictionaryRepresentation
+//        
+//        // Serialize data
+//        if let data = try? NSJSONSerialization.dataWithJSONObject(bookDict, options: NSJSONWritingOptions(rawValue: 0)) {
+//            // Do something with the data...
+//        }
+//    }
     
     func testEntityDescriptions()
     {
