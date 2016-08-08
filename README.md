@@ -3,9 +3,9 @@
 Adds automatic JSON serialization/deserialization to Swift model objects.
 
 [![CI Status](http://img.shields.io/travis/AboutObjects/Modelmatic.svg?style=flat)](https://travis-ci.org/AboutObjects/Modelmatic)
-[![Version](https://img.shields.io/cocoapods/v/modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
-[![License](https://img.shields.io/cocoapods/l/modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
-[![Platform](https://img.shields.io/cocoapods/p/modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
+[![Version](https://img.shields.io/cocoapods/v/Modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
+[![License](https://img.shields.io/cocoapods/l/Modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
+[![Platform](https://img.shields.io/cocoapods/p/Modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
 
 Modelmatic automates your app's model layer. It enables model objects to be deserialized from JSON and serialized to JSON, based on metadata you provide by configuring a Core Data model that describes your model's entities, attributes, and relationships.
 
