@@ -6,33 +6,14 @@
 import Foundation
 import CoreData
 
-
-public extension NSPropertyDescription
-{
-    public var externalKeyPath: String {
-        return userInfo?["externalKeyPath"] as? String ?? name
-    }
-}
-
-public extension NSArray
-{
-    // An array of dictionary representations of any elements that are instances of `ModelObject`.
-    public var dictionaryRepresentation: [[String: AnyObject]] {
-        var dicts: [[String: AnyObject]] = []
-            for currObj in self {
-                if let modelObj = currObj as? ModelObject {
-                    dicts.append(modelObj.dictionaryRepresentation)
-                }
-            }
-        return dicts
-    }
-}
+// TODO: Make this configurable.
+public let KVCPropertyPrefix = "kvc_"
 
 public class ModelObject : NSObject
 {
     var entity: NSEntityDescription!
     
-    public required init(dictionary: [String: AnyObject], entity: NSEntityDescription)
+    public required init(dictionary: JsonDictionary, entity: NSEntityDescription)
     {
         self.entity = entity
         super.init()
@@ -41,12 +22,38 @@ public class ModelObject : NSObject
     }
 }
 
+
+// MARK: - KVC Customization
+
+extension ModelObject
+{
+    override public func setNilValueForKey(key: String) {
+        if !key.hasPrefix(KVCPropertyPrefix) {
+            super.setNilValueForKey(key)
+        }
+        // Silently ignore prefixed keys, so if we're initializing a new instance,
+        // the property value will remain .None.
+    }
+    
+    override public func valueForUndefinedKey(key: String) -> AnyObject? {
+        return key.hasPrefix(KVCPropertyPrefix) ? nil : super.valueForKey(KVCPropertyPrefix + key)
+    }
+    
+    override public func setValue(value: AnyObject?, forUndefinedKey key: String) {
+        if key.hasPrefix(KVCPropertyPrefix) {
+            super.setValue(value, forUndefinedKey: key)
+        } else {
+            super.setValue(value, forKey: KVCPropertyPrefix + key)
+        }
+    }
+}
+
+
 // MARK: - Serializing
 
-public extension ModelObject
+extension ModelObject
 {
-    /// A dictionary representation of the receiver's state that can be serialized as JSON or plist.
-    public var dictionaryRepresentation: [String: AnyObject] {
+    public var dictionaryRepresentation: JsonDictionary {
         var dict = attributeValues
         for (key, value) in relationshipValues {
             dict[key] = value
@@ -54,10 +61,10 @@ public extension ModelObject
         return dict
     }
     
-    // TODO: Add exception handling.
-    
-    /// Allows the values of an object's attributes to be accessed as a dictionary.
-    public var attributeValues: [String: AnyObject] {
+    // TODO: Add exception handling. Consider adding custom KVC methods that throw.
+    // Probably need to construct intervening dictionaries, as needed.
+    //
+    public var attributeValues: JsonDictionary {
         get {
             return serializedAttributeValues
         }
@@ -66,9 +73,7 @@ public extension ModelObject
         }
     }
     
-    /// Allows the values of an object's relationships, i.e., its nested objects,
-    /// to be accessed as a dictionary.
-    public var relationshipValues: [String: AnyObject] {
+    public var relationshipValues: JsonDictionary {
         get {
             return serializedRelationshipValues
         }
@@ -77,22 +82,26 @@ public extension ModelObject
         }
     }
     
-    var serializedAttributeValues: [String: AnyObject] {
+    var serializedAttributeValues: JsonDictionary {
         let serializedVals: NSMutableDictionary = NSMutableDictionary()
         for (_, attribute) in entity.attributesByName {
             let val = serializedValue(forAttribute: attribute)
-            serializedVals.setValue(val, forKeyPath: attribute.externalKeyPath)
+            if val !== NSNull() {
+                serializedVals.setValue(val, forKeyPath: attribute.externalKeyPath)
+            }
         }
-        return serializedVals.copy() as! [String: AnyObject]
+        return serializedVals.copy() as! JsonDictionary
     }
     
-    var serializedRelationshipValues: [String: AnyObject] {
+    var serializedRelationshipValues: JsonDictionary {
         let serializedVals: NSMutableDictionary = NSMutableDictionary()
         for (_, relationship) in entity.relationshipsByName {
             let val = serializedValue(forRelationship: relationship)
-            serializedVals.setValue(val, forKeyPath: relationship.externalKeyPath)
+            if val !== NSNull() {
+                serializedVals.setValue(val, forKeyPath: relationship.externalKeyPath)
+            }
         }
-        return serializedVals.copy() as! [String: AnyObject]
+        return serializedVals.copy() as! JsonDictionary
     }
     
     func serializedValue(forAttribute attribute: NSAttributeDescription) -> AnyObject
@@ -101,7 +110,7 @@ public extension ModelObject
         if value != nil,
             let transformerName = attribute.valueTransformerName,
             let transformer = NSValueTransformer(forName: transformerName) {
-                value = transformer.transformedValue(value)
+            value = transformer.transformedValue(value)
         }
         return value ?? NSNull()
     }
@@ -112,14 +121,15 @@ public extension ModelObject
             return NSNull()
         }
         
-        if let modelObjs = value as? NSArray where relationship.toMany {
-            return modelObjs.dictionaryRepresentation
+        var serializedVal: AnyObject = NSNull()
+        if let modelObjs = value as? [ModelObject] where relationship.toMany {
+            serializedVal = modelObjs.dictionaryRepresentation
         }
-        else if let obj = value as? ModelObject where relationship.inverseRelationship != nil {
-            return obj.dictionaryRepresentation
+        else if let obj = value as? ModelObject where relationship.inverseRelationship == nil {
+            serializedVal = obj.dictionaryRepresentation
         }
         
-        return NSNull()
+        return serializedVal
     }
 }
 
@@ -133,7 +143,7 @@ extension ModelObject
         super.setValue(val, forKey: key)
     }
     
-    public func setAttributeValuesByDeserializing(dictionary: [String: AnyObject])
+    public func setAttributeValuesByDeserializing(dictionary: JsonDictionary)
     {
         for (_, attribute) in entity.attributesByName {
             let val = (dictionary as NSDictionary).valueForKeyPath(attribute.externalKeyPath)
@@ -141,35 +151,34 @@ extension ModelObject
         }
     }
     
-    public func setRelationshipValuesByDeserializing(dictionary: [String: AnyObject])
+    public func setRelationshipValuesByDeserializing(dictionary: JsonDictionary)
     {
         for (_, relationship) in entity.relationshipsByName {
             if let val = (dictionary as NSDictionary).valueForKeyPath(relationship.externalKeyPath) {
-                if let dicts = val as? [[String: AnyObject]] where relationship.toMany {
+                if let dicts = val as? [JsonDictionary] where relationship.toMany {
                     setBothSidesOfRelationship(relationship, withValuesFromDictionaries: dicts)
                 }
-                else if let dict = val as? [String: AnyObject] {
+                else if let dict = val as? JsonDictionary {
                     setBothSidesOfRelationship(relationship, withValuesFromDictionary: dict)
                 }
             }
         }
     }
-
-    public func deserialize(value: AnyObject?, forAttribute attribute: NSAttributeDescription)
+    
+    func deserialize(value: AnyObject?, forAttribute attribute: NSAttributeDescription)
     {
-        guard let val = value where val !== NSNull(),
+        var newValue = value
+        if let value = value where value !== NSNull(),
             let transformerName = attribute.valueTransformerName,
             let transformer = NSValueTransformer(forName: transformerName) where
-            transformer.dynamicType.allowsReverseTransformation() else {
-                // TODO: Provide error messages for failure cases
-                setValue(value, forKey: attribute.name)
-                return
+            transformer.dynamicType.allowsReverseTransformation() {
+            newValue = transformer.reverseTransformedValue(value) ?? NSNull()
         }
-        setValue(transformer.reverseTransformedValue(val) ?? NSNull(), forKey: attribute.name)
+        setValue(newValue, forKey: attribute.name)
     }
     
     
-    public func modelObject(withDictionary dictionary: [String: AnyObject], relationship: NSRelationshipDescription) -> ModelObject
+    public func modelObject(withDictionary dictionary: JsonDictionary, relationship: NSRelationshipDescription) -> ModelObject
     {
         guard
             let targetEntity = relationship.destinationEntity,
@@ -183,7 +192,7 @@ extension ModelObject
         return TargetClass.init(dictionary: dictionary, entity: targetEntity)
     }
     
-    public func setBothSidesOfRelationship(relationship: NSRelationshipDescription, withValuesFromDictionaries dictionaries: [[String: AnyObject]])
+    public func setBothSidesOfRelationship(relationship: NSRelationshipDescription, withValuesFromDictionaries dictionaries: [JsonDictionary])
     {
         let modelObjects = dictionaries.map { (dict) -> ModelObject in
             let modelObj = modelObject(withDictionary: dict, relationship: relationship)
@@ -195,9 +204,9 @@ extension ModelObject
         setValue(modelObjects, forKey: relationship.name)
     }
     
-    public func setBothSidesOfRelationship(relationship: NSRelationshipDescription, withValuesFromDictionary dictionary: [String: AnyObject])
+    public func setBothSidesOfRelationship(relationship: NSRelationshipDescription, withValuesFromDictionary dictionary: JsonDictionary)
     {
-        guard let dict = (dictionary as NSDictionary).valueForKeyPath(relationship.externalKeyPath) as? [String: AnyObject] else {
+        guard let dict = (dictionary as NSDictionary).valueForKeyPath(relationship.externalKeyPath) as? JsonDictionary else {
             return
         }
         

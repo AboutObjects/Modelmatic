@@ -6,7 +6,7 @@
 import Foundation
 import Modelmatic
 
-@objc (Author)
+@objc (MDLAuthor)
 public class Author: ModelObject
 {
     public static let entityName = "Author"

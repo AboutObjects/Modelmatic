@@ -4,17 +4,13 @@
 //
 import CoreData
 
-let CSVTransformerName = "CSVTransformerName"
-let DelimiterString = ","
+private let delimiterString = ","
 
-@objc (CSVTransformer)
-public class CSVTransformer: NSValueTransformer
+@objc (MDLStringArrayTransformer)
+public class StringArrayTransformer: NSValueTransformer
 {
-    public override class func initialize() {
-        guard self === CSVTransformer.self else { return }
-        NSValueTransformer.setValueTransformer(CSVTransformer(), forName: CSVTransformerName)
-    }
-    
+    public static let transformerName = "StringArray"
+
     override public class func transformedValueClass() -> AnyClass {
         return NSString.self
     }
@@ -25,11 +21,11 @@ public class CSVTransformer: NSValueTransformer
     
     public override func transformedValue(value: AnyObject?) -> AnyObject? {
         guard let values = value as? NSArray else { return value }
-        return values.componentsJoinedByString(DelimiterString)
+        return values.componentsJoinedByString(delimiterString)
     }
     
     public override func reverseTransformedValue(value: AnyObject?) -> AnyObject? {
-        guard let stringVal = value as? NSString else { return nil }
-        return stringVal.componentsSeparatedByString(DelimiterString)
+        guard let stringVal = value as? String else { return nil }
+        return stringVal.componentsSeparatedByString(delimiterString)
     }
 }
