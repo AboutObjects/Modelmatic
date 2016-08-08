@@ -2,12 +2,22 @@
 
 ## [Unreleased](https://github.com/AboutObjects/Modelmatic/tree/HEAD)
 
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.2.0...HEAD)
+[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.3.0...HEAD)
 
 **Implemented enhancements:**
 
 - Merge Example from current Codex baseline [\#7](https://github.com/AboutObjects/Modelmatic/issues/7)
 - Add a change log \(CHANGELOG.md\) [\#4](https://github.com/AboutObjects/Modelmatic/issues/4)
+
+**Merged pull requests:**
+
+- Add enhancements to example app from Codex HEAD [\#8](https://github.com/AboutObjects/Modelmatic/pull/8) ([jonathanlehr](https://github.com/jonathanlehr))
+
+## [0.3.0](https://github.com/AboutObjects/Modelmatic/tree/0.3.0) (2016-08-08)
+[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.2.0...0.3.0)
+
+**Implemented enhancements:**
+
 - Publish Cocoapod [\#2](https://github.com/AboutObjects/Modelmatic/issues/2)
 - Version 0.2.0 - Publish Cocoapod [\#3](https://github.com/AboutObjects/Modelmatic/pull/3) ([jonathanlehr](https://github.com/jonathanlehr))
 
