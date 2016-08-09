@@ -10,45 +10,6 @@ import Modelmatic
 let ModelName = "Authors"
 let FileName = "Authors"
 
-extension Dictionary
-{
-    static func byLoading(fileName: String) -> JsonDictionary?
-    {
-        return self.byLoadingJSON(fileName) ?? self.byLoadingPropertyList(fileName)
-    }
-
-    static func byLoadingJSON(fileName: String) -> JsonDictionary?
-    {
-        if let dict = self.byLoadingJSON(NSURL.documentDirectoryURL(forFileName: fileName, type: "plist")) {
-            return dict
-        }
-        return self.byLoadingJSON(NSURL.bundleDirectoryURL(forFileName: fileName, type: "plist"))
-    }
-
-    static func byLoadingJSON(fileUrl: NSURL?) -> JsonDictionary?
-    {
-        guard let url = fileUrl, data = NSData(contentsOfURL: url), dict = try? data.deserializeJson() else {
-            print("Unable to deserialize JSON from \(fileUrl)")
-            return nil
-        }
-        return dict as? JsonDictionary
-    }
-    
-    static func byLoadingPropertyList(fileName: String) -> JsonDictionary?
-    {
-        if let dict = self.byLoadingPropertyList(NSURL.documentDirectoryURL(forFileName: fileName, type: "plist")) {
-            return dict
-        }
-        return self.byLoadingPropertyList(NSURL.bundleDirectoryURL(forFileName: fileName, type: "plist"))
-    }
-    
-    static func byLoadingPropertyList(fileUrl: NSURL?) -> JsonDictionary?
-    {
-        guard let url = fileUrl else { return nil }
-        return NSDictionary(contentsOfURL: url) as? JsonDictionary
-    }
-}
-
 extension NSDictionary
 {
     public class func dictionary(contentsOfPropertyListFile fileName: String) -> NSDictionary?
@@ -60,6 +21,17 @@ extension NSDictionary
         
         guard let URL = NSURL.bundleDirectoryURL(forFileName: fileName, type: "plist") else { return nil }
         return NSDictionary(contentsOfURL: URL)
+    }
+    
+    public class func dictionary(contentsOfJSONFile fileName: String) -> NSDictionary?
+    {
+        if let url = NSURL.documentDirectoryURL(forFileName: fileName, type: "json"),
+            dict = NSDictionary.dictionary(contentsOf: url) {
+            return dict
+        }
+        
+        guard let url = NSURL.bundleDirectoryURL(forFileName: fileName, type: "json") else { return nil }
+        return NSDictionary.dictionary(contentsOf: url)
     }
 }
 
@@ -91,8 +63,8 @@ public class AuthorObjectStore: NSObject
         model = NSManagedObjectModel(contentsOfURL: modelURL!) // Crash here if model URL is invalid.
         entity = model.entitiesByName[Author.entityName]
         
-        //let dict = NSDictionary.dictionary(contentsOfPropertyListFile: FileName)
-        let dict = JsonDictionary.byLoading("Book")
+        // let dict = NSDictionary.dictionary(contentsOfPropertyListFile: FileName)
+        let dict = NSDictionary.dictionary(contentsOfJSONFile: FileName)
         
         version = dict?["version"] as? NSNumber ?? NSNumber(int: 0)
         super.init()
@@ -113,12 +85,18 @@ public class AuthorObjectStore: NSObject
     {
         guard let authors = self.authors else { return }
         
-        let serializedAuthors = [
+        let dict: NSDictionary = [
             "version": version,
             "authors": authors.dictionaryRepresentation]
         
-        if let URL = NSURL.documentDirectoryURL(forFileName: FileName, type: "plist") {
-            (serializedAuthors as NSDictionary).writeToURL(URL, atomically: true)
+        if let URL = NSURL.documentDirectoryURL(forFileName: FileName, type: "json"),
+            data = try? dict.serializeAsJson() {
+            do {
+                try data.writeToURL(URL, options: NSDataWritingOptions(rawValue: 0))
+            }
+            catch {
+                print("WARNING: Unable to save data as JSON")
+            }
         }
     }
 }

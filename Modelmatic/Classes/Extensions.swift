@@ -35,3 +35,25 @@ public extension NSData
     }
 }
 
+public extension NSDictionary
+{
+    public func serializeAsJson() throws -> NSData
+    {
+        do {
+            return try NSJSONSerialization.dataWithJSONObject(self, options: NSJSONWritingOptions(rawValue: 0))
+        }
+        catch let error as NSError {
+            print("Unable to deserialize as JSON due to error: \(error)")
+            throw error
+        }
+    }
+    
+    public class func dictionary(contentsOf url: NSURL) -> NSDictionary?
+    {
+        guard let data = NSData(contentsOfURL: url),
+            dict = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) else {
+                return nil
+        }
+        return dict as? NSDictionary
+    }
+}
