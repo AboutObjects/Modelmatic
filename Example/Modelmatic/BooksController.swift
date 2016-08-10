@@ -9,6 +9,13 @@ public class BooksController: UITableViewController
 {
     @IBOutlet var dataSource: AuthorDataSource!
     
+    public override func viewDidLoad()
+    {
+        dataSource.fetch() { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    
     public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         guard
@@ -24,6 +31,15 @@ public class BooksController: UITableViewController
 
 extension BooksController
 {
+    @IBAction func toggleStorageMode(sender: AnyObject)
+    {
+        dataSource.toggleStorageMode()
+        dataSource.fetch(){ [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    
+    // Unwind segue
     @IBAction func doneEditingBook(segue: UIStoryboardSegue)
     {
         dataSource.save()
