@@ -7,96 +7,144 @@ import Foundation
 import CoreData
 import Modelmatic
 
-let ModelName = "Authors"
-let FileName = "Authors"
+let authorsModelName = "Authors"
+let authorsFileName = "Authors"
 
-extension NSDictionary
-{
-    public class func dictionary(contentsOfPropertyListFile fileName: String) -> NSDictionary?
-    {
-        if  let URL = NSURL.documentDirectoryURL(forFileName: fileName, type: "plist"),
-            let dict = NSDictionary(contentsOfURL: URL) {
-            return dict
-        }
-        
-        guard let URL = NSURL.bundleDirectoryURL(forFileName: fileName, type: "plist") else { return nil }
-        return NSDictionary(contentsOfURL: URL)
-    }
-    
-    public class func dictionary(contentsOfJSONFile fileName: String) -> NSDictionary?
-    {
-        if let url = NSURL.documentDirectoryURL(forFileName: fileName, type: "json"),
-            dict = NSDictionary.dictionary(contentsOf: url) {
-            return dict
-        }
-        
-        guard let url = NSURL.bundleDirectoryURL(forFileName: fileName, type: "json") else { return nil }
-        return NSDictionary.dictionary(contentsOf: url)
-    }
-}
+private let restUrlString = "http://www.aboutobjects.com/modelmatic?resource=Authors"
 
-extension NSURL
-{
-    public class func documentDirectoryURL(forFileName fileName: String, type: String) -> NSURL?
-    {
-        let URLs = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return URLs.first?.URLByAppendingPathComponent(fileName).URLByAppendingPathExtension(type)
-    }
-    
-    public class func bundleDirectoryURL(forFileName fileName: String, type: String) -> NSURL?
-    {
-        return NSBundle(forClass: AuthorObjectStore.self).URLForResource(fileName, withExtension: type)
-    }
+public enum StorageMode {
+    case webService
+    case file
 }
 
 public class AuthorObjectStore: NSObject
 {
     let model: NSManagedObjectModel!
     let entity: NSEntityDescription!
-    
-    var version: NSNumber
+    var version: NSNumber = 0
     var authors: [Author]?
     
-    required override public init()
-    {
-        let modelURL = NSBundle(forClass: AuthorObjectStore.self).URLForResource(ModelName, withExtension: "momd")
-        model = NSManagedObjectModel(contentsOfURL: modelURL!) // Crash here if model URL is invalid.
-        entity = model.entitiesByName[Author.entityName]
-        
-        // let dict = NSDictionary.dictionary(contentsOfPropertyListFile: FileName)
-        let dict = NSDictionary.dictionary(contentsOfJSONFile: FileName)
-        
-        version = dict?["version"] as? NSNumber ?? NSNumber(int: 0)
-        super.init()
-        
-        let serializedAuthors = dict?["authors"] as? [JsonDictionary]
-        authors = serializedAuthors?.map {
-            Author(dictionary: $0, entity: self.entity)
+    var storageMode = StorageMode.file {
+        willSet {
+            segmentedControl.selectedSegmentIndex = newValue == .file ? 1 : 0
         }
     }
     
-    override public class func initialize()
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    required public override init()
     {
+        let modelURL = NSBundle(forClass: AuthorObjectStore.self).URLForResource(authorsModelName, withExtension: "momd")
+        model = NSManagedObjectModel(contentsOfURL: modelURL!) // Crash here if model URL is invalid.
+        entity = model.entitiesByName[Author.entityName]
+        super.init()
+    }
+    
+    override public class func initialize() {
         guard self === AuthorObjectStore.self else { return }
         configureValueTransformers()
+        configureURLProtocols()
+    }
+        
+    func toggleStorageMode() {
+        storageMode = storageMode == .file ? .webService : .file
+    }
+}
+
+// MARK: - Encoding and Decoding Authors
+extension AuthorObjectStore
+{
+    func encodeAuthors() -> NSData?
+    {
+        guard let authors = self.authors else { return nil }
+        let dict: NSDictionary = ["version": version, "authors": authors.dictionaryRepresentation]
+        return try? dict.serializeAsJson(pretty: true)
+    }
+    
+    func decodeAuthors(data: NSData?)
+    {
+        guard let data = data, dict = try? data.deserializeJson(),
+            authorDicts = dict["authors"] as? [JsonDictionary] else { return }
+        version = dict["version"] as? NSNumber ?? NSNumber(int: 0)
+        authors = authorDicts.map { Author(dictionary: $0, entity: entity) }
+    }
+}
+
+// MARK: - Fetching and Saving Data
+extension AuthorObjectStore
+{
+    func fetch(completion: () -> Void) {
+        if case StorageMode.webService = storageMode {
+            fetchObjects(fromWeb: restUrlString, completion: completion) } else {
+            fetchObjects(fromFile: authorsFileName, completion: completion)
+        }
+    }
+    
+    func fetchObjects(fromFile fileName: String, completion: () -> Void)
+    {
+        guard let dict = NSDictionary.dictionary(contentsOfJSONFile: fileName), authorDicts = dict["authors"] as? [JsonDictionary] else {
+            return
+        }
+        version = dict["version"] as? NSNumber ?? NSNumber(int: 0)
+        authors = authorDicts.map { Author(dictionary: $0, entity: self.entity) }
+        completion()
+    }
+
+    func fetchObjects(fromWeb urlString: String, completion: () -> Void)
+    {
+        guard let url = NSURL(string: urlString) else { fatalError("Invalid url string: \(urlString)") }
+        
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url) { data, response, error in
+            guard let response = response as? NSHTTPURLResponse where error == nil && response.valid else {
+                print("WARNING: unable to fetch from web service with url \(urlString); error was \(error)")
+                return
+            }
+            self.decodeAuthors(data)
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                completion()
+            }
+        }
+        task.resume()
     }
     
     public func save()
     {
-        guard let authors = self.authors else { return }
+        if case StorageMode.webService = storageMode {
+            save(toWeb: restUrlString) } else {
+            save(toFile: authorsFileName) }
+    }
+    
+    public func save(toWeb urlString: String)
+    {
+        guard let url = NSURL(string: urlString) else { fatalError("Invalid url string: \(urlString)") }
+        guard let data = encodeAuthors() else { print("WARNING: save failed with url: \(urlString)"); return }
         
-        let dict: NSDictionary = [
-            "version": version,
-            "authors": authors.dictionaryRepresentation]
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "PUT"
+        request.HTTPBody = data
+        request.setValue(String(data.length), forHTTPHeaderField: "Content-Length")
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         
-        if let URL = NSURL.documentDirectoryURL(forFileName: FileName, type: "json"),
-            data = try? dict.serializeAsJson() {
-            do {
-                try data.writeToURL(URL, options: NSDataWritingOptions(rawValue: 0))
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+            guard let response = response as? NSHTTPURLResponse where error == nil && response.valid else {
+                print("WARNING: unable to save to web service with url \(urlString); error was \(error)")
+                return
             }
-            catch {
-                print("WARNING: Unable to save data as JSON")
-            }
+        }
+        task.resume()
+    }
+    
+    public func save(toFile fileName: String)
+    {
+        guard let
+            data = encodeAuthors(),
+            url = NSURL.documentDirectoryURL(forFileName: authorsFileName, type: "json") else { return }
+        
+        do {
+            try data.writeToURL(url, options: NSDataWritingOptions(rawValue: 0))
+        }
+        catch {
+            print("WARNING: Unable to save data as JSON")
         }
     }
 }
@@ -108,6 +156,11 @@ extension AuthorObjectStore
     {
         NSValueTransformer.setValueTransformer(DateTransformer(), forName: String(DateTransformer.transformerName))
         NSValueTransformer.setValueTransformer(StringArrayTransformer(), forName: String(StringArrayTransformer.transformerName))
+    }
+    
+    public class func configureURLProtocols()
+    {
+        NSURLProtocol.registerClass(HttpSessionProtocol.self)
     }
 }
 

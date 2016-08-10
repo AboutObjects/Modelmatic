@@ -37,10 +37,10 @@ public extension NSData
 
 public extension NSDictionary
 {
-    public func serializeAsJson() throws -> NSData
+    public func serializeAsJson(pretty pretty: Bool) throws -> NSData
     {
         do {
-            return try NSJSONSerialization.dataWithJSONObject(self, options: NSJSONWritingOptions(rawValue: 0))
+            return try NSJSONSerialization.dataWithJSONObject(self, options: pretty ? .PrettyPrinted : NSJSONWritingOptions(rawValue: 0))
         }
         catch let error as NSError {
             print("Unable to deserialize as JSON due to error: \(error)")

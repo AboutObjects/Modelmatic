@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--English Literature-->
+        <!--Books Controller-->
         <scene sceneID="SZW-EV-Yrm">
             <objects>
                 <tableViewController id="vCf-qP-4Zt" customClass="BooksController" customModule="Modelmatic_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -67,7 +67,20 @@
                             <outlet property="delegate" destination="vCf-qP-4Zt" id="PAx-oC-LAp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="English Literature" id="YTm-RM-hJS"/>
+                    <navigationItem key="navigationItem" prompt="Data Storage" id="YTm-RM-hJS">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="9qe-pY-wKi">
+                            <rect key="frame" x="70" y="37" width="181" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Web Service"/>
+                                <segment title="File"/>
+                            </segments>
+                            <connections>
+                                <action selector="toggleStorageMode:" destination="vCf-qP-4Zt" eventType="valueChanged" id="k6I-xi-My6"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
                     <connections>
                         <outlet property="dataSource" destination="vyF-oh-wBi" id="SIP-It-vGn"/>
                     </connections>
@@ -78,7 +91,11 @@
                         <outlet property="objectStore" destination="OxJ-X2-QOZ" id="uTs-wM-RCc"/>
                     </connections>
                 </customObject>
-                <customObject id="OxJ-X2-QOZ" customClass="AuthorObjectStore" customModule="Modelmatic_Example" customModuleProvider="target"/>
+                <customObject id="OxJ-X2-QOZ" customClass="AuthorObjectStore" customModule="Modelmatic_Example" customModuleProvider="target">
+                    <connections>
+                        <outlet property="segmentedControl" destination="9qe-pY-wKi" id="wjf-Zu-fc4"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="-1276" y="425"/>
         </scene>

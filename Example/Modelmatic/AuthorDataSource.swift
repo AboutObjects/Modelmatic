@@ -43,6 +43,12 @@ public class AuthorDataSource: NSObject
 {
     @IBOutlet var objectStore: AuthorObjectStore!
     
+    public func toggleStorageMode() {
+        objectStore.toggleStorageMode()
+    }
+    public func fetch(completion: () -> Void) {
+        objectStore.fetch(completion)
+    }
     public func save() {
         objectStore.save()
     }
