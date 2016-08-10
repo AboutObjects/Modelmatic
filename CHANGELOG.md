@@ -1,5 +1,21 @@
 # Change Log
 
+## [0.4.1](https://github.com/AboutObjects/Modelmatic/tree/0.4.1) (2016-08-10)
+[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.4.0...0.4.1)
+
+**Implemented enhancements:**
+
+- Add UI to allow users to toggle between web and file system storage [\#14](https://github.com/AboutObjects/Modelmatic/issues/14)
+- Mock web services with NSURLProtocol instead of Mocky.io [\#13](https://github.com/AboutObjects/Modelmatic/issues/13)
+- Integrate with mock web service [\#12](https://github.com/AboutObjects/Modelmatic/issues/12)
+
+**Merged pull requests:**
+
+- \#13 Mock web services with NSURLProtocol instead of Mocky.io [\#15](https://github.com/AboutObjects/Modelmatic/pull/15) ([jonathanlehr](https://github.com/jonathanlehr))
+
+## [0.4.0](https://github.com/AboutObjects/Modelmatic/tree/0.4.0) (2016-08-09)
+[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.3.3...0.4.0)
+
 ## [0.3.3](https://github.com/AboutObjects/Modelmatic/tree/0.3.3) (2016-08-09)
 [Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.3.2...0.3.3)
 
