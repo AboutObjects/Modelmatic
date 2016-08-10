@@ -196,7 +196,7 @@ The date transformer is registered by the following line of code in the Example 
 NSValueTransformer.setValueTransformer(DateTransformer(), forName: String(DateTransformer.transformerName))
 ```
 
-### Step 2: Loading the Model
+### Step 3: Loading the Model
 
 Somewhere in your app (you only need to do this once during the app's lifecycle), do something like the following to load the Core Data model file into memory:
 
@@ -212,7 +212,7 @@ guard let modelURL = NSBundle(forClass: self.dynamicType).URLForResource(modelNa
 
 You'll most likely want to store the reference to the model in a class property.
 
-### Step 3: Deserializing Data and Decoding
+### Step 4: Encoding and Decoding Model Objects
 
 Once you've obtained JSON data, you can deserialize it as follows (Note that `deserializeJson` wraps a call to `NSJSONSerialization`):
 
@@ -227,11 +227,7 @@ To construct an instance of your model class, simply provide the dictionary of d
 let authors = Author(dictionary: $0, entity: entity)
 ```
 
-This will construct and populate an instance of `Author`, as well as any nested objects for which you defined relationships in the model (and for which the JSON contains data).
-
-### Step 4: Encoding and Serializing
-
-You then simply work with your model objects. Whenever you want to serialize an object or group of objects, simply do as follows:
+This will construct and populate an instance of `Author`, as well as any nested objects for which you defined relationships in the model (and for which the JSON contains data). You then simply work with your model objects. Whenever you want to serialize an object or group of objects, simply do as follows:
 
 ```swift
 // Encode the author
