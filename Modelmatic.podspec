@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'Modelmatic'
-    s.version          = '0.4.0'
+    s.version          = '0.4.1'
     s.summary          = 'JSON serialization and deserialization for Swift model objects.'
     s.description      = <<-DESC
     Modelmatic adds JSON serialization and deserialization behavior to Swift model objects so that you don't have to. It allows you to take advantage of Xcode's built-in Core Data modeling tool to define mappings between object properties and JSON attributes, allowing you to seamlessly model relationships.
