@@ -1,13 +1,13 @@
 # Modelmatic
 
-Automatic JSON serialization and deserialization for Swift model objects.
+Automatic JSON encoding and decoding of Swift (and eventually Objective-C) model objects.
 
 [![CI Status](http://img.shields.io/travis/AboutObjects/Modelmatic.svg?style=flat)](https://travis-ci.org/AboutObjects/Modelmatic)
 [![Version](https://img.shields.io/cocoapods/v/Modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
 [![License](https://img.shields.io/cocoapods/l/Modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
 [![Platform](https://img.shields.io/cocoapods/p/Modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
 
-Modelmatic automates JSON serialization and deserialization of your app's model layer. Instead of requiring you to hand-maintain mappings in your Swift classes, Modelmatic reads mappings and value transformations you define in Xcode's Core Data Model Editor. 
+Modelmatic automates JSON encoding and decoding of your app's model layer. Instead of requiring you to hand-maintain mappings in your Swift (and eventually Objective-C) classes, Modelmatic reads mappings and value transformations you define in Xcode's Core Data Model Editor. 
 
 Please note that the current version of Modelmatic works only for model objects that *don't* depend on Core Data. Support for `NSManagedObject` subclasses will be added in a future release.
 
