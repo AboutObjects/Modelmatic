@@ -5,7 +5,7 @@
 
 import UIKit
 
-public class BookCell: UITableViewCell
+class BookCell: UITableViewCell
 {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var infoLabel: UILabel!

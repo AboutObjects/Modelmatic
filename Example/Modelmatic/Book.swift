@@ -7,41 +7,50 @@ import Foundation
 import Modelmatic
 
 @objc (MDLBook)
-public class Book: ModelObject
+class Book: ModelObject
 {
-    public static let entityName = "Book"
+    static let entityName = "Book"
     
-    public var externalID: NSNumber!
-    public var title: String!    
-    public var year: String?
-    public var tags: [String]?
-    public var author: Author?
+    var externalID: NSNumber!
+    var title: String!
+    var year: String?
+    var tags: [String]?
+    var favorite: Bool?
+    var rating: Int?
     
-    public var favorite: Bool?
+    // IMPORTANT: Use weak reference when modeling inverse relationship.
+    weak var author: Author?
+    
+    override  var description: String {
+        return "\(super.description) title: \(title); year: \(year), tags: \(tags), externalID: \(externalID)"
+    }
+}
+
+
+// MARK: - Wrapping and Unwrapping Optional Structs
+
+extension Book
+{
     var kvc_favorite: Bool {
         get { return favorite ?? false }
         set { favorite = Optional(newValue) }
     }
     
-    public var rating: Int?
     var kvc_rating: Int {
         get { return rating ?? 0 }
         set { rating = Optional(newValue) }
     }
-    
-    
-    // TODO: Automate UI value transformations
-    
-    public var transformedTags: String? {
-        get { return tagsTransformer?.transformedValue(tags) as? String }
-        set { self.tags = tagsTransformer?.reverseTransformedValue(newValue) as? [String] }
-    }
-    
-    var tagsTransformer: NSValueTransformer? =  {
-        return NSValueTransformer(forName: String(StringArrayTransformer.transformerName))
-    }()
-    
-    override public var description: String {
-        return "\(super.description) title: \(title); year: \(year), tags: \(tags), externalID: \(externalID)"
+}
+
+
+// MARK: - Transforming UI Values
+
+private let tagsTransformer = StringArrayTransformer()
+
+extension Book
+{
+    var transformedTags: String? {
+        get { return tagsTransformer.transformedValue(tags) as? String }
+        set { self.tags = tagsTransformer.reverseTransformedValue(newValue) as? [String] }
     }
 }

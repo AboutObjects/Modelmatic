@@ -33,15 +33,15 @@ extension AppDelegate
 // MARK: - Codex Color Scheme
 extension UIColor
 {
-    public class func oddRowColor() -> UIColor {
+    class func oddRowColor() -> UIColor {
         return UIColor(red: 1.0, green: 0.99, blue: 0.97, alpha: 1.0)
     }
     
-    public class func evenRowColor() -> UIColor {
+    class func evenRowColor() -> UIColor {
         return UIColor(red: 0.98, green: 0.96, blue: 0.93, alpha: 1.0)
     }
     
-    public class func headerColor() -> UIColor {
+    class func headerColor() -> UIColor {
         return UIColor(red: 0.93, green: 0.91, blue: 0.87, alpha: 1.0)
     }
 }

@@ -7,7 +7,7 @@ import UIKit
 
 let CellID = "Book"
 
-public enum FavoriteSymbol: String {
+enum FavoriteSymbol: String {
     case FilledHeart = "♥️"
     case BlankHeart = "♡"
     
@@ -16,7 +16,7 @@ public enum FavoriteSymbol: String {
     }
 }
 
-public enum Rating: String {
+enum Rating: String {
     case Zero  = "☆☆☆☆☆"
     case One   = "★☆☆☆☆"
     case Two   = "★★☆☆☆"
@@ -39,36 +39,36 @@ public enum Rating: String {
     }
 }
 
-public class AuthorDataSource: NSObject
+class AuthorDataSource: NSObject
 {
     @IBOutlet var objectStore: AuthorObjectStore!
     
-    public func toggleStorageMode() {
+    func toggleStorageMode() {
         objectStore.toggleStorageMode()
     }
-    public func fetch(completion: () -> Void) {
+    func fetch(completion: () -> Void) {
         objectStore.fetch(completion)
     }
-    public func save() {
+    func save() {
         objectStore.save()
     }
 }
 
 extension AuthorDataSource: UITableViewDataSource
 {
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return objectStore.numberOfSections()
     }
     
-    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return objectStore.titleForSection(section)
     }
     
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objectStore.numberOfRows(inSection: section)
     }
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCellWithIdentifier(CellID) as? BookCell else {
             NSLog("WARNING: Unable to dequeue a cell with identifier \(CellID)")
             abort()
@@ -79,9 +79,9 @@ extension AuthorDataSource: UITableViewDataSource
 }
 
 // MARK: - Populating Cells
-public extension AuthorDataSource
+extension AuthorDataSource
 {
-    public func populateCell(cell: BookCell, atIndexPath indexPath: NSIndexPath)
+    func populateCell(cell: BookCell, atIndexPath indexPath: NSIndexPath)
     {
         guard let book = objectStore.bookAtIndexPath(indexPath) else { return }
         let favString = "  " + FavoriteSymbol.stringValue(book.favorite)

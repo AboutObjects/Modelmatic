@@ -12,12 +12,12 @@ let authorsFileName = "Authors"
 
 private let restUrlString = "http://www.aboutobjects.com/modelmatic?resource=Authors"
 
-public enum StorageMode {
+enum StorageMode {
     case webService
     case file
 }
 
-public class AuthorObjectStore: NSObject
+class AuthorObjectStore: NSObject
 {
     let model: NSManagedObjectModel!
     let entity: NSEntityDescription!
@@ -32,7 +32,7 @@ public class AuthorObjectStore: NSObject
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    required public override init()
+    required  override init()
     {
         let modelURL = NSBundle(forClass: AuthorObjectStore.self).URLForResource(authorsModelName, withExtension: "momd")
         model = NSManagedObjectModel(contentsOfURL: modelURL!) // Crash here if model URL is invalid.
@@ -40,12 +40,12 @@ public class AuthorObjectStore: NSObject
         super.init()
     }
     
-    override public class func initialize() {
+    override  class func initialize() {
         guard self === AuthorObjectStore.self else { return }
         configureValueTransformers()
         configureURLProtocols()
     }
-        
+    
     func toggleStorageMode() {
         storageMode = storageMode == .file ? .webService : .file
     }
@@ -89,7 +89,7 @@ extension AuthorObjectStore
         authors = authorDicts.map { Author(dictionary: $0, entity: self.entity) }
         completion()
     }
-
+    
     func fetchObjects(fromWeb urlString: String, completion: () -> Void)
     {
         guard let url = NSURL(string: urlString) else { fatalError("Invalid url string: \(urlString)") }
@@ -107,14 +107,14 @@ extension AuthorObjectStore
         task.resume()
     }
     
-    public func save()
+    func save()
     {
         if case StorageMode.webService = storageMode {
             save(toWeb: restUrlString) } else {
             save(toFile: authorsFileName) }
     }
     
-    public func save(toWeb urlString: String)
+    func save(toWeb urlString: String)
     {
         guard let url = NSURL(string: urlString) else { fatalError("Invalid url string: \(urlString)") }
         guard let data = encodeAuthors() else { print("WARNING: save failed with url: \(urlString)"); return }
@@ -134,7 +134,7 @@ extension AuthorObjectStore
         task.resume()
     }
     
-    public func save(toFile fileName: String)
+    func save(toFile fileName: String)
     {
         guard let
             data = encodeAuthors(),
@@ -152,13 +152,13 @@ extension AuthorObjectStore
 // MARK: - Configuring Value Transformers
 extension AuthorObjectStore
 {
-    public class func configureValueTransformers()
+    class func configureValueTransformers()
     {
         NSValueTransformer.setValueTransformer(DateTransformer(), forName: String(DateTransformer.transformerName))
         NSValueTransformer.setValueTransformer(StringArrayTransformer(), forName: String(StringArrayTransformer.transformerName))
     }
     
-    public class func configureURLProtocols()
+    class func configureURLProtocols()
     {
         NSURLProtocol.registerClass(HttpSessionProtocol.self)
     }
@@ -166,21 +166,21 @@ extension AuthorObjectStore
 
 // MARK: - DataSource Support
 
-public extension AuthorObjectStore
+extension AuthorObjectStore
 {
-    public func titleForSection(section: NSInteger) -> String {
+    func titleForSection(section: NSInteger) -> String {
         return authors?[section].fullName ?? ""
     }
     
-    public func numberOfSections() -> NSInteger {
+    func numberOfSections() -> NSInteger {
         return authors?.count ?? 0
     }
     
-    public func numberOfRows(inSection section: NSInteger) -> NSInteger {
+    func numberOfRows(inSection section: NSInteger) -> NSInteger {
         return authors?[section].books?.count ?? 0
     }
     
-    public func bookAtIndexPath(indexPath: NSIndexPath) -> Book? {
+    func bookAtIndexPath(indexPath: NSIndexPath) -> Book? {
         return authors?[indexPath.section].books?[indexPath.row]
     }
 }

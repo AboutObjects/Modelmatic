@@ -7,24 +7,26 @@ import Foundation
 import Modelmatic
 
 @objc (MDLAuthor)
-public class Author: ModelObject
+class Author: ModelObject
 {
-    public static let entityName = "Author"
+    static let entityName = "Author"
     
-    public var externalID: NSNumber!
+    var externalID: NSNumber!
+    var firstName: String?
+    var lastName: String?
+    var dateOfBirth: NSDate?
+    var imageURL: UIImage?
+    
+    var books: [Book]?
+}
 
-    public var firstName: String?
-    public var lastName: String?
 
-    public var fullName: String {
+extension Author
+{
+    var fullName: String {
         return (lastName == nil && firstName == nil ? "Unknown" :
             lastName == nil ? firstName! :
             firstName == nil ? lastName! :
             "\(lastName!), \(firstName!)")
     }
-    
-    public var dateOfBirth: NSDate?
-    public var imageURL: UIImage?
-    
-    public var books: [Book]?
 }

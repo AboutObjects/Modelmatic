@@ -6,7 +6,7 @@
 import UIKit
 import Modelmatic
 
-public class BookDetailController: UITableViewController
+class BookDetailController: UITableViewController
 {
     var book: Book!
     
@@ -17,7 +17,7 @@ public class BookDetailController: UITableViewController
     
     @IBOutlet weak var authorImageView: UIImageView!
     
-    public override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
         
@@ -31,22 +31,18 @@ public class BookDetailController: UITableViewController
         }
     }
     
-    @IBAction func cancelEditingBook(segue: UIStoryboardSegue)
-    {
-        // do nothing
-    }
+    @IBAction func cancelEditingBook(segue: UIStoryboardSegue) { /* do nothing */ }
     
-    public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        guard
-            let navController = segue.destinationViewController as? UINavigationController,
-            let editController = navController.childViewControllers.first as? EditBookController else {
+        guard let navController = segue.destinationViewController as? UINavigationController,
+            editController = navController.childViewControllers.first as? EditBookController else {
                 return
         }
         editController.book = book
     }
     
-    public override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         let heart = "  " + (book.favorite == true ?
             FavoriteSymbol.FilledHeart.rawValue :
