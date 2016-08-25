@@ -3,35 +3,29 @@
 // See LICENSE.txt for this example's licensing information.
 //
 
-import CoreData
+import Foundation
 
 @objc (MDLDateTransformer)
-public class DateTransformer: NSValueTransformer
+class DateTransformer: NSValueTransformer
 {
-    public static let transformerName = "Date"
-    public static let serializedDateFormat = "yyyy-MM-dd"
+    static let transformerName = "Date"
     
-    public static let serializedDateFormatter: NSDateFormatter = {
-        let formatter: NSDateFormatter = NSDateFormatter()
-        formatter.dateFormat = serializedDateFormat
-        return formatter
-    }()
+    override class func transformedValueClass() -> AnyClass { return NSString.self }
+    override class func allowsReverseTransformation() -> Bool { return true }
     
-    override public class func transformedValueClass() -> AnyClass {
-        return NSString.self
-    }
-    
-    override public class func allowsReverseTransformation() -> Bool {
-        return true;
-    }
-    
-    public override func transformedValue(value: AnyObject?) -> AnyObject? {
+    override func transformedValue(value: AnyObject?) -> AnyObject? {
         guard let date = value as? NSDate else { return nil }
-        return DateTransformer.serializedDateFormatter.stringFromDate(date)
+        return serializedDateFormatter.stringFromDate(date)
     }
     
-    public override func reverseTransformedValue(value: AnyObject?) -> AnyObject? {
+    override func reverseTransformedValue(value: AnyObject?) -> AnyObject? {
         guard let stringVal = value as? String else { return nil }
-        return DateTransformer.serializedDateFormatter.dateFromString(stringVal)
+        return serializedDateFormatter.dateFromString(stringVal)
     }
 }
+
+private let serializedDateFormatter: NSDateFormatter = {
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter
+}()

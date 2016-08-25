@@ -5,18 +5,18 @@
 
 import UIKit
 
-public class BooksController: UITableViewController
+class BooksController: UITableViewController
 {
     @IBOutlet var dataSource: AuthorDataSource!
     
-    public override func viewDidLoad()
+    override func viewDidLoad()
     {
         dataSource.fetch() { [weak self] in
             self?.tableView.reloadData()
         }
     }
     
-    public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         guard
             let indexPath = tableView.indexPathForSelectedRow,
@@ -51,7 +51,7 @@ extension BooksController
 
 extension BooksController
 {
-    override public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
+    override  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
     {
         cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.oddRowColor() : UIColor.evenRowColor()
     }

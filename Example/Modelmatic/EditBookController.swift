@@ -5,9 +5,9 @@
 
 import UIKit
 
-public class EditBookController: UITableViewController
+class EditBookController: UITableViewController
 {
-    public var book: Book!
+    var book: Book!
     
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var yearField: UITextField!
@@ -17,7 +17,7 @@ public class EditBookController: UITableViewController
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var ratingStepper: UIStepper!
     
-    public override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
         titleField.text = book.title
@@ -44,7 +44,7 @@ public class EditBookController: UITableViewController
         heartLabel.text = FavoriteSymbol.stringValue(book.favorite)
     }
     
-    override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         if indexPath.section == 0 && indexPath.row == 0 {
             toggleFavorite()
@@ -58,7 +58,7 @@ public class EditBookController: UITableViewController
         book.transformedTags = tagsField.text
     }
     
-    public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if segue.identifier == "Done" {
             updateBook()

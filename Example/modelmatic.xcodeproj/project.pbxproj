@@ -8,26 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
-		607FACEC1AFB9204008FA782 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* ModelTests.swift */; };
 		626E8A21A01DE11E3F45FAA2 /* Pods_Modelmatic_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2865B2F5896318140F5597C /* Pods_Modelmatic_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A0E85F9EEE8C80F9D35FD2BF /* Pods_Modelmatic_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FDE9884895A8148EED6705 /* Pods_Modelmatic_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AB056D1C1D57F5E300C5D7A6 /* Authors.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7ECE1D57CFFD005B8A26 /* Authors.plist */; };
 		AB056D1D1D57F5E300C5D7A6 /* Authors.json in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7EDA1D57D861005B8A26 /* Authors.json */; };
 		AB39E5291D58E74A00CC2F30 /* Authors.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB39E5261D58E74A00CC2F30 /* Authors.xcdatamodeld */; };
-		AB39E52A1D58E74A00CC2F30 /* Authors.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB39E5261D58E74A00CC2F30 /* Authors.xcdatamodeld */; };
 		AB39E52C1D58E7B400CC2F30 /* DateTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB39E52B1D58E7B400CC2F30 /* DateTransformer.swift */; };
-		AB39E52D1D58E7B400CC2F30 /* DateTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB39E52B1D58E7B400CC2F30 /* DateTransformer.swift */; };
 		AB39E52F1D58ED9600CC2F30 /* EditBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB39E52E1D58ED9600CC2F30 /* EditBookController.swift */; };
-		AB39E5301D58ED9600CC2F30 /* EditBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB39E52E1D58ED9600CC2F30 /* EditBookController.swift */; };
 		AB39E5331D58EE0B00CC2F30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB39E5311D58EE0B00CC2F30 /* Main.storyboard */; };
 		AB39E5341D58EE0B00CC2F30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB39E5311D58EE0B00CC2F30 /* Main.storyboard */; };
 		AB39E5351D58EE0B00CC2F30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB39E5321D58EE0B00CC2F30 /* LaunchScreen.storyboard */; };
 		AB39E5361D58EE0B00CC2F30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB39E5321D58EE0B00CC2F30 /* LaunchScreen.storyboard */; };
-		AB39E5371D58F5A600CC2F30 /* AuthorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB51D57CD95005B8A26 /* AuthorDataSource.swift */; };
-		AB39E5381D58F5C000CC2F30 /* AuthorObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB41D57CD95005B8A26 /* AuthorObjectStore.swift */; };
-		AB39E5391D58F5CE00CC2F30 /* StringArrayTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7ED41D57D5A0005B8A26 /* StringArrayTransformer.swift */; };
-		AB39E53A1D58F5E400CC2F30 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB81D57CD95005B8A26 /* BookCell.swift */; };
-		AB39E53B1D58F60100CC2F30 /* UIImage+ModelmaticAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB91D57CD95005B8A26 /* UIImage+ModelmaticAdditions.swift */; };
 		AB9D7EBB1D57CD95005B8A26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB31D57CD95005B8A26 /* AppDelegate.swift */; };
 		AB9D7EBC1D57CD95005B8A26 /* AuthorObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB41D57CD95005B8A26 /* AuthorObjectStore.swift */; };
 		AB9D7EBD1D57CD95005B8A26 /* AuthorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB51D57CD95005B8A26 /* AuthorDataSource.swift */; };
@@ -42,12 +33,9 @@
 		AB9D7ED81D57D7FA005B8A26 /* Books.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7ED61D57D7FA005B8A26 /* Books.xcassets */; };
 		AB9D7ED91D57D7FA005B8A26 /* Authors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7ED71D57D7FA005B8A26 /* Authors.xcassets */; };
 		AB9D7EDB1D57D861005B8A26 /* Authors.json in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7EDA1D57D861005B8A26 /* Authors.json */; };
-		AB9D7EDC1D57EC96005B8A26 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EC41D57CE43005B8A26 /* Book.swift */; };
-		AB9D7EDD1D57EC96005B8A26 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EC51D57CE43005B8A26 /* Author.swift */; };
+		ABD1A1751D6E28F7008552F9 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* ModelTests.swift */; };
 		ABD5ADE71D5B343F008C69C5 /* HttpSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5ADE61D5B343F008C69C5 /* HttpSessionProtocol.swift */; };
 		ABD5ADE91D5B42CA008C69C5 /* NSURL+ModelmaticAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5ADE81D5B42CA008C69C5 /* NSURL+ModelmaticAdditions.swift */; };
-		ABD5ADEA1D5B436F008C69C5 /* NSURL+ModelmaticAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5ADE81D5B42CA008C69C5 /* NSURL+ModelmaticAdditions.swift */; };
-		ABD5ADEB1D5B49C7008C69C5 /* HttpSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5ADE61D5B343F008C69C5 /* HttpSessionProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -465,19 +453,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABD5ADEB1D5B49C7008C69C5 /* HttpSessionProtocol.swift in Sources */,
-				ABD5ADEA1D5B436F008C69C5 /* NSURL+ModelmaticAdditions.swift in Sources */,
-				AB39E53B1D58F60100CC2F30 /* UIImage+ModelmaticAdditions.swift in Sources */,
-				AB39E53A1D58F5E400CC2F30 /* BookCell.swift in Sources */,
-				AB39E5391D58F5CE00CC2F30 /* StringArrayTransformer.swift in Sources */,
-				AB39E5381D58F5C000CC2F30 /* AuthorObjectStore.swift in Sources */,
-				AB39E5371D58F5A600CC2F30 /* AuthorDataSource.swift in Sources */,
-				AB9D7EDC1D57EC96005B8A26 /* Book.swift in Sources */,
-				AB9D7EDD1D57EC96005B8A26 /* Author.swift in Sources */,
-				AB39E52D1D58E7B400CC2F30 /* DateTransformer.swift in Sources */,
-				AB39E52A1D58E74A00CC2F30 /* Authors.xcdatamodeld in Sources */,
-				AB39E5301D58ED9600CC2F30 /* EditBookController.swift in Sources */,
-				607FACEC1AFB9204008FA782 /* ModelTests.swift in Sources */,
+				ABD1A1751D6E28F7008552F9 /* ModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +583,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F68DB0B063205CDF24771D42 /* Pods-Modelmatic_Tests.debug.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -625,6 +602,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 10B4D5AE51A4E7650665C300 /* Pods-Modelmatic_Tests.release.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;

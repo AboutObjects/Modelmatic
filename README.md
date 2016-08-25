@@ -56,21 +56,20 @@ import Foundation
 import Modelmatic
 
 @objc (MDLAuthor)
-public class Author: ModelObject
+ class Author: ModelObject
 {
     // Name of the Core Data entity
-    public static let entityName = "Author"
+    static let entityName = "Author"
     
     // Mapped to 'author_id' in the corresponding attribute's User Info dictionary
-    public var externalID: NSNumber!
-
-    public var firstName: String?
-    public var lastName: String?
-    public var dateOfBirth: NSDate?
-    public var imageURL: UIImage?
+    var externalID: NSNumber!
+    var firstName: String?
+    var lastName: String?
+    var dateOfBirth: NSDate?
+    var imageURL: UIImage?
     
     // Modeled relationship to 'Book' entity
-    public var books: [Book]?
+    var books: [Book]?
 }
 ```
 
@@ -92,7 +91,7 @@ Modelmatic automatically matches names of properties you specify as attributes o
 However, the framework also allows you to specify custom mappings as needed. For instance, the `Author` class has the following property:
 
 ```swift
-    public var externalID: NSNumber!
+    var externalID: NSNumber!
 ``` 
 
 A custom mapping is provided in the model file, binding the `externalID` attribute defines to the JSON key path `author_id`, as shown below:
@@ -120,7 +119,7 @@ For example, given the following JSON, the previous call would create and popula
       "books" : [
         {
           "book_id" : "3501",
-          "title" : "Adventures of Huckleberry Finn",
+          "title" : "A Connecticut Yankee in King Arthur's Court",
           "year" : "2014"
         },
         {
@@ -137,7 +136,7 @@ For example, given the following JSON, the previous call would create and popula
 Modelmatic uses methods defined in the `NSKeyValueCoding` (KVC) protocol to set model object property values. KVC can set properties of any Objective-C type, but has limited ability to deal with pure Swift types, particularly struct and enum types. However bridged Standard Library types, such as `String`, `Array`, `Dictionary`, as well as scalar types such as `Int`, `Double`, `Bool`, etc. are handled automatically by KVC with one notable issue: Swift scalars wrapped in Optionals. For example, KVC would be unable to set the following property:
 
 ```swift
-    public var rating: Int?
+    var rating: Int?
 ```
 If your `ModelObject` subclasses uses a Swift type that KVC can't directly handle, you can provide a computed property of the same name, prefixed with `kvc_`, to provide your own custom handling. For example, to make the `rating` property work with Modelmatic, add the following:
 
@@ -156,38 +155,32 @@ In your Core Data model file, you can specify a property type as `Transformable`
 Here's the code of the Example app's `DateTransformer` class in its entirety:
 
 ```swift
-import CoreData
+import Foundation
 
 @objc (MDLDateTransformer)
-public class DateTransformer: NSValueTransformer
+class DateTransformer: NSValueTransformer
 {
-    public static let transformerName = "Date"
-    public static let serializedDateFormat = "yyyy-MM-dd"
+    static let transformerName = "Date"
     
-    public static let serializedDateFormatter: NSDateFormatter = {
-        let formatter: NSDateFormatter = NSDateFormatter()
-        formatter.dateFormat = serializedDateFormat
-        return formatter
-    }()
+    override class func transformedValueClass() -> AnyClass { return NSString.self }
+    override class func allowsReverseTransformation() -> Bool { return true }
     
-    override public class func transformedValueClass() -> AnyClass {
-        return NSString.self
-    }
-    
-    override public class func allowsReverseTransformation() -> Bool {
-        return true;
-    }
-    
-    public override func transformedValue(value: AnyObject?) -> AnyObject? {
+    override func transformedValue(value: AnyObject?) -> AnyObject? {
         guard let date = value as? NSDate else { return nil }
-        return DateTransformer.serializedDateFormatter.stringFromDate(date)
+        return serializedDateFormatter.stringFromDate(date)
     }
     
-    public override func reverseTransformedValue(value: AnyObject?) -> AnyObject? {
+    override func reverseTransformedValue(value: AnyObject?) -> AnyObject? {
         guard let stringVal = value as? String else { return nil }
-        return DateTransformer.serializedDateFormatter.dateFromString(stringVal)
+        return serializedDateFormatter.dateFromString(stringVal)
     }
 }
+
+private let serializedDateFormatter: NSDateFormatter = {
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter
+}()
 ```
 
 The date transformer is registered by the following line of code in the Example app's `AuthorObjectStore` class:

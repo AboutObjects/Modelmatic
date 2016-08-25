@@ -17,8 +17,8 @@ public class ModelObject : NSObject
     {
         self.entity = entity
         super.init()
-        setAttributeValuesByDeserializing(dictionary)
-        setRelationshipValuesByDeserializing(dictionary)
+        decodeAttributeValues(dictionary)
+        decodeRelationshipValues(dictionary)
     }
 }
 
@@ -49,7 +49,7 @@ extension ModelObject
 }
 
 
-// MARK: - Serializing
+// MARK: - Encoding
 
 extension ModelObject
 {
@@ -65,46 +65,38 @@ extension ModelObject
     // Probably need to construct intervening dictionaries, as needed.
     //
     public var attributeValues: JsonDictionary {
-        get {
-            return serializedAttributeValues
-        }
-        set {
-            setAttributeValuesByDeserializing(newValue)
-        }
+        get { return encodedAttributeValues }
+        set { decodeAttributeValues(newValue) }
     }
     
     public var relationshipValues: JsonDictionary {
-        get {
-            return serializedRelationshipValues
-        }
-        set {
-            setRelationshipValuesByDeserializing(newValue)
-        }
+        get { return encodedRelationshipValues }
+        set { decodeRelationshipValues(newValue) }
     }
     
-    var serializedAttributeValues: JsonDictionary {
-        let serializedVals: NSMutableDictionary = NSMutableDictionary()
+    var encodedAttributeValues: JsonDictionary {
+        let encodededVals: NSMutableDictionary = NSMutableDictionary()
         for (_, attribute) in entity.attributesByName {
-            let val = serializedValue(forAttribute: attribute)
+            let val = encodedValue(forAttribute: attribute)
             if val !== NSNull() {
-                serializedVals.setValue(val, forKeyPath: attribute.externalKeyPath)
+                encodededVals.setValue(val, forKeyPath: attribute.externalKeyPath)
             }
         }
-        return serializedVals.copy() as! JsonDictionary
+        return encodededVals.copy() as! JsonDictionary
     }
     
-    var serializedRelationshipValues: JsonDictionary {
-        let serializedVals: NSMutableDictionary = NSMutableDictionary()
+    var encodedRelationshipValues: JsonDictionary {
+        let encodedVals: NSMutableDictionary = NSMutableDictionary()
         for (_, relationship) in entity.relationshipsByName {
-            let val = serializedValue(forRelationship: relationship)
+            let val = encodedValue(forRelationship: relationship)
             if val !== NSNull() {
-                serializedVals.setValue(val, forKeyPath: relationship.externalKeyPath)
+                encodedVals.setValue(val, forKeyPath: relationship.externalKeyPath)
             }
         }
-        return serializedVals.copy() as! JsonDictionary
+        return encodedVals.copy() as! JsonDictionary
     }
     
-    func serializedValue(forAttribute attribute: NSAttributeDescription) -> AnyObject
+    func encodedValue(forAttribute attribute: NSAttributeDescription) -> AnyObject
     {
         var value = valueForKey(attribute.name)
         if value != nil,
@@ -115,25 +107,25 @@ extension ModelObject
         return value ?? NSNull()
     }
     
-    func serializedValue(forRelationship relationship: NSRelationshipDescription) -> AnyObject
+    func encodedValue(forRelationship relationship: NSRelationshipDescription) -> AnyObject
     {
         guard let value = valueForKey(relationship.name) where value !== NSNull() else {
             return NSNull()
         }
         
-        var serializedVal: AnyObject = NSNull()
+        var encodedVal: AnyObject = NSNull()
         if let modelObjs = value as? [ModelObject] where relationship.toMany {
-            serializedVal = modelObjs.dictionaryRepresentation
+            encodedVal = modelObjs.dictionaryRepresentation
         }
         else if let obj = value as? ModelObject where relationship.inverseRelationship == nil {
-            serializedVal = obj.dictionaryRepresentation
+            encodedVal = obj.dictionaryRepresentation
         }
         
-        return serializedVal
+        return encodedVal
     }
 }
 
-// MARK: - Deserializing
+// MARK: - Decoding
 
 extension ModelObject
 {
@@ -143,15 +135,15 @@ extension ModelObject
         super.setValue(val, forKey: key)
     }
     
-    public func setAttributeValuesByDeserializing(dictionary: JsonDictionary)
+    public func decodeAttributeValues(dictionary: JsonDictionary)
     {
         for (_, attribute) in entity.attributesByName {
             let val = (dictionary as NSDictionary).valueForKeyPath(attribute.externalKeyPath)
-            deserialize(val, forAttribute: attribute)
+            decode(val, forAttribute: attribute)
         }
     }
     
-    public func setRelationshipValuesByDeserializing(dictionary: JsonDictionary)
+    public func decodeRelationshipValues(dictionary: JsonDictionary)
     {
         for (_, relationship) in entity.relationshipsByName {
             if let val = (dictionary as NSDictionary).valueForKeyPath(relationship.externalKeyPath) {
@@ -165,7 +157,7 @@ extension ModelObject
         }
     }
     
-    func deserialize(value: AnyObject?, forAttribute attribute: NSAttributeDescription)
+    func decode(value: AnyObject?, forAttribute attribute: NSAttributeDescription)
     {
         var newValue = value
         if let value = value where value !== NSNull(),
@@ -180,21 +172,20 @@ extension ModelObject
     
     public func modelObject(withDictionary dictionary: JsonDictionary, relationship: NSRelationshipDescription) -> ModelObject
     {
-        guard
-            let targetEntity = relationship.destinationEntity,
-            let className = targetEntity.managedObjectClassName,
-            let TargetClass: ModelObject.Type = NSClassFromString(className) as? ModelObject.Type
+        guard let targetEntity = relationship.destinationEntity,
+            className = targetEntity.managedObjectClassName,
+            targetClass: ModelObject.Type = NSClassFromString(className) as? ModelObject.Type
             else {
                 print("Unable to resolve target class for \(relationship.destinationEntity)")
                 abort()
         }
         
-        return TargetClass.init(dictionary: dictionary, entity: targetEntity)
+        return targetClass.init(dictionary: dictionary, entity: targetEntity)
     }
     
     public func setBothSidesOfRelationship(relationship: NSRelationshipDescription, withValuesFromDictionaries dictionaries: [JsonDictionary])
     {
-        let modelObjects = dictionaries.map { (dict) -> ModelObject in
+        let modelObjects = dictionaries.map { dict -> ModelObject in
             let modelObj = modelObject(withDictionary: dict, relationship: relationship)
             if let key = relationship.inverseRelationship?.name {
                 modelObj.setValue(self, forKey: key)
