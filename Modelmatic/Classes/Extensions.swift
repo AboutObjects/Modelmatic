@@ -9,7 +9,7 @@ public typealias JsonDictionary = [String: AnyObject]
 
 extension NSPropertyDescription
 {
-    public var externalKeyPath: String {
+    public var keyPath: String {
         return userInfo?["externalKeyPath"] as? String ?? name
     }
 }

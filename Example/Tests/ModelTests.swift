@@ -74,6 +74,7 @@ class ModelTests: XCTestCase
     
     lazy var bookEntity: NSEntityDescription = self.model.entitiesByName["Book"]!
     lazy var authorEntity: NSEntityDescription = self.model.entitiesByName["Author"]!
+    lazy var pricingEntity: NSEntityDescription = self.model.entitiesByName["Pricing"]!
     
     override func setUp() {
         super.setUp()
@@ -87,38 +88,38 @@ class ModelTests: XCTestCase
         super.tearDown()
     }
     
-    func testPopulateBook()
+    func testPopulateObjectAttributes()
     {
         let book = Book(dictionary: bookDict1, entity: bookEntity)
-        XCTAssertEqual(book.externalID.integerValue, Int(bookId1))
+        XCTAssertEqual(book.externalID!.integerValue, Int(bookId1))
         XCTAssertEqual(book.title, title1)
         XCTAssertEqual(book.year, year1)
     }
     
-    func testPopulateBookWithIntegerAndBoolValues()
+    func testPopulateObjectAttributesWithIntegerAndBoolValues()
     {
         let book = Book(dictionary: bookDict3, entity: bookEntity)
         XCTAssertEqual(book.rating, rating1)
         XCTAssertEqual(book.favorite, favorite1)
     }
     
-    func testPopulateAuthor()
+    func testPopulateObjectAndToManyRelationshipWithDictionary()
     {
         let author = Author(dictionary: authorDict1, entity: authorEntity)
 
         guard let books = author.books else {
-            XCTFail("books property should contain an array of Book objects after decoding Author")
-            return // I know, I know...
+            XCTFail("books property expected to contain an array of Book objects after decoding Author")
+            return
         }
         
-        XCTAssertEqual(author.externalID.integerValue, Int(authorId1))
+        XCTAssertEqual(author.externalID!.integerValue, Int(authorId1))
         XCTAssertEqual(author.firstName, firstName1)
         XCTAssertEqual(author.lastName, lastName1)
         XCTAssertEqual(books.count, bookDicts.count)
         XCTAssertTrue(books[0].author == author)
     }
     
-    func testRemoveBook()
+    func testRemoveObjectFromRelationship()
     {
         let author = Author(dictionary: authorDict1, entity: authorEntity)
         let expectedCount = author.books!.count - 1
@@ -126,22 +127,84 @@ class ModelTests: XCTestCase
         XCTAssertEqual(author.books?.count, expectedCount)
     }
     
-    func testAddBook()
+    func testAddObjectToRelationshipWithDictionary()
     {
         let author = Author(dictionary: authorDict2, entity: authorEntity)
-        print(author)
-        let book = Book(dictionary: bookDict1, entity: bookEntity)
-        if author.books == nil { author.books = [Book]() }
-        author.books?.append(book)
+        guard let relationship = author.entity.relationshipsByName[booksKey] else {
+            XCTFail("Author entity expected to have a relationship named 'books'")
+            return
+        }
+        author.addObjects(toRelationship: relationship, withValuesFromDictionaries: [bookDict1])
         XCTAssertEqual(author.books?.count, 1)
-        
-        // TODO: Adding related objects doesn't automatically set back pointers (and vice versa).
-        // Consider adding API for this.
-        //
-        //   XCTAssertEqual(book.author, author)
     }
     
-    func testEncodeBook()
+    func testAddObjectsToRelationshipWithDictionary()
+    {
+        let author = Author(dictionary: authorDict2, entity: authorEntity)
+        guard let relationship = author.entity.relationshipsByName[booksKey] else {
+            XCTFail("Author entity expected to have a relationship named 'books'")
+            return
+        }
+        author.addObjects(toRelationship: relationship, withValuesFromDictionaries: bookDicts)
+        XCTAssertEqual(author.books?.count, 2)
+    }
+    
+    func testSetObjectForToOneRelationshipWithDictionary()
+    {
+        let book = Book(dictionary: bookDict1, entity: bookEntity)
+        guard let relationship = book.entity.relationshipsByName["pricing"] else {
+            XCTFail("Book entity expected to have a relationship named 'pricing'")
+            return
+        }
+        let expectedPrice = 19.99
+        book.setObject(forRelationship: relationship, withValuesFromDictionary: ["pricing": ["retailPrice": expectedPrice]])
+        XCTAssertEqualWithAccuracy(book.pricing!.retailPrice!, expectedPrice, accuracy: 0.1)
+    }
+    
+    func testAddObjectToExistingRelationship()
+    {
+        let author = Author(dictionary: authorDict1, entity: authorEntity)
+        let book = Book(dictionary: bookDict3, entity: bookEntity)
+        try! author.add(modelObject: book, forKey: booksKey)
+        XCTAssertEqual(author.books?.count, 3)
+        XCTAssertEqual(book.author, author)
+    }
+    
+    func testAddObjectToEmptyRelationship()
+    {
+        let author = Author(dictionary: authorDict2, entity: authorEntity)
+        let book = Book(dictionary: bookDict1, entity: bookEntity)
+        try! author.add(modelObject: book, forKey: booksKey)
+        XCTAssertEqual(author.books?.count, 1)
+        XCTAssertEqual(book.author, author)
+    }
+    
+    func testAddObjectToNonExistentRelationship()
+    {
+        let author = Author(dictionary: authorDict2, entity: authorEntity)
+        let book = Book(dictionary: bookDict1, entity: bookEntity)
+        XCTAssertThrowsError(try author.add(modelObject: book, forKey: "nonexistent_key"))
+    }
+    
+    func testSetObjectForToOneRelationship()
+    {
+        let expectedPrice = 19.99
+        let book = Book(dictionary: bookDict1, entity: bookEntity)
+        let pricing = Pricing(dictionary: ["retailPrice": expectedPrice], entity: pricingEntity)
+        try! book.set(modelObject: pricing, forKey: "pricing")
+        XCTAssertEqualWithAccuracy(book.pricing!.retailPrice!, expectedPrice, accuracy: 0.1)
+        XCTAssertEqual(pricing.book, book)
+    }
+    
+    func testSetObjectForNonexistentToOneRelationship()
+    {
+        let expectedPrice = 19.99
+        let book = Book(dictionary: bookDict1, entity: bookEntity)
+        let pricing = Pricing(dictionary: ["retailPrice": expectedPrice], entity: pricingEntity)
+        XCTAssertThrowsError(try book.set(modelObject: pricing, forKey: "nonexistent_key"))
+    }
+    
+    func testEncodeObjectAttributes()
     {
         let book = Book(dictionary: JsonDictionary(), entity: bookEntity)
         book.externalID = NSNumber(integer: Int(bookId1)!)
@@ -151,14 +214,14 @@ class ModelTests: XCTestCase
         book.favorite = favorite1
         
         let dict = book.dictionaryRepresentation
-        XCTAssertTrue(dict[bookIdKey] as! Int == book.externalID.integerValue &&
+        XCTAssertTrue(dict[bookIdKey] as! Int == book.externalID!.integerValue &&
             dict[titleKey] as! String == title1 &&
             dict[yearKey] as! String == year1 &&
             dict[ratingKey] as! Int == rating1 &&
             dict[favoriteKey] as! Bool == favorite1)
     }
     
-    func testEncodeAuthor()
+    func testEncodeParentObjectAndChildrenWithToManyRelationship()
     {
         let author = Author(dictionary: authorDict1, entity: authorEntity)
         let dict = author.dictionaryRepresentation
@@ -169,92 +232,19 @@ class ModelTests: XCTestCase
             dict[booksKey]! is [JsonDictionary]
         )
     }
+    
+    func testEncodeParentObjectWithEmptyToManyRelationship()
+    {
+        let author = Author(dictionary: authorDict2, entity: authorEntity)
+        let dict = author.dictionaryRepresentation
+        XCTAssertTrue(dict[authorIdKey] as? String == authorId1 &&
+            dict[firstNameKey] as? String == firstName1 &&
+            dict[lastNameKey] as? String == lastName1 &&
+            dict[booksKey] == nil
+        )
+    }
+    
+    
+    
+    // TODO: Add tests for externalKeypath
 }
-
-//extension ModelTests
-//{
-//
-//    func testEntityDescriptions()
-//    {
-//        for entity in model.entities {
-//            print("Attributes: %@", entity.attributesByName)
-//            print("Relationships: %@", entity.relationshipsByName)
-//            print("Class: %@", entity.managedObjectClassName)
-//        }
-//    }
-//
-//    func testAttributes()
-//    {
-//        let authorEntity = self.model.entitiesByName["Author"];
-//        let firstNameAttribute = authorEntity!.attributesByName["firstName"];
-//        print(firstNameAttribute)
-//        print(firstNameAttribute?.name)
-//        print(firstNameAttribute?.attributeType)
-//        print(firstNameAttribute?.valueTransformerName)
-//        print(firstNameAttribute?.versionHash)
-//    }
-//
-//        func testStuff()
-//        {
-//            let s = NSClassFromString("NSString") as! NSString.Type
-//            print(s)
-//    
-//            guard let BookClass: ModelObject.Type = NSClassFromString("Book") as? ModelObject.Type else {
-//                abort()
-//            }
-//            print(BookClass)
-//    
-//            let authorDict = authorDicts[0]
-//            let bookDict = authorDict["books"]![0] as! JsonDictionary
-//            let bookEntity = model.entitiesByName["Book"]!
-//    
-//            let book = BookClass.init(dictionary: bookDict, entity: bookEntity)
-//            
-//            print(book)
-//        }
-//
-//        func testDecodeBookObjectAndSerializeData()
-//        {
-//            guard let fileUrl = NSBundle(forClass: self.dynamicType).URLForResource("Authors", withExtension: "json"),
-//                data = NSData(contentsOfURL: fileUrl) else {
-//                    return
-//            }
-//    
-//            guard let dict = try? data.deserializeJson() else {
-//                print("Unable to load JSON from Authors.json")
-//                return
-//            }
-//    
-//            guard let authors = dict["authors"] as AnyObject as? [AnyObject],
-//                author = authors[0] as AnyObject as? JsonDictionary,
-//                books = author["books"]! as AnyObject as? [JsonDictionary],
-//                book = books[0] as AnyObject as? JsonDictionary else {
-//                    return
-//            }
-//    
-//            print(book)
-//    
-//            let modelName = "Authors"
-//    
-//            guard let modelURL = NSBundle(forClass: Book.self).URLForResource(modelName, withExtension: "momd"),
-//                model = NSManagedObjectModel(contentsOfURL: modelURL) else {
-//                    print("Unable to load model \(modelName)")
-//                    return
-//            }
-//    
-//            guard let entity = model.entitiesByName[Book.entityName] else {
-//                return
-//            }
-//    
-//            let bookObj = Book(dictionary: book, entity: entity)
-//            print(bookObj)
-//    
-//            // Decode model object(s)
-//            let bookDict = bookObj.dictionaryRepresentation
-//    
-//            // Serialize data
-//            if let data = try? NSJSONSerialization.dataWithJSONObject(bookDict, options: NSJSONWritingOptions(rawValue: 0)) {
-//                // Do something with the data...
-//            }
-//        }
-//}

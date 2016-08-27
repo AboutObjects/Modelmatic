@@ -1,13 +1,13 @@
 # Modelmatic
 
-Automatic JSON encoding and decoding of Swift (and eventually Objective-C) model objects.
+Automatic JSON serialization and deserialization for Swift model objects.
 
 [![CI Status](http://img.shields.io/travis/AboutObjects/Modelmatic.svg?style=flat)](https://travis-ci.org/AboutObjects/Modelmatic)
 [![Version](https://img.shields.io/cocoapods/v/Modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
 [![License](https://img.shields.io/cocoapods/l/Modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
 [![Platform](https://img.shields.io/cocoapods/p/Modelmatic.svg?style=flat)](http://cocoapods.org/pods/Modelmatic)
 
-Modelmatic automates JSON encoding and decoding of your app's model layer. Instead of requiring you to hand-maintain mappings in your Swift (and eventually Objective-C) classes, Modelmatic reads mappings and value transformations you define in Xcode's Core Data Model Editor. 
+Modelmatic automates JSON serialization and deserialization of your app's model layer. Instead of requiring you to hand-maintain mappings in your Swift classes, Modelmatic reads mappings and value transformations you define in Xcode's Core Data Model Editor. 
 
 Please note that the current version of Modelmatic works only for model objects that *don't* depend on Core Data. Support for `NSManagedObject` subclasses will be added in a future release.
 
@@ -232,7 +232,61 @@ if let data = try? dict.serializeAsJson(pretty: true) {
 }
 ```
 
-## Example
+## Setting Related Objects Programmatically
+
+Modelmatic provides methods to make it easier to programmatically set objects for properties that model to-one or to-many relationships. While it's easy enough to *remove* objects (simply set to-one properties to `nil`, or use array methods to remove objects from arrays), setting or adding objects to these properties can be slightly more involved. That's because Modelmatic automatically sets property values for any inverse relationships you define in your model, so that child objects will have references to their parents.
+
+While inverse relationships aren't required, they're often convenient. Just be sure to use the `weak` lifetime qualifier for references to parent objects. 
+
+Even if you're not currently using inverse relationships, it's a good idea to use the convenience methods provided by `ModelObject` for modifying relationship values. That way, if you change your mind later, you won't need to change your code to add support for setting parent references.
+
+### One-To-Many Relationships
+
+`ModelObject` provides two methods for modifying one-to-many relationships, as shown in the following examples:
+
+```swift
+// Adding an object to a one-to-many relationship
+let author = Author(dictionary: authorDict, entity: authorEntity)
+let book = Book(dictionary: bookDict, entity: bookEntity)
+do {
+    // Adds a book to the author's 'books' array, and sets the book's 'author' property
+    try author.add(modelObject: book, forKey: "books")
+}
+catch MappingError.unknownRelationship(let name) {
+    print("Unknown relationship \(name)")
+}
+
+// Adding an array of objects to a one-to-many relationship
+let books = [Book(dictionary: bookDict2, entity: bookEntity),
+             Book(dictionary: bookDict3, entity: bookEntity)]
+do {
+    // Adds two books to the author's 'books' array, setting each book's 'author' property
+    try author.add(modelObject: books, forKey: "books")
+}
+catch MappingError.unknownRelationship(let name) {
+    print("Unknown relationship \(name)")
+}
+```
+
+### One-To-One Relationships
+
+An additional method is provided for setting the value of a one-to-one relationship, as shown here:
+
+```json
+// Set the value of a one-to-one relationship
+let book = Book(dictionary: bookDict1, entity: bookEntity)
+let pricing = Pricing(dictionary: ["retailPrice": expectedPrice], entity: pricingEntity)
+do {
+    // Sets the book's 'pricing' property, and sets the pricing's 'book' property
+    try book.set(modelObject: pricing, forKey: "pricing")
+}
+catch MappingError.unknownRelationship(let name) {
+    print("Unknown relationship \(name)")
+}
+```
+
+
+## Running the Example App
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
