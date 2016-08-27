@@ -1,5 +1,20 @@
 # Change Log
 
+## [Unreleased](https://github.com/AboutObjects/Modelmatic/tree/HEAD)
+
+[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.4.2...HEAD)
+
+**Merged pull requests:**
+
+- Dynamically setting/adding child objects [\#19](https://github.com/AboutObjects/Modelmatic/pull/19) ([jonathanlehr](https://github.com/jonathanlehr))
+
+## [0.4.2](https://github.com/AboutObjects/Modelmatic/tree/0.4.2) (2016-08-25)
+[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.4.1...0.4.2)
+
+**Merged pull requests:**
+
+- Rename ModelObject methods containing 'serialize' and 'deserialize' \#5 [\#16](https://github.com/AboutObjects/Modelmatic/pull/16) ([jonathanlehr](https://github.com/jonathanlehr))
+
 ## [0.4.1](https://github.com/AboutObjects/Modelmatic/tree/0.4.1) (2016-08-10)
 [Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.4.0...0.4.1)
 
