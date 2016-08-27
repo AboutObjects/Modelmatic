@@ -11,7 +11,7 @@ class Author: ModelObject
 {
     static let entityName = "Author"
     
-    var externalID: NSNumber!
+    var externalID: NSNumber?
     var firstName: String?
     var lastName: String?
     var dateOfBirth: NSDate?

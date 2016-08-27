@@ -19,6 +19,8 @@
 		AB39E5341D58EE0B00CC2F30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB39E5311D58EE0B00CC2F30 /* Main.storyboard */; };
 		AB39E5351D58EE0B00CC2F30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB39E5321D58EE0B00CC2F30 /* LaunchScreen.storyboard */; };
 		AB39E5361D58EE0B00CC2F30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB39E5321D58EE0B00CC2F30 /* LaunchScreen.storyboard */; };
+		AB4FF3AC1D70A8E90040AFF2 /* Pricing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4FF3AB1D70A8E90040AFF2 /* Pricing.swift */; };
+		AB4FF3AD1D70B1030040AFF2 /* Authors.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB39E5261D58E74A00CC2F30 /* Authors.xcdatamodeld */; };
 		AB9D7EBB1D57CD95005B8A26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB31D57CD95005B8A26 /* AppDelegate.swift */; };
 		AB9D7EBC1D57CD95005B8A26 /* AuthorObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB41D57CD95005B8A26 /* AuthorObjectStore.swift */; };
 		AB9D7EBD1D57CD95005B8A26 /* AuthorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB51D57CD95005B8A26 /* AuthorDataSource.swift */; };
@@ -67,6 +69,8 @@
 		AB39E52E1D58ED9600CC2F30 /* EditBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookController.swift; sourceTree = "<group>"; };
 		AB39E5311D58EE0B00CC2F30 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AB39E5321D58EE0B00CC2F30 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AB4FF3AA1D70A7920040AFF2 /* Authors 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Authors 3.xcdatamodel"; sourceTree = "<group>"; };
+		AB4FF3AB1D70A8E90040AFF2 /* Pricing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pricing.swift; sourceTree = "<group>"; };
 		AB9D7EB31D57CD95005B8A26 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB9D7EB41D57CD95005B8A26 /* AuthorObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorObjectStore.swift; sourceTree = "<group>"; };
 		AB9D7EB51D57CD95005B8A26 /* AuthorDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorDataSource.swift; sourceTree = "<group>"; };
@@ -219,6 +223,7 @@
 			children = (
 				AB9D7EC41D57CE43005B8A26 /* Book.swift */,
 				AB9D7EC51D57CE43005B8A26 /* Author.swift */,
+				AB4FF3AB1D70A8E90040AFF2 /* Pricing.swift */,
 			);
 			name = "Model Classes";
 			sourceTree = "<group>";
@@ -435,6 +440,7 @@
 				AB9D7EC11D57CD95005B8A26 /* UIImage+ModelmaticAdditions.swift in Sources */,
 				AB9D7ED51D57D5A0005B8A26 /* StringArrayTransformer.swift in Sources */,
 				AB9D7EC01D57CD95005B8A26 /* BookCell.swift in Sources */,
+				AB4FF3AC1D70A8E90040AFF2 /* Pricing.swift in Sources */,
 				AB9D7EC71D57CE43005B8A26 /* Author.swift in Sources */,
 				AB9D7EBB1D57CD95005B8A26 /* AppDelegate.swift in Sources */,
 				ABD5ADE91D5B42CA008C69C5 /* NSURL+ModelmaticAdditions.swift in Sources */,
@@ -453,6 +459,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB4FF3AD1D70B1030040AFF2 /* Authors.xcdatamodeld in Sources */,
 				ABD1A1751D6E28F7008552F9 /* ModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,10 +656,11 @@
 		AB39E5261D58E74A00CC2F30 /* Authors.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				AB4FF3AA1D70A7920040AFF2 /* Authors 3.xcdatamodel */,
 				AB39E5271D58E74A00CC2F30 /* Authors 2.xcdatamodel */,
 				AB39E5281D58E74A00CC2F30 /* Authors.xcdatamodel */,
 			);
-			currentVersion = AB39E5271D58E74A00CC2F30 /* Authors 2.xcdatamodel */;
+			currentVersion = AB4FF3AA1D70A7920040AFF2 /* Authors 3.xcdatamodel */;
 			path = Authors.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

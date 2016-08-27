@@ -11,13 +11,17 @@ class Book: ModelObject
 {
     static let entityName = "Book"
     
-    var externalID: NSNumber!
+    var externalID: NSNumber?
     var title: String!
     var year: String?
     var tags: [String]?
     var favorite: Bool?
     var rating: Int?
     
+    // Reference to child object in one-to-one relationship
+    var pricing: Pricing?
+    
+    // Reference to parent object in one-to-many relationship
     // IMPORTANT: Use weak reference when modeling inverse relationship.
     weak var author: Author?
     
