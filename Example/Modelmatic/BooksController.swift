@@ -16,16 +16,21 @@ class BooksController: UITableViewController
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        guard
-            let indexPath = tableView.indexPathForSelectedRow,
-            let book = dataSource.objectStore.bookAtIndexPath(indexPath),
-            let controller = segue.destinationViewController as? BookDetailController else {
+        guard let indexPath = tableView.indexPathForSelectedRow,
+            book = dataSource.objectStore.bookAtIndexPath(indexPath),
+            controller = segue.destinationViewController as? BookDetailController else {
                 return
         }
         
         controller.book = book
+        controller.save = { book in self.dataSource.save() }
     }
 }
 
@@ -37,13 +42,6 @@ extension BooksController
         dataSource.fetch(){ [weak self] in
             self?.tableView.reloadData()
         }
-    }
-    
-    // Unwind segue
-    @IBAction func doneEditingBook(segue: UIStoryboardSegue)
-    {
-        dataSource.save()
-        tableView.reloadData()
     }
 }
 

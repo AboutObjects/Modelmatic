@@ -10,6 +10,8 @@ class BookDetailController: UITableViewController
 {
     var book: Book!
     
+    var save: ((book: Book) -> Void)?
+    
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var tagsLabel: UILabel!
@@ -17,24 +19,22 @@ class BookDetailController: UITableViewController
     
     @IBOutlet weak var authorImageView: UIImageView!
     
-    override func viewWillAppear(animated: Bool)
-    {
+    override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        populateViews()
+    }
+    
+    func populateViews() {
         bookImageView.image = UIImage.image(forBook: book)
         yearLabel.text = book.year
         tagsLabel.text = book.transformedTags
         ratingLabel.text = Rating.stringValue(book.rating)
-        
         if let author = book.author {
             authorImageView.image = UIImage.image(forAuthor: author)
         }
     }
     
-    @IBAction func cancelEditingBook(segue: UIStoryboardSegue) { /* do nothing */ }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-    {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let navController = segue.destinationViewController as? UINavigationController,
             editController = navController.childViewControllers.first as? EditBookController else {
                 return
@@ -45,13 +45,26 @@ class BookDetailController: UITableViewController
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         let heart = "  " + (book.favorite == true ?
-            FavoriteSymbol.FilledHeart.rawValue :
-            FavoriteSymbol.BlankHeart.rawValue)
+            FavoriteSymbol.filledHeart.rawValue :
+            FavoriteSymbol.blankHeart.rawValue)
         
         switch (section) {
         case 0: return book.title + heart
         case 1: return book.author?.fullName
         default: return nil
         }
+    }
+}
+
+// MARK: - Unwind Segues
+extension BookDetailController
+{
+    @IBAction func doneEditingBook(segue: UIStoryboardSegue) {
+        save?(book: book)
+        tableView.reloadData()
+    }
+    
+    @IBAction func cancelEditingBook(segue: UIStoryboardSegue) {
+        /* do nothing */
     }
 }
