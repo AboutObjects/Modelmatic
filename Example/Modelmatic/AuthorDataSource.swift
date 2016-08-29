@@ -8,32 +8,32 @@ import UIKit
 let CellID = "Book"
 
 enum FavoriteSymbol: String {
-    case FilledHeart = "♥️"
-    case BlankHeart = "♡"
+    case filledHeart = "♥️"
+    case blankHeart = "♡"
     
     static func stringValue(bool: Bool?) -> String {
-        return bool != nil && bool! == true ? FilledHeart.rawValue : BlankHeart.rawValue
+        return bool != nil && bool! == true ? filledHeart.rawValue : blankHeart.rawValue
     }
 }
 
 enum Rating: String {
-    case Zero  = "☆☆☆☆☆"
-    case One   = "★☆☆☆☆"
-    case Two   = "★★☆☆☆"
-    case Three = "★★★☆☆"
-    case Four  = "★★★★☆"
-    case Five  = "★★★★★"
+    case zero  = "☆☆☆☆☆"
+    case one   = "★☆☆☆☆"
+    case two   = "★★☆☆☆"
+    case three = "★★★☆☆"
+    case four  = "★★★★☆"
+    case five  = "★★★★★"
     
     static func stringValue(int: Int?) -> String {
         var val: Rating
         switch (int ?? 0) {
-        case 0:  val = Zero
-        case 1:  val = One
-        case 2:  val = Two
-        case 3:  val = Three
-        case 4:  val = Four
-        case 5:  val = Five
-        default: val = int < 0 ? Zero : Five
+        case 0:  val = zero
+        case 1:  val = one
+        case 2:  val = two
+        case 3:  val = three
+        case 4:  val = four
+        case 5:  val = five
+        default: val = int < 0 ? zero : five
         }
         return val.rawValue
     }

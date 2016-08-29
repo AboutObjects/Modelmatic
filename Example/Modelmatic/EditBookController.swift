@@ -17,51 +17,58 @@ class EditBookController: UITableViewController
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var ratingStepper: UIStepper!
     
-    override func viewWillAppear(animated: Bool)
-    {
+    override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        titleField.text = book.title
-        yearField.text = book.year
-        tagsField.text = book.transformedTags
-        
-        heartLabel.text = FavoriteSymbol.stringValue(book.favorite)
-        ratingLabel.text = Rating.stringValue(book.rating)
-        ratingStepper.value = Double(book.rating ?? 0)
-        
-        
+        populateViews();
         titleField.becomeFirstResponder()
     }
     
-    @IBAction func rate(sender: UIStepper)
-    {
+    func populateViews() {
+        titleField.text = book.title
+        yearField.text = book.year
+        tagsField.text = book.transformedTags
+        heartLabel.text = FavoriteSymbol.stringValue(book.favorite)
+        ratingLabel.text = Rating.stringValue(book.rating)
+        ratingStepper.value = Double(book.rating ?? 0)
+    }
+}
+
+// MARK: - Action Methods
+extension EditBookController
+{
+    @IBAction func rate(sender: UIStepper) {
         book.rating = Int(sender.value)
         ratingLabel.text = Rating.stringValue(book.rating)
     }
-    
-    func toggleFavorite()
-    {
-        book.favorite = book.favorite == nil || book.favorite == false ? true : false
-        heartLabel.text = FavoriteSymbol.stringValue(book.favorite)
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
-    {
-        if indexPath.section == 0 && indexPath.row == 0 {
-            toggleFavorite()
+}
+
+// MARK: - Performing Segues
+extension EditBookController
+{
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "Done" {
+            updateBook()
         }
     }
-    
-    func updateBook()
-    {
+
+    func updateBook() {
         book.title = titleField.text
         book.year = yearField.text
         book.transformedTags = tagsField.text
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-    {
-        if segue.identifier == "Done" {
-            updateBook()
+}
+
+// MARK: - UITableViewDelegate
+extension EditBookController
+{
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            toggleFavorite()
         }
+    }
+
+    func toggleFavorite() {
+        book.favorite = (book.favorite == nil || book.favorite == false) ? true : false
+        heartLabel.text = FavoriteSymbol.stringValue(book.favorite)
     }
 }

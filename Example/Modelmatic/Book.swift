@@ -47,7 +47,7 @@ extension Book
 }
 
 
-// MARK: - Transforming UI Values
+// MARK: - Transforming Values
 
 private let tagsTransformer = StringArrayTransformer()
 
