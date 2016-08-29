@@ -272,7 +272,7 @@ catch MappingError.unknownRelationship(let name) {
 
 An additional method is provided for setting the value of a one-to-one relationship, as shown here:
 
-```json
+```swift
 // Set the value of a one-to-one relationship
 let book = Book(dictionary: bookDict1, entity: bookEntity)
 let pricing = Pricing(dictionary: ["retailPrice": expectedPrice], entity: pricingEntity)
