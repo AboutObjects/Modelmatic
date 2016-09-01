@@ -99,8 +99,8 @@ class ModelTests: XCTestCase
     func testPopulateObjectAttributesWithIntegerAndBoolValues()
     {
         let book = Book(dictionary: bookDict3, entity: bookEntity)
-        XCTAssertEqual(book.rating, rating1)
-        XCTAssertEqual(book.favorite, favorite1)
+        XCTAssertEqual(book.rating.rawValue, rating1)
+        XCTAssertEqual(book.favorite.boolValue, favorite1)
     }
     
     func testPopulateObjectAndToManyRelationshipWithDictionary()
@@ -210,8 +210,8 @@ class ModelTests: XCTestCase
         book.externalID = NSNumber(integer: Int(bookId1)!)
         book.title = title1
         book.year = year1
-        book.rating = rating1
-        book.favorite = favorite1
+        book.rating = Stars(rawValue: rating1) ?? .zero
+        book.favorite = Heart(isFavorite: Optional(favorite1))
         
         let dict = book.dictionaryRepresentation
         XCTAssertTrue(dict[bookIdKey] as! Int == book.externalID!.integerValue &&

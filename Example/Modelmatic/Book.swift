@@ -15,8 +15,8 @@ class Book: ModelObject
     var title: String!
     var year: String?
     var tags: [String]?
-    var favorite: Bool?
-    var rating: Int?
+    var favorite: Heart = .no
+    var rating: Stars = .zero
     
     // Reference to child object in one-to-one relationship
     var pricing: Pricing?
@@ -25,7 +25,7 @@ class Book: ModelObject
     // IMPORTANT: Use weak reference when modeling inverse relationship.
     weak var author: Author?
     
-    override  var description: String {
+    override var description: String {
         return "\(super.description) title: \(title); year: \(year), tags: \(tags), externalID: \(externalID)"
     }
 }
@@ -36,25 +36,12 @@ class Book: ModelObject
 extension Book
 {
     var kvc_favorite: Bool {
-        get { return favorite ?? false }
-        set { favorite = Optional(newValue) }
+        get { return favorite == .yes }
+        set { favorite = newValue ? .yes : .no }
     }
     
     var kvc_rating: Int {
-        get { return rating ?? 0 }
-        set { rating = Optional(newValue) }
-    }
-}
-
-
-// MARK: - Transforming Values
-
-private let tagsTransformer = StringArrayTransformer()
-
-extension Book
-{
-    var transformedTags: String? {
-        get { return tagsTransformer.transformedValue(tags) as? String }
-        set { self.tags = tagsTransformer.reverseTransformedValue(newValue) as? [String] }
+        get { return rating.rawValue }
+        set { rating = Stars(rawValue: newValue) ?? .zero }
     }
 }

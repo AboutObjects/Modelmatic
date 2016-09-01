@@ -27,8 +27,8 @@ class BookDetailController: UITableViewController
     func populateViews() {
         bookImageView.image = UIImage.image(forBook: book)
         yearLabel.text = book.year
-        tagsLabel.text = book.transformedTags
-        ratingLabel.text = Rating.stringValue(book.rating)
+        tagsLabel.text = book.tags?.csvString
+        ratingLabel.text = book.rating.description
         if let author = book.author {
             authorImageView.image = UIImage.image(forAuthor: author)
         }
@@ -44,12 +44,8 @@ class BookDetailController: UITableViewController
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
-        let heart = "  " + (book.favorite == true ?
-            FavoriteSymbol.filledHeart.rawValue :
-            FavoriteSymbol.blankHeart.rawValue)
-        
         switch (section) {
-        case 0: return book.title + heart
+        case 0: return "\(book.title)  \(book.favorite.description)"
         case 1: return book.author?.fullName
         default: return nil
         }
@@ -66,5 +62,14 @@ extension BookDetailController
     
     @IBAction func cancelEditingBook(segue: UIStoryboardSegue) {
         /* do nothing */
+    }
+}
+
+// MARK: - Formatting CSV
+extension SequenceType where Self.Generator.Element == String
+{
+    var csvString: String? {
+        guard let values = self as? NSArray else { return nil }
+        return values.componentsJoinedByString(", ")
     }
 }

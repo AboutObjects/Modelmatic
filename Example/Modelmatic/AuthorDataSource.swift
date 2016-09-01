@@ -7,35 +7,32 @@ import UIKit
 
 let CellID = "Book"
 
-enum FavoriteSymbol: String {
-    case filledHeart = "♥️"
-    case blankHeart = "♡"
-    
-    static func stringValue(bool: Bool?) -> String {
-        return bool != nil && bool! == true ? filledHeart.rawValue : blankHeart.rawValue
+enum Heart: Int, CustomStringConvertible {
+    case yes, no
+    init(isFavorite: Bool?) {
+        self = (isFavorite != nil && isFavorite!) ? .yes : .no
+    }
+    var boolValue: Bool { return self == .yes }
+    var description: String { return self == .yes ? "♥️" : "♡" }
+    mutating func toggle() {
+        self = self == .yes ? .no : .yes
     }
 }
 
-enum Rating: String {
-    case zero  = "☆☆☆☆☆"
-    case one   = "★☆☆☆☆"
-    case two   = "★★☆☆☆"
-    case three = "★★★☆☆"
-    case four  = "★★★★☆"
-    case five  = "★★★★★"
-    
-    static func stringValue(int: Int?) -> String {
-        var val: Rating
-        switch (int ?? 0) {
-        case 0:  val = zero
-        case 1:  val = one
-        case 2:  val = two
-        case 3:  val = three
-        case 4:  val = four
-        case 5:  val = five
-        default: val = int < 0 ? zero : five
+enum Stars: Int, CustomStringConvertible {
+    case zero, one, two, three, four, five
+    init(rating: Int?) {
+        self = Stars(rawValue: rating ?? 0) ?? zero
+    }
+    var description: String {
+        switch self {
+        case zero:  return "☆☆☆☆☆"
+        case one:   return "★☆☆☆☆"
+        case two:   return "★★☆☆☆"
+        case three: return "★★★☆☆"
+        case four:  return "★★★★☆"
+        case five:  return "★★★★★"
         }
-        return val.rawValue
     }
 }
 
@@ -84,8 +81,7 @@ extension AuthorDataSource
     func populateCell(cell: BookCell, atIndexPath indexPath: NSIndexPath)
     {
         guard let book = objectStore.bookAtIndexPath(indexPath) else { return }
-        let favString = "  " + FavoriteSymbol.stringValue(book.favorite)
-        cell.titleLabel.text = book.title + favString
+        cell.titleLabel.text = "\(book.title)  \(book.favorite.description)"
         cell.infoLabel.text = String(format: "%@ %@", book.year ?? "" , book.author?.fullName ?? "")
         cell.bookImageView.image = UIImage.image(forBook: book)
     }

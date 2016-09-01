@@ -9,27 +9,28 @@ class EditBookController: UITableViewController
 {
     var book: Book!
     
+    @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var yearField: UITextField!
-    @IBOutlet weak var tagsField: UITextField!
+    @IBOutlet weak var tagsLabel: UILabel!
     
-    @IBOutlet weak var heartLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var ratingStepper: UIStepper!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         populateViews();
-        titleField.becomeFirstResponder()
     }
     
     func populateViews() {
         titleField.text = book.title
         yearField.text = book.year
-        tagsField.text = book.transformedTags
-        heartLabel.text = FavoriteSymbol.stringValue(book.favorite)
-        ratingLabel.text = Rating.stringValue(book.rating)
-        ratingStepper.value = Double(book.rating ?? 0)
+        tagsLabel.text = book.tags?.csvString
+        bookImageView.image = UIImage.image(forBook: book)
+        favoriteButton.setTitle(book.favorite.description, forState: .Normal)
+        ratingLabel.text = book.rating.description
+        ratingStepper.value = Double(book.rating.rawValue ?? 0)
     }
 }
 
@@ -37,8 +38,12 @@ class EditBookController: UITableViewController
 extension EditBookController
 {
     @IBAction func rate(sender: UIStepper) {
-        book.rating = Int(sender.value)
-        ratingLabel.text = Rating.stringValue(book.rating)
+        book.rating = Stars(rawValue: Int(sender.value)) ?? .zero
+        ratingLabel.text = book.rating.description
+    }
+    
+    @IBAction func favorite(sender: UIButton) {
+        toggleFavorite()
     }
 }
 
@@ -46,15 +51,20 @@ extension EditBookController
 extension EditBookController
 {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "Done" {
-            updateBook()
+        switch segue.identifier ?? "" {
+        case "Done": updateBook()
+        case "EditTags": prepareToEditTags(segue)
+        default: break
         }
     }
-
+    
+    func prepareToEditTags(segue: UIStoryboardSegue) {
+        if let controller = segue.destinationViewController as? TagsController { controller.book = book }
+    }
+    
     func updateBook() {
         book.title = titleField.text
         book.year = yearField.text
-        book.transformedTags = tagsField.text
     }
 }
 
@@ -68,7 +78,7 @@ extension EditBookController
     }
 
     func toggleFavorite() {
-        book.favorite = (book.favorite == nil || book.favorite == false) ? true : false
-        heartLabel.text = FavoriteSymbol.stringValue(book.favorite)
+        book.favorite.toggle()
+        favoriteButton.setTitle(book.favorite.description, forState: .Normal)
     }
 }
