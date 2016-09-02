@@ -91,7 +91,7 @@ class ModelTests: XCTestCase
     func testPopulateObjectAttributes()
     {
         let book = Book(dictionary: bookDict1, entity: bookEntity)
-        XCTAssertEqual(book.externalID!.integerValue, Int(bookId1))
+        XCTAssertEqual(book.bookId!.integerValue, Int(bookId1))
         XCTAssertEqual(book.title, title1)
         XCTAssertEqual(book.year, year1)
     }
@@ -112,7 +112,7 @@ class ModelTests: XCTestCase
             return
         }
         
-        XCTAssertEqual(author.externalID!.integerValue, Int(authorId1))
+        XCTAssertEqual(author.authorId!.integerValue, Int(authorId1))
         XCTAssertEqual(author.firstName, firstName1)
         XCTAssertEqual(author.lastName, lastName1)
         XCTAssertEqual(books.count, bookDicts.count)
@@ -207,14 +207,14 @@ class ModelTests: XCTestCase
     func testEncodeObjectAttributes()
     {
         let book = Book(dictionary: JsonDictionary(), entity: bookEntity)
-        book.externalID = NSNumber(integer: Int(bookId1)!)
+        book.bookId = NSNumber(integer: Int(bookId1)!)
         book.title = title1
         book.year = year1
         book.rating = Stars(rawValue: rating1) ?? .zero
         book.favorite = Heart(isFavorite: Optional(favorite1))
         
         let dict = book.dictionaryRepresentation
-        XCTAssertTrue(dict[bookIdKey] as! Int == book.externalID!.integerValue &&
+        XCTAssertTrue(dict[bookIdKey] as! Int == book.bookId!.integerValue &&
             dict[titleKey] as! String == title1 &&
             dict[yearKey] as! String == year1 &&
             dict[ratingKey] as! Int == rating1 &&
@@ -246,5 +246,5 @@ class ModelTests: XCTestCase
     
     
     
-    // TODO: Add tests for externalKeypath
+    // TODO: Add tests for jsonKeyPath
 }

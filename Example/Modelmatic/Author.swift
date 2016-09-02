@@ -11,12 +11,12 @@ class Author: ModelObject
 {
     static let entityName = "Author"
     
-    var externalID: NSNumber?
+    var authorId: NSNumber?
     var firstName: String?
     var lastName: String?
     var dateOfBirth: NSDate?
-    var imageURL: UIImage?
     
+    // Strong reference to children, one-to-many relationship
     var books: [Book]?
 }
 
@@ -24,9 +24,11 @@ class Author: ModelObject
 extension Author
 {
     var fullName: String {
-        return (lastName == nil && firstName == nil ? "Unknown" :
-            lastName == nil ? firstName! :
-            firstName == nil ? lastName! :
-            "\(lastName!), \(firstName!)")
+        switch (first: firstName, last: lastName) {
+        case let (first?, last?): return "\(last), \(first)"
+        case let (first?, _):     return first
+        case let (_, last?):      return last
+        default: return "Unknown"
+        }
     }
 }

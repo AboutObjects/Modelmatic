@@ -15,7 +15,7 @@ class Pricing: ModelObject
 {
     static let entityName = "Pricing"
     
-    var externalID: NSNumber!
+    var pricingId: NSNumber!
     var retailPrice: Double?
     var discountedPrice: Double?
     

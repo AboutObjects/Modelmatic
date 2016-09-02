@@ -11,22 +11,21 @@ class Book: ModelObject
 {
     static let entityName = "Book"
     
-    var externalID: NSNumber?
+    var bookId: NSNumber?
     var title: String!
     var year: String?
     var tags: [String]?
     var favorite: Heart = .no
     var rating: Stars = .zero
     
-    // Reference to child object in one-to-one relationship
+    // Strong reference to child object, one-to-one relationship
     var pricing: Pricing?
     
-    // Reference to parent object in one-to-many relationship
-    // IMPORTANT: Use weak reference when modeling inverse relationship.
+    // Weak reference to parent object, inverse of one-to-many relationship
     weak var author: Author?
     
     override var description: String {
-        return "\(super.description) title: \(title); year: \(year), tags: \(tags), externalID: \(externalID)"
+        return "\(super.description) title: \(title); year: \(year), tags: \(tags), bookId: \(bookId)"
     }
 }
 

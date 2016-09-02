@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
     <entity name="Author" representedClassName="MDLAuthor" syncable="YES">
+        <attribute name="authorId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="jsonKeyPath" value="author_id"/>
+            </userInfo>
+        </attribute>
         <attribute name="dateOfBirth" optional="YES" attributeType="Transformable" valueTransformerName="Date" syncable="YES">
             <userInfo>
                 <entry key="externalKeyPath" value="born"/>
             </userInfo>
         </attribute>
-        <attribute name="externalID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES">
-            <userInfo>
-                <entry key="externalKeyPath" value="author_id"/>
-            </userInfo>
-        </attribute>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="imageURL" optional="YES" attributeType="String" valueTransformerName="" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="author" inverseEntity="Book" syncable="YES"/>
     </entity>
     <entity name="Book" representedClassName="MDLBook" syncable="YES">
-        <attribute name="externalID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES">
+        <attribute name="bookId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES">
             <userInfo>
-                <entry key="externalKeyPath" value="book_id"/>
+                <entry key="jsonKeyPath" value="book_id"/>
             </userInfo>
         </attribute>
         <attribute name="favorite" optional="YES" attributeType="Boolean" valueTransformerName="CDXBoolean" syncable="YES"/>
@@ -29,22 +28,19 @@
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Author" inverseName="books" inverseEntity="Author" syncable="YES"/>
         <relationship name="pricing" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pricing" inverseName="book" inverseEntity="Pricing" syncable="YES"/>
-        <userInfo>
-            <entry key="externalKeyPath" value="book_id"/>
-        </userInfo>
     </entity>
     <entity name="Pricing" representedClassName="MDLPricing" syncable="YES">
         <attribute name="discountedPrice" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="externalID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES">
+        <attribute name="pricingId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES">
             <userInfo>
-                <entry key="externalID" value="pricing_id"/>
+                <entry key="jsonKeyPath" value="pricing_id"/>
             </userInfo>
         </attribute>
         <attribute name="retailPrice" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="pricing" inverseEntity="Book" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Author" positionX="-468" positionY="-81" width="128" height="133"/>
+        <element name="Author" positionX="-468" positionY="-81" width="128" height="118"/>
         <element name="Book" positionX="-252" positionY="-96" width="128" height="163"/>
         <element name="Pricing" positionX="-63" positionY="-36" width="128" height="103"/>
     </elements>

@@ -62,7 +62,7 @@ import Modelmatic
     static let entityName = "Author"
     
     // Mapped to 'author_id' in the corresponding attribute's User Info dictionary
-    var externalID: NSNumber!
+    var authorId: NSNumber!
     var firstName: String?
     var lastName: String?
     var dateOfBirth: NSDate?
@@ -79,9 +79,7 @@ Key points:
 * Subclass `ModelObject`.
 * Use `@objc()` to avoid potential namespacing issues.
 * Define a static let constant named `entityName` to specify the name of the associated entity in the Core Data model file.
-* `externalID` is mapped to `author_id` in the model (see the attribute definition's User Info dictionary).
-  
-  ![Defining a custom mapping](Screenshots/custom-mapping.png)
+* `authorId` is mapped to `author_id` in the model (see the attribute definition's User Info dictionary).
 * Modelmatic automatically maps all the other properties, included the nested `books` property.
 
 #### Customizing Mappings
@@ -91,14 +89,14 @@ Modelmatic automatically matches names of properties you specify as attributes o
 However, the framework also allows you to specify custom mappings as needed. For instance, the `Author` class has the following property:
 
 ```swift
-    var externalID: NSNumber!
+    var authorId: NSNumber!
 ``` 
 
-A custom mapping is provided in the model file, binding the `externalID` attribute defines to the JSON key path `author_id`, as shown below:
+A custom mapping is provided in the model file, binding the `authorId` attribute defines to the JSON key path `author_id`, as shown below:
 
 ![Customizing a property mapping](Screenshots/custom-mapping.png)
 
-To add a custom mapping, select an attribute or relationship in the model editor, and add an entry to it's *User Info* dictionary. The key should be **externalKeypath**, and the value should be the key or key path (dot-separated property path) used in the JSON dictionary. During encoding and decoding, Modelmatic will automatically map between your object's property, as defined by its attribute or relationship name, and the custom key path you specified to access JSON values.
+To add a custom mapping, select an attribute or relationship in the model editor, and add an entry to it's *User Info* dictionary. The key should be **jsonKeyPath**, and the value should be the key or key path (dot-separated property path) used in the JSON dictionary. During encoding and decoding, Modelmatic will automatically map between your object's property, as defined by its attribute or relationship name, and the custom key path you specified to access JSON values.
 
 
 #### Defining Relationships

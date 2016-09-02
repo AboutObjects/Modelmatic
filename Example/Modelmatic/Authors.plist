@@ -5,7 +5,6 @@
     	{
         	author_id = 101;
         	born = "1564-04-01";
-        	imageURL = "https://www.foo.com?id=xyz123";
     		books = (
     			{
         			book_id = 3001;
