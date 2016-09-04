@@ -12,6 +12,7 @@ class TagsController: UITableViewController
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        UIApplication.sharedApplication().sendAction(#selector(resignFirstResponder), to: nil, from: nil, forEvent: nil)
         book.tags = tags.filter { $0 != "" }
     }
 }

@@ -13,7 +13,7 @@ enum Heart: Int, CustomStringConvertible {
         self = (isFavorite != nil && isFavorite!) ? .yes : .no
     }
     var boolValue: Bool { return self == .yes }
-    var description: String { return self == .yes ? "♥️" : "♡" }
+    var description: String { return self == .yes ? "♥︎" : "♡" }
     mutating func toggle() {
         self = self == .yes ? .no : .yes
     }
@@ -40,15 +40,9 @@ class AuthorDataSource: NSObject
 {
     @IBOutlet var objectStore: AuthorObjectStore!
     
-    func toggleStorageMode() {
-        objectStore.toggleStorageMode()
-    }
-    func fetch(completion: () -> Void) {
-        objectStore.fetch(completion)
-    }
-    func save() {
-        objectStore.save()
-    }
+    func toggleStorageMode() { objectStore.toggleStorageMode() }
+    func fetch(completion: () -> Void) { objectStore.fetch(completion) }
+    func save() { objectStore.save() }
 }
 
 extension AuthorDataSource: UITableViewDataSource
@@ -81,8 +75,10 @@ extension AuthorDataSource
     func populateCell(cell: BookCell, atIndexPath indexPath: NSIndexPath)
     {
         guard let book = objectStore.bookAtIndexPath(indexPath) else { return }
-        cell.titleLabel.text = "\(book.title)  \(book.favorite.description)"
+        cell.titleLabel.text = book.title
         cell.infoLabel.text = String(format: "%@ %@", book.year ?? "" , book.author?.fullName ?? "")
         cell.bookImageView.image = UIImage.image(forBook: book)
+        cell.ratingLabel.text = book.rating.description
+        cell.favoriteLabel.text = book.favorite.description
     }
 }

@@ -13,10 +13,5 @@ class EditableCell: UITableViewCell
     @IBAction func editingBegan() {
         let indexPath = tableView.indexPathForCell(self)
         tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
-        textField.borderStyle = .RoundedRect
-    }
-    
-    @IBAction func editingEnded() {
-        textField.borderStyle = .None
     }
 }

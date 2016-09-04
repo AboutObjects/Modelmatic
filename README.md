@@ -92,7 +92,7 @@ However, the framework also allows you to specify custom mappings as needed. For
     var authorId: NSNumber!
 ``` 
 
-A custom mapping is provided in the model file, binding the `authorId` attribute defines to the JSON key path `author_id`, as shown below:
+A custom mapping is provided in the model file, binding the `authorId` attribute to the JSON key path `author_id`, as shown below:
 
 ![Customizing a property mapping](Screenshots/custom-mapping.png)
 

@@ -20,20 +20,33 @@ class BooksController: UITableViewController
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         guard let indexPath = tableView.indexPathForSelectedRow,
             book = dataSource.objectStore.bookAtIndexPath(indexPath),
-            controller = segue.destinationViewController as? BookDetailController else {
+            navController = segue.destinationViewController as? UINavigationController,
+            editController = navController.childViewControllers.first as? EditBookController else {
                 return
         }
         
-        controller.book = book
-        controller.save = { book in self.dataSource.save() }
+        editController.book = book
     }
+
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+//    {
+//        guard let indexPath = tableView.indexPathForSelectedRow,
+//            book = dataSource.objectStore.bookAtIndexPath(indexPath),
+//            controller = segue.destinationViewController as? BookDetailController else {
+//                return
+//        }
+//        
+//        controller.book = book
+//        controller.save = { book in self.dataSource.save() }
+//    }
 }
 
+// MARK: - Action Methods
 extension BooksController
 {
     @IBAction func toggleStorageMode(sender: AnyObject)
@@ -44,6 +57,20 @@ extension BooksController
         }
     }
 }
+
+// MARK: - Unwind Segues
+extension BooksController
+{
+    @IBAction func doneEditingBook(segue: UIStoryboardSegue) {
+        dataSource.save()
+        tableView.reloadData()
+    }
+    
+    @IBAction func cancelEditingBook(segue: UIStoryboardSegue) {
+        /* do nothing */
+    }
+}
+
 
 // MARK: - UITableViewDelegate Methods
 

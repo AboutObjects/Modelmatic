@@ -32,6 +32,11 @@ class EditBookController: UITableViewController
         ratingLabel.text = book.rating.description
         ratingStepper.value = Double(book.rating.rawValue ?? 0)
     }
+    
+    func toggleFavorite() {
+        book.favorite.toggle()
+        favoriteButton.setTitle(book.favorite.description, forState: .Normal)
+    }
 }
 
 // MARK: - Action Methods
@@ -76,9 +81,17 @@ extension EditBookController
             toggleFavorite()
         }
     }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section == 0 ? book.author?.fullName ?? "" : nil
+    }
+}
 
-    func toggleFavorite() {
-        book.favorite.toggle()
-        favoriteButton.setTitle(book.favorite.description, forState: .Normal)
+// MARK: - Formatting CSV
+extension SequenceType where Self.Generator.Element == String
+{
+    var csvString: String? {
+        guard let values = self as? NSArray else { return nil }
+        return values.componentsJoinedByString(", ")
     }
 }

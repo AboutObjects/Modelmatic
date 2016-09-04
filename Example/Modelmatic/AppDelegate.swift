@@ -27,6 +27,8 @@ extension AppDelegate
     {
         UITableView.appearance().backgroundColor = UIColor.headerColor()
         UITableViewCell.appearance().backgroundColor = UIColor.oddRowColor()
+        UITextField.appearanceWhenContainedInInstancesOfClasses([UITableViewCell.self]).textColor = UIColor.textColor()
+        ValueLabel.appearanceWhenContainedInInstancesOfClasses([UITableViewCell.self]).defaultTextColor = UIColor.textColor()
     }
 }
 
@@ -43,5 +45,18 @@ extension UIColor
     
     class func headerColor() -> UIColor {
         return UIColor(red: 0.93, green: 0.91, blue: 0.87, alpha: 1.0)
+    }
+    
+    class func textColor() -> UIColor {
+        return UIColor(red: 0.25, green: 0.125, blue: 0.0, alpha: 1.0)
+    }
+}
+
+
+class ValueLabel: UILabel
+{
+    dynamic var defaultTextColor: UIColor? {
+        get { return textColor }
+        set { textColor = newValue }
     }
 }

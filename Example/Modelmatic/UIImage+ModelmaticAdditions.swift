@@ -18,11 +18,5 @@ extension UIImage
         let imageName = book.title.stringByReplacingOccurrencesOfString(" ", withString: "")
         return UIImage.image(named: imageName, alternateName: "DefaultImage")
     }
-    
-    class func image(forAuthor author: Author) -> UIImage?
-    {
-        guard let imageName = author.lastName else { return nil }
-        return UIImage.image(named: imageName, alternateName: "NoImage")
-    }
 }
 
