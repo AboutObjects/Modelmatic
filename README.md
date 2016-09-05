@@ -283,6 +283,10 @@ catch MappingError.unknownRelationship(let name) {
 }
 ```
 
+### Flattened Attributes
+
+**TODO:** Add description.
+
 
 ## Running the Example App
 

@@ -14,10 +14,10 @@ extension NSPropertyDescription
     }
 }
 
-public extension Array where Element : ModelObject
+public extension Array where Element: ModelObject
 {
     public var dictionaryRepresentation: [JsonDictionary] {
-        return self.map { $0.dictionaryRepresentation }
+        return self.map { $0.encodedValues(parent: nil) }
     }
 }
 
@@ -55,5 +55,12 @@ public extension NSDictionary
                 return nil
         }
         return dict as? NSDictionary
+    }
+}
+
+public extension String
+{
+    public var keyPathComponents: [String] {
+        return (self as NSString).componentsSeparatedByString(".")
     }
 }

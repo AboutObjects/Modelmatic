@@ -12,7 +12,11 @@
           "tags" : "drama,fantasy",
           "title" : "The Tempest",
           "year" : "2013",
-          "book_id" : "3001"
+          "book_id" : "3001",
+          "pricing" : {
+                 "retail_price" : 14.99
+                 "pricing_id" : 1001
+                 }
         },
         {
           "tags" : "drama,comedy",

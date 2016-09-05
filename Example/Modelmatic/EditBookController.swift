@@ -12,6 +12,7 @@ class EditBookController: UITableViewController
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var yearField: UITextField!
+    @IBOutlet weak var priceField: UITextField!
     @IBOutlet weak var tagsLabel: UILabel!
     
     @IBOutlet weak var ratingLabel: UILabel!
@@ -26,11 +27,18 @@ class EditBookController: UITableViewController
     func populateViews() {
         titleField.text = book.title
         yearField.text = book.year
+        priceField.text = String(format: "%.2f", book.retailPrice ?? 0.0)
         tagsLabel.text = book.tags?.csvString
         bookImageView.image = UIImage.image(forBook: book)
         favoriteButton.setTitle(book.favorite.description, forState: .Normal)
         ratingLabel.text = book.rating.description
         ratingStepper.value = Double(book.rating.rawValue ?? 0)
+    }
+    
+    func updateBook() {
+        book.title = titleField.text
+        book.year = yearField.text
+        book.retailPrice = Double(priceField.text ?? "0.0")
     }
     
     func toggleFavorite() {
@@ -66,11 +74,6 @@ extension EditBookController
     func prepareToEditTags(segue: UIStoryboardSegue) {
         if let controller = segue.destinationViewController as? TagsController { controller.book = book }
     }
-    
-    func updateBook() {
-        book.title = titleField.text
-        book.year = yearField.text
-    }
 }
 
 // MARK: - UITableViewDelegate
@@ -84,6 +87,15 @@ extension EditBookController
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return section == 0 ? book.author?.fullName ?? "" : nil
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension EditBookController: UITextFieldDelegate
+{
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 

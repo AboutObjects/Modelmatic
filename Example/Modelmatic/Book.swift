@@ -17,6 +17,7 @@ class Book: ModelObject
     var tags: [String]?
     var favorite: Heart = .no
     var rating: Stars = .zero
+    var retailPrice: Double?
     
     // Strong reference to child object, one-to-one relationship
     var pricing: Pricing?
@@ -42,5 +43,10 @@ extension Book
     var kvc_rating: Int {
         get { return rating.rawValue }
         set { rating = Stars(rawValue: newValue) ?? .zero }
+    }
+    
+    var kvc_retailPrice: Double {
+        get { return retailPrice ?? 0.0 }
+        set { retailPrice = Optional(newValue) }
     }
 }

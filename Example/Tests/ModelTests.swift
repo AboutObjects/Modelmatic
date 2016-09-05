@@ -3,7 +3,7 @@ import XCTest
 import CoreData
 import Modelmatic
 
-// IMPORTANT: Make Example app API visible to XCTest
+// Makes Example app API visible to XCTest
 @testable import Modelmatic_Example
 
 
@@ -11,12 +11,14 @@ let authorIdKey = "author_id"
 let firstNameKey = "firstName"
 let lastNameKey = "lastName"
 let booksKey = "books"
+let pricingKey = "pricing"
 
 let bookIdKey = "book_id"
 let titleKey = "title"
 let yearKey = "year"
 let ratingKey = "rating"
 let favoriteKey = "favorite"
+let retailPriceJsonKey = "retail_price"
 
 let bookId1 = "3401"
 let title1 = "War of the Worlds"
@@ -31,6 +33,9 @@ let year2 = "2015"
 let authorId1 = "105"
 let firstName1 = "H. G."
 let lastName1 = "Wells"
+
+let retailPrice1 = 14.99
+let retailPrice2 = 12.99
 
 let bookDict1 = [
     bookIdKey: bookId1,
@@ -50,6 +55,16 @@ let bookDict3 = [
     yearKey: year1,
     ratingKey: rating1,
     favoriteKey: favorite1
+    ] as JsonDictionary
+
+let bookDictWithPricingDict = [
+    bookIdKey: bookId1,
+    titleKey: title1,
+    yearKey: year1,
+    pricingKey: [
+        "pricing_id": 101,
+        retailPriceJsonKey: retailPrice1
+    ]
     ] as JsonDictionary
 
 let bookDicts = [ bookDict1, bookDict2 ]
@@ -156,9 +171,15 @@ class ModelTests: XCTestCase
             XCTFail("Book entity expected to have a relationship named 'pricing'")
             return
         }
-        let expectedPrice = 19.99
-        book.setObject(forRelationship: relationship, withValuesFromDictionary: ["pricing": ["retailPrice": expectedPrice]])
-        XCTAssertEqualWithAccuracy(book.pricing!.retailPrice!, expectedPrice, accuracy: 0.1)
+        book.setObject(forRelationship: relationship, withValuesFromDictionary: ["pricing": [retailPriceJsonKey: retailPrice1]])
+        XCTAssertEqualWithAccuracy(book.pricing!.retailPrice!, retailPrice1, accuracy: 0.1)
+    }
+    
+    func testFlattenedAttribute()
+    {
+        let book = Book(dictionary: bookDictWithPricingDict, entity: bookEntity)
+        XCTAssertNotNil(book.retailPrice)
+        XCTAssertEqualWithAccuracy(book.pricing!.retailPrice!, retailPrice1, accuracy: 0.1)
     }
     
     func testAddObjectToExistingRelationship()
@@ -190,7 +211,7 @@ class ModelTests: XCTestCase
     {
         let expectedPrice = 19.99
         let book = Book(dictionary: bookDict1, entity: bookEntity)
-        let pricing = Pricing(dictionary: ["retailPrice": expectedPrice], entity: pricingEntity)
+        let pricing = Pricing(dictionary: [retailPriceJsonKey: expectedPrice], entity: pricingEntity)
         try! book.set(modelObject: pricing, forKey: "pricing")
         XCTAssertEqualWithAccuracy(book.pricing!.retailPrice!, expectedPrice, accuracy: 0.1)
         XCTAssertEqual(pricing.book, book)
@@ -200,7 +221,7 @@ class ModelTests: XCTestCase
     {
         let expectedPrice = 19.99
         let book = Book(dictionary: bookDict1, entity: bookEntity)
-        let pricing = Pricing(dictionary: ["retailPrice": expectedPrice], entity: pricingEntity)
+        let pricing = Pricing(dictionary: [retailPriceJsonKey: expectedPrice], entity: pricingEntity)
         XCTAssertThrowsError(try book.set(modelObject: pricing, forKey: "nonexistent_key"))
     }
     
@@ -221,6 +242,27 @@ class ModelTests: XCTestCase
             dict[favoriteKey] as! Bool == favorite1)
     }
     
+    func testEncodeFlattenedAttributeValue()
+    {
+        let book = Book(dictionary: JsonDictionary(), entity: bookEntity)
+        let pricing = Pricing(dictionary: [retailPriceJsonKey: retailPrice1], entity: pricingEntity)
+        book.pricing = pricing
+        pricing.book = book
+        
+        book.retailPrice = retailPrice2
+        let pricingDict = book.dictionaryRepresentation["pricing"] as? JsonDictionary
+        XCTAssertEqual(pricingDict![retailPriceJsonKey] as? Double, retailPrice2)
+    }
+
+    func testEncodeFlattenedAttributeValueWithoutNestedObject()
+    {
+        let book = Book(dictionary: JsonDictionary(), entity: bookEntity)
+        book.retailPrice = retailPrice2
+        let pricingDict = book.dictionaryRepresentation["pricing"] as? JsonDictionary
+        print(book.dictionaryRepresentation)
+        XCTAssertEqual(pricingDict![retailPriceJsonKey] as? Double, retailPrice2)
+    }
+
     func testEncodeParentObjectAndChildrenWithToManyRelationship()
     {
         let author = Author(dictionary: authorDict1, entity: authorEntity)
@@ -243,8 +285,4 @@ class ModelTests: XCTestCase
             dict[booksKey] == nil
         )
     }
-    
-    
-    
-    // TODO: Add tests for jsonKeyPath
 }
