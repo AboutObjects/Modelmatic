@@ -2,7 +2,28 @@
 
 ## [Unreleased](https://github.com/AboutObjects/Modelmatic/tree/HEAD)
 
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.4.2...HEAD)
+[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.5.0...HEAD)
+
+**Implemented enhancements:**
+
+- Demo flattened attributes in example app [\#21](https://github.com/AboutObjects/Modelmatic/issues/21)
+
+**Fixed bugs:**
+
+- Demo flattened attributes in example app [\#21](https://github.com/AboutObjects/Modelmatic/issues/21)
+
+## [0.5.0](https://github.com/AboutObjects/Modelmatic/tree/0.5.0) (2016-09-05)
+[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.4.3...0.5.0)
+
+**Implemented enhancements:**
+
+- Coalesce BookDetail and EditBook scenes [\#20](https://github.com/AboutObjects/Modelmatic/issues/20)
+- Dynamically setting/adding child objects [\#18](https://github.com/AboutObjects/Modelmatic/issues/18)
+- Add a URLTransformer class [\#6](https://github.com/AboutObjects/Modelmatic/issues/6)
+- Rename ModelObject methods containing the words 'serialize' and 'deserialize' [\#5](https://github.com/AboutObjects/Modelmatic/issues/5)
+
+## [0.4.3](https://github.com/AboutObjects/Modelmatic/tree/0.4.3) (2016-08-27)
+[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.4.2...0.4.3)
 
 **Merged pull requests:**
 
