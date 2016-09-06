@@ -97,7 +97,7 @@ extension ModelObject
     }
     
     func encodedValues(parent parent: ModelObject?) -> JsonDictionary {
-        var dict = NSMutableDictionary()
+        let dict = NSMutableDictionary()
         for (key, value) in encodedRelationshipValues(parent: parent) { dict[key] = value }
         for (_, attribute) in entity.attributesByName { addEncodedValue(forAttribute: attribute, toDictionary: dict, keyPath: attribute.keyPath) }
         guard let jsonDict = dict.copy() as? JsonDictionary else { fatalError("Unable to convert NSMutableDictionary to JsonDictionary") }
