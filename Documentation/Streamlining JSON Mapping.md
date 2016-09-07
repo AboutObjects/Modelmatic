@@ -9,7 +9,26 @@ slidenumbers: true
 
 ---
 
-## Things to Automate
+## About Objects
+
+* Reston, VA
+* Full-stack consulting and training
+* Roots: NeXT, OpenStep, WebObjects
+* iOS from day one
+
+---
+
+## Why So Many Frameworks?
+
+Number of hits yielded by a recent Github search for _swift json_:
+
+### [fit] 574
+
+Seems it's on a lot of peoples' radar.
+
+---
+
+## Goal: Automatic Encode/Decode
 
 ```json
 { "book_id": 42,
@@ -24,13 +43,13 @@ public class Book: NSObject {
 }
 ```
 
-1. Map **book_id** to **bookId**
-2. Transform **rating** to Optional enum
-3. Set properties of book to transformed values
+1. Mapping between keys and property names
+2. Performing value transformations
+3. Encoding and decoding model objects
 
 ---
 
-## Object Graphs
+## Stretch Goal: Object Graphs
 
 ```json
 { "author_id": 98,
@@ -43,10 +62,10 @@ public class Book: NSObject {
   ...    
 ```
 
-1. Create nested **books** array
-2. For each book dictionary:
-    * Instantiate `Book`
-    * Map values to `Book` properties
+Automatic encoding and decoding of:
+
+1. Model objects nested to any depth
+1. Nested arrays of model objects 
 
 ---
 
@@ -56,16 +75,12 @@ public class Book: NSObject {
 
 ---
 
-# Existing Solutions
-
----
-
 ## Popular Mapping Frameworks
 
-**Developers define mappings programmatically by:**
+You define mappings programmatically by:
 
-* **RestKit** – passing dictionaries of mapping metadata per class
-* **ObjectMapper**, **SwiftyJSON** – writing code to map individual properties
+* Providing a dictionary describing the mappings for a given class (e.g., RestKit)
+* Defining mappings for each property in code (e.g., ObjectMapper, SwiftJSON)
 
 ---
 
@@ -116,7 +131,7 @@ class Book: Mappable {
 ## Issues
 
 * Model is hard to visualize
-* Awkward maintenance
+* Maintenance can be awkward
 * Strings in code reduce safety
 
 ---
@@ -132,21 +147,39 @@ Assumptions:
 * This may seem unrelated, but **most iOS teams don't seem to be using Core Data**
 
 ---
-## So?
+## Core Data Model Editor
 
-So naturally we wondered if it would be possible to use Xcode's awesome Core Data Model Editor to:
+* Awesome tool for data modeling
+* Defines mappings in a visual format
+* Framework-level programmatic access
 
-* Define a comprehensive set of mappings in a single, visible model
-* Apply those mappings at runtime to non-Core Data objects
+### But wait, it's only for Core Data, right?
+
+Heh, heh
 
 ---
 
-## Xcode's Model Editor
+## [fit] Thought Experiment, Step 1
 
-* Edits `xcdatamodel`
+* Verify that the Model Editor and associated framework classes can be used independently
+* The rest is a slam dunk
+* We'll just need one other thing...
+
+---
+
+## Key-Value Coding (KVC)
+
+* Introspection mechanism built into `NSObject`
+* Allows properties to be accessed by name (key)
+* Is the straw that stirs the drink
+
+---
+
+## Managed Object Model (MOM)
+
 * Defines mappings between model objects and their external data representation
 * Designed to support relational databases (object-relational mapping)
-* **Model can be loaded as `NSManagedObjectModel` instance at runtime**
+* **Can be loaded as `NSManagedObjectModel` instance at runtime**
 
 ---
 

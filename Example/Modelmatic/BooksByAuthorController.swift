@@ -36,7 +36,7 @@ extension BooksByAuthorController
 {
     @IBAction func toggleStorageMode(sender: AnyObject) {
         dataSource.toggleStorageMode()
-        dataSource.fetch(){ [weak self] in self?.tableView.reloadData() }
+        dataSource.fetch { [weak self] in self?.tableView.reloadData() }
     }
 }
 

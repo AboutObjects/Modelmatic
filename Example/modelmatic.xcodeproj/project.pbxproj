@@ -27,7 +27,6 @@
 		AB9D7EBC1D57CD95005B8A26 /* AuthorObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB41D57CD95005B8A26 /* AuthorObjectStore.swift */; };
 		AB9D7EBD1D57CD95005B8A26 /* AuthorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB51D57CD95005B8A26 /* AuthorDataSource.swift */; };
 		AB9D7EC01D57CD95005B8A26 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB81D57CD95005B8A26 /* BookCell.swift */; };
-		AB9D7EC11D57CD95005B8A26 /* UIImage+ModelmaticAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB91D57CD95005B8A26 /* UIImage+ModelmaticAdditions.swift */; };
 		AB9D7EC61D57CE43005B8A26 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EC41D57CE43005B8A26 /* Book.swift */; };
 		AB9D7EC71D57CE43005B8A26 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EC51D57CE43005B8A26 /* Author.swift */; };
 		AB9D7ECF1D57CFFD005B8A26 /* Authors.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7ECE1D57CFFD005B8A26 /* Authors.plist */; };
@@ -78,7 +77,6 @@
 		AB9D7EB51D57CD95005B8A26 /* AuthorDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorDataSource.swift; sourceTree = "<group>"; };
 		AB9D7EB61D57CD95005B8A26 /* BooksByAuthorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksByAuthorController.swift; sourceTree = "<group>"; };
 		AB9D7EB81D57CD95005B8A26 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
-		AB9D7EB91D57CD95005B8A26 /* UIImage+ModelmaticAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ModelmaticAdditions.swift"; sourceTree = "<group>"; };
 		AB9D7EC41D57CE43005B8A26 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		AB9D7EC51D57CE43005B8A26 /* Author.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		AB9D7ECE1D57CFFD005B8A26 /* Authors.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Authors.plist; sourceTree = "<group>"; };
@@ -169,7 +167,6 @@
 				AB704A281D75D1D4006CC7C6 /* TagsController.swift */,
 				AB704A2A1D76FADC006CC7C6 /* EditableCell.swift */,
 				AB9D7EB81D57CD95005B8A26 /* BookCell.swift */,
-				AB9D7EB91D57CD95005B8A26 /* UIImage+ModelmaticAdditions.swift */,
 				ABD5ADE81D5B42CA008C69C5 /* NSURL+ModelmaticAdditions.swift */,
 				AB9D7ED41D57D5A0005B8A26 /* StringArrayTransformer.swift */,
 				AB39E52B1D58E7B400CC2F30 /* DateTransformer.swift */,
@@ -436,7 +433,6 @@
 			files = (
 				ABA96C681D808B3B0025813E /* BooksByAuthorController.swift in Sources */,
 				AB9D7EC61D57CE43005B8A26 /* Book.swift in Sources */,
-				AB9D7EC11D57CD95005B8A26 /* UIImage+ModelmaticAdditions.swift in Sources */,
 				AB9D7ED51D57D5A0005B8A26 /* StringArrayTransformer.swift in Sources */,
 				AB9D7EC01D57CD95005B8A26 /* BookCell.swift in Sources */,
 				AB4FF3AC1D70A8E90040AFF2 /* Pricing.swift in Sources */,
