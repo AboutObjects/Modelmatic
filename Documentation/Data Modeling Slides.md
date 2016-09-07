@@ -69,15 +69,55 @@ public class Book: NSObject {
 
 ---
 
-## Examples
+## RestKit Example
+
+```objectivec
+    RKObjectMapping *bookMapping = [RKObjectMapping mappingForClass:Book.class];
+    [bookMapping addAttributeMappingsFromDictionary:@{ 
+        @"book_id": @"bookId",
+        @"title": @"title",
+        @"rating": @"rating",
+    }];
+    
+    RKResponseDescriptor *descriptor = [RKResponseDescriptor 
+        responseDescriptorWithMapping:bookMapping
+        method:RKRequestMethodAny 
+        pathPattern:nil
+        keyPath:@"books"
+        statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+
+```
+
+---
+
+## ObjectMapper Example
+
+```swift
+class Book: Mappable {
+    public var bookId: Int
+    public var title: String?    
+    public var rating: Rating?
+
+    required init?(_ map: Map) {
+
+    }
+
+    // Mappable
+    func mapping(map: Map) {
+        bookId <- map["book_id"]
+        title <- map["title"]
+        rating <- map["rating"]
+    }
+}
+```
 
 ---
 
 ## Issues
 
-* Fragmented, implicit model is hard to visualize
-* Significant maintenance effort
-* JSON keys exposed as strings in Swift code
+* Model is hard to visualize
+* Awkward maintenance
+* Strings in code reduce safety
 
 ---
 
@@ -177,17 +217,37 @@ let name = author.value(forKey: "firstName")
 * ModelObject base class that uses MOM + KVC to encode/decode automatically
 * Example app + unit tests illustrate usage
 
+---
+
+## Modelmatic Example
+
 ```swift
-guard let entity = self.model.entitiesByName["Author"] else { return }
-let dict1 = ["authorId": 123, "firstName": "Fred", "lastName": "Smith"]
+// Assume we fetched JSON and deserialized it:
+let json = ["author_id": 123, "first_name": "Fred", "last_name": "Smith", "books": [
+        ["book_id": 234, "title": "Yadda, Yadda", "rating": 3],
+        ["book_id": 456, "title": "Whee!", "rating": 5]
+    ]
+]
 
 // Encode
-let author = Author(dictionary: dict1, entity: entity)
+let author = Author(dictionary: json, entity: entity)
+
+// Work with the objects
+author.firstName = "Frederick"
+author.books[0]?.title = "War and Peace"
 
 // Decode
-let dict2 = author.dictionaryRepresentation
-```
+let newJson = author.dictionaryRepresentation
 
+// Contents of newJson:
+```
+```json
+{ "author_id": 123, "first_name": "Frederick", "last_name": "Smith", "books": [
+        { "book_id": 234, "title": "War and Peace", "rating": 3 },
+        { "book_id": 456, "title": "Whee!", "rating": 5 }
+    ]
+}
+```
 ---
 
 ## KVC and Swift Types

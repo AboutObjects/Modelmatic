@@ -4,9 +4,68 @@
 //
 
 import UIKit
+import Modelmatic
 
-let CellID = "Book"
+let cellId = "Book"
 
+class AuthorDataSource: NSObject
+{
+    @IBOutlet var objectStore: AuthorObjectStore!
+    
+    var authors: [Author]? { return objectStore.authors }
+    
+    func toggleStorageMode() { objectStore.toggleStorageMode() }
+    func fetch(completion: () -> Void) { objectStore.fetch(completion) }
+    func save() { objectStore.save() }
+}
+
+extension AuthorDataSource: UITableViewDataSource
+{
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return objectStore.numberOfSections()
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return objectStore.titleForSection(section)
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return objectStore.numberOfRows(inSection: section)
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? BookCell else {
+            fatalError("Unable to dequeue a cell with identifier \(cellId)")
+        }
+        self.populateCell(cell, atIndexPath: indexPath)
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        if editingStyle == .Delete {
+            objectStore.removeBookAtIndexPath(indexPath)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            save()
+        }
+    }
+}
+
+// MARK: - Populating Cells
+extension AuthorDataSource
+{
+    func populateCell(cell: BookCell, atIndexPath indexPath: NSIndexPath)
+    {
+        guard let book = objectStore.bookAtIndexPath(indexPath) else { return }
+        cell.titleLabel.text = book.title
+        cell.priceLabel.text = priceFormatter.stringFromNumber(NSNumber(double: book.retailPrice ?? 0))
+        cell.bookImageView.image = UIImage.image(forBook: book)
+        cell.ratingLabel.text = book.rating.description
+        cell.favoriteLabel.text = book.favorite.description
+    }
+}
+
+// MARK: - Enums
 enum Heart: Int, CustomStringConvertible {
     case yes, no
     init(isFavorite: Bool?) {
@@ -36,49 +95,9 @@ enum Stars: Int, CustomStringConvertible {
     }
 }
 
-class AuthorDataSource: NSObject
-{
-    @IBOutlet var objectStore: AuthorObjectStore!
-    
-    func toggleStorageMode() { objectStore.toggleStorageMode() }
-    func fetch(completion: () -> Void) { objectStore.fetch(completion) }
-    func save() { objectStore.save() }
-}
-
-extension AuthorDataSource: UITableViewDataSource
-{
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return objectStore.numberOfSections()
-    }
-    
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return objectStore.titleForSection(section)
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objectStore.numberOfRows(inSection: section)
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier(CellID) as? BookCell else {
-            NSLog("WARNING: Unable to dequeue a cell with identifier \(CellID)")
-            abort()
-        }
-        self.populateCell(cell, atIndexPath: indexPath)
-        return cell
-    }
-}
-
-// MARK: - Populating Cells
-extension AuthorDataSource
-{
-    func populateCell(cell: BookCell, atIndexPath indexPath: NSIndexPath)
-    {
-        guard let book = objectStore.bookAtIndexPath(indexPath) else { return }
-        cell.titleLabel.text = book.title
-        cell.infoLabel.text = String(format: "%@ %@", book.year ?? "" , book.author?.fullName ?? "")
-        cell.bookImageView.image = UIImage.image(forBook: book)
-        cell.ratingLabel.text = book.rating.description
-        cell.favoriteLabel.text = book.favorite.description
-    }
-}
+// MARK: - Formatting Prices
+let priceFormatter: NSNumberFormatter = {
+    let formatter = NSNumberFormatter()
+    formatter.numberStyle = .CurrencyStyle
+    return formatter
+}()

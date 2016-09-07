@@ -9,52 +9,34 @@ class BooksController: UITableViewController
 {
     @IBOutlet var dataSource: AuthorDataSource!
     
-    override func viewDidLoad()
-    {
-        dataSource.fetch() { [weak self] in
-            self?.tableView.reloadData()
-        }
+    override func viewDidLoad() {
+        dataSource.fetch { [weak self] in self?.tableView.reloadData() }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        guard let indexPath = tableView.indexPathForSelectedRow,
-            book = dataSource.objectStore.bookAtIndexPath(indexPath),
-            navController = segue.destinationViewController as? UINavigationController,
-            editController = navController.childViewControllers.first as? EditBookController else {
-                return
+        switch segue.identifier ?? "" {
+        case "Edit":
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            (segue.targetViewController as? EditBookController)?.book = dataSource.objectStore.bookAtIndexPath(indexPath)
+        case "Add":
+            (segue.targetViewController as? AddBookController)?.dataSource = dataSource
+        default: break
         }
-        
-        editController.book = book
     }
-
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-//    {
-//        guard let indexPath = tableView.indexPathForSelectedRow,
-//            book = dataSource.objectStore.bookAtIndexPath(indexPath),
-//            controller = segue.destinationViewController as? BookDetailController else {
-//                return
-//        }
-//        
-//        controller.book = book
-//        controller.save = { book in self.dataSource.save() }
-//    }
 }
 
 // MARK: - Action Methods
 extension BooksController
 {
-    @IBAction func toggleStorageMode(sender: AnyObject)
-    {
+    @IBAction func toggleStorageMode(sender: AnyObject) {
         dataSource.toggleStorageMode()
-        dataSource.fetch(){ [weak self] in
-            self?.tableView.reloadData()
-        }
+        dataSource.fetch(){ [weak self] in self?.tableView.reloadData() }
     }
 }
 
@@ -65,10 +47,12 @@ extension BooksController
         dataSource.save()
         tableView.reloadData()
     }
-    
-    @IBAction func cancelEditingBook(segue: UIStoryboardSegue) {
-        /* do nothing */
+    @IBAction func doneAddingBook(segue: UIStoryboardSegue) {
+        dataSource.save()
+        tableView.reloadData()
     }
+    @IBAction func cancelEditingBook(segue: UIStoryboardSegue) { }
+    @IBAction func cancelAddingBook(segue: UIStoryboardSegue) { }
 }
 
 
@@ -76,8 +60,16 @@ extension BooksController
 
 extension BooksController
 {
-    override  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
-    {
+    override  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.oddRowColor() : UIColor.evenRowColor()
+    }
+}
+
+// MARK: - UIStoryboardSegue
+extension UIStoryboardSegue
+{
+    var targetViewController: UIViewController? {
+        if let navController = destinationViewController as? UINavigationController { return navController.childViewControllers.first }
+        return destinationViewController
     }
 }
