@@ -9,7 +9,6 @@ class BookCell: UITableViewCell
 {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var priceLabel: UILabel!
-    @IBOutlet var bookImageView: UIImageView!
     @IBOutlet var ratingLabel: UILabel!
     @IBOutlet var favoriteLabel: UILabel!
 }

@@ -38,6 +38,7 @@ extension AuthorDataSource: UITableViewDataSource
             fatalError("Unable to dequeue a cell with identifier \(cellId)")
         }
         self.populateCell(cell, atIndexPath: indexPath)
+        self.configureCell(cell, atIndexPath: indexPath)
         return cell
     }
     
@@ -54,12 +55,16 @@ extension AuthorDataSource: UITableViewDataSource
 // MARK: - Populating Cells
 extension AuthorDataSource
 {
-    func populateCell(cell: BookCell, atIndexPath indexPath: NSIndexPath)
-    {
+    func configureCell(cell: BookCell, atIndexPath indexPath: NSIndexPath) {
+        guard let book = objectStore.bookAtIndexPath(indexPath) else { return }
+        cell.ratingLabel.alpha = book.rating == .zero ? 0.3 : 1
+        cell.favoriteLabel.transform = book.favorite.boolValue ? CGAffineTransformMakeScale(1.2, 1.2) : CGAffineTransformIdentity
+    }
+    
+    func populateCell(cell: BookCell, atIndexPath indexPath: NSIndexPath) {
         guard let book = objectStore.bookAtIndexPath(indexPath) else { return }
         cell.titleLabel.text = book.title
         cell.priceLabel.text = priceFormatter.stringFromNumber(NSNumber(double: book.retailPrice ?? 0))
-        cell.bookImageView.image = UIImage.image(forBook: book)
         cell.ratingLabel.text = book.rating.description
         cell.favoriteLabel.text = book.favorite.description
     }

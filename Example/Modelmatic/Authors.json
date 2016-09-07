@@ -9,41 +9,60 @@
       "author_id" : "101",
       "books" : [
         {
+          "pricing" : {
+            "retail_price" : "14.99"
+          },
           "tags" : "drama,fantasy",
           "title" : "The Tempest",
           "year" : "2013",
           "book_id" : "3001",
-          "pricing" : {
-                 "retail_price" : 14.99
-                 "pricing_id" : 1001
-                 }
+          "rating" : "4"
         },
         {
+          "pricing" : {
+            "retail_price" : "12.99"
+          },
           "tags" : "drama,comedy",
           "title" : "The Taming of the Shrew",
           "year" : "2011",
-          "book_id" : "3002"
+          "book_id" : "3002",
+          "rating" : "3"
         },
         {
+          "pricing" : {
+            "retail_price" : "9.99"
+          },
           "tags" : "drama,tragedy,semi-historical",
           "title" : "Hamlet",
           "year" : "2011",
-          "book_id" : "3003"
+          "book_id" : "3003",
+          "rating" : "5"
         },
         {
-          "book_id" : "3004",
+          "pricing" : {
+            "retail_price" : "12.99"
+          },
+          "tags" : "drama,fantasy,comedy",
           "title" : "A Midsummer Night's Dream",
-          "year" : "2012"
+          "year" : "2012",
+          "book_id" : "3004",
+          "rating" : "4"
         },
         {
-          "book_id" : "3005",
+          "pricing" : {
+            "retail_price" : "11.99"
+          },
           "title" : "As You Like It",
-          "year" : "2011"
+          "year" : "2011",
+          "book_id" : "3005"
         },
         {
-          "book_id" : "3006",
+          "pricing" : {
+            "retail_price" : "12.99"
+          },
           "title" : "Henry V",
-          "year" : "2011"
+          "year" : "2011",
+          "book_id" : "3006"
         }
       ]
     },
@@ -54,24 +73,36 @@
       "author_id" : "102",
       "books" : [
         {
-          "book_id" : "3101",
+          "pricing" : {
+            "retail_price" : "12.99"
+          },
           "title" : "Pride and Prejudice",
-          "year" : "2000"
+          "year" : "2000",
+          "book_id" : "3101"
         },
         {
-          "book_id" : "3102",
+          "pricing" : {
+            "retail_price" : "12.99"
+          },
           "title" : "Sense and Sensibility",
-          "year" : "2010"
+          "year" : "2010",
+          "book_id" : "3102"
         },
         {
-          "book_id" : "3103",
+          "pricing" : {
+            "retail_price" : "12.99"
+          },
           "title" : "Mansfield Park",
-          "year" : "2014"
+          "year" : "2014",
+          "book_id" : "3103"
         },
         {
-          "book_id" : "3104",
+          "pricing" : {
+            "retail_price" : "12.99"
+          },
           "title" : "Persuasion",
-          "year" : "2015"
+          "year" : "2015",
+          "book_id" : "3104"
         }
       ]
     },
@@ -80,24 +111,36 @@
       "lastName" : "Hemingway",
       "books" : [
         {
-          "book_id" : "3201",
+          "pricing" : {
+            "retail_price" : "12.99"
+          },
           "title" : "For Whom the Bell Tolls",
-          "year" : "2009"
+          "year" : "2009",
+          "book_id" : "3201"
         },
         {
-          "book_id" : "3202",
+          "pricing" : {
+            "retail_price" : "12.99"
+          },
           "title" : "The Old Man and the Sea",
-          "year" : "2010"
+          "year" : "2010",
+          "book_id" : "3202"
         },
         {
-          "book_id" : "3203",
+          "pricing" : {
+            "retail_price" : "12.99"
+          },
           "title" : "To Have and Have Not",
-          "year" : "2014"
+          "year" : "2014",
+          "book_id" : "3203"
         },
         {
-          "book_id" : "3204",
+          "pricing" : {
+            "retail_price" : "12.99"
+          },
           "title" : "The Snows of Kilamanjaro",
-          "year" : "2014"
+          "year" : "2014",
+          "book_id" : "3204"
         }
       ],
       "author_id" : "103"

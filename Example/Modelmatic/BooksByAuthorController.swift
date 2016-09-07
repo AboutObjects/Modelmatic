@@ -5,7 +5,7 @@
 
 import UIKit
 
-class BooksController: UITableViewController
+class BooksByAuthorController: UITableViewController
 {
     @IBOutlet var dataSource: AuthorDataSource!
     
@@ -32,7 +32,7 @@ class BooksController: UITableViewController
 }
 
 // MARK: - Action Methods
-extension BooksController
+extension BooksByAuthorController
 {
     @IBAction func toggleStorageMode(sender: AnyObject) {
         dataSource.toggleStorageMode()
@@ -41,7 +41,7 @@ extension BooksController
 }
 
 // MARK: - Unwind Segues
-extension BooksController
+extension BooksByAuthorController
 {
     @IBAction func doneEditingBook(segue: UIStoryboardSegue) {
         dataSource.save()
@@ -58,7 +58,7 @@ extension BooksController
 
 // MARK: - UITableViewDelegate Methods
 
-extension BooksController
+extension BooksByAuthorController
 {
     override  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.oddRowColor() : UIColor.evenRowColor()

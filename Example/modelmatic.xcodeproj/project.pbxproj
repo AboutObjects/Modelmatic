@@ -26,16 +26,15 @@
 		AB9D7EBB1D57CD95005B8A26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB31D57CD95005B8A26 /* AppDelegate.swift */; };
 		AB9D7EBC1D57CD95005B8A26 /* AuthorObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB41D57CD95005B8A26 /* AuthorObjectStore.swift */; };
 		AB9D7EBD1D57CD95005B8A26 /* AuthorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB51D57CD95005B8A26 /* AuthorDataSource.swift */; };
-		AB9D7EBE1D57CD95005B8A26 /* BooksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB61D57CD95005B8A26 /* BooksController.swift */; };
 		AB9D7EC01D57CD95005B8A26 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB81D57CD95005B8A26 /* BookCell.swift */; };
 		AB9D7EC11D57CD95005B8A26 /* UIImage+ModelmaticAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB91D57CD95005B8A26 /* UIImage+ModelmaticAdditions.swift */; };
 		AB9D7EC61D57CE43005B8A26 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EC41D57CE43005B8A26 /* Book.swift */; };
 		AB9D7EC71D57CE43005B8A26 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EC51D57CE43005B8A26 /* Author.swift */; };
 		AB9D7ECF1D57CFFD005B8A26 /* Authors.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7ECE1D57CFFD005B8A26 /* Authors.plist */; };
 		AB9D7ED51D57D5A0005B8A26 /* StringArrayTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7ED41D57D5A0005B8A26 /* StringArrayTransformer.swift */; };
-		AB9D7ED81D57D7FA005B8A26 /* Books.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7ED61D57D7FA005B8A26 /* Books.xcassets */; };
 		AB9D7EDB1D57D861005B8A26 /* Authors.json in Resources */ = {isa = PBXBuildFile; fileRef = AB9D7EDA1D57D861005B8A26 /* Authors.json */; };
 		ABA96C661D80345D0025813E /* AddBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA96C651D80345D0025813E /* AddBookController.swift */; };
+		ABA96C681D808B3B0025813E /* BooksByAuthorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB61D57CD95005B8A26 /* BooksByAuthorController.swift */; };
 		ABD1A1751D6E28F7008552F9 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* ModelTests.swift */; };
 		ABD5ADE71D5B343F008C69C5 /* HttpSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5ADE61D5B343F008C69C5 /* HttpSessionProtocol.swift */; };
 		ABD5ADE91D5B42CA008C69C5 /* NSURL+ModelmaticAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5ADE81D5B42CA008C69C5 /* NSURL+ModelmaticAdditions.swift */; };
@@ -77,14 +76,13 @@
 		AB9D7EB31D57CD95005B8A26 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB9D7EB41D57CD95005B8A26 /* AuthorObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorObjectStore.swift; sourceTree = "<group>"; };
 		AB9D7EB51D57CD95005B8A26 /* AuthorDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorDataSource.swift; sourceTree = "<group>"; };
-		AB9D7EB61D57CD95005B8A26 /* BooksController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksController.swift; sourceTree = "<group>"; };
+		AB9D7EB61D57CD95005B8A26 /* BooksByAuthorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksByAuthorController.swift; sourceTree = "<group>"; };
 		AB9D7EB81D57CD95005B8A26 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 		AB9D7EB91D57CD95005B8A26 /* UIImage+ModelmaticAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ModelmaticAdditions.swift"; sourceTree = "<group>"; };
 		AB9D7EC41D57CE43005B8A26 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		AB9D7EC51D57CE43005B8A26 /* Author.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		AB9D7ECE1D57CFFD005B8A26 /* Authors.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Authors.plist; sourceTree = "<group>"; };
 		AB9D7ED41D57D5A0005B8A26 /* StringArrayTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringArrayTransformer.swift; sourceTree = "<group>"; };
-		AB9D7ED61D57D7FA005B8A26 /* Books.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Books.xcassets; sourceTree = "<group>"; };
 		AB9D7EDA1D57D861005B8A26 /* Authors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Authors.json; sourceTree = "<group>"; };
 		ABA96C651D80345D0025813E /* AddBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookController.swift; sourceTree = "<group>"; };
 		ABD5ADE61D5B343F008C69C5 /* HttpSessionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpSessionProtocol.swift; sourceTree = "<group>"; };
@@ -165,7 +163,7 @@
 				AB9D7EB31D57CD95005B8A26 /* AppDelegate.swift */,
 				AB9D7EB41D57CD95005B8A26 /* AuthorObjectStore.swift */,
 				AB9D7EB51D57CD95005B8A26 /* AuthorDataSource.swift */,
-				AB9D7EB61D57CD95005B8A26 /* BooksController.swift */,
+				AB9D7EB61D57CD95005B8A26 /* BooksByAuthorController.swift */,
 				AB39E52E1D58ED9600CC2F30 /* EditBookController.swift */,
 				ABA96C651D80345D0025813E /* AddBookController.swift */,
 				AB704A281D75D1D4006CC7C6 /* TagsController.swift */,
@@ -177,7 +175,6 @@
 				AB39E52B1D58E7B400CC2F30 /* DateTransformer.swift */,
 				ABD5ADE61D5B343F008C69C5 /* HttpSessionProtocol.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
-				AB9D7ED61D57D7FA005B8A26 /* Books.xcassets */,
 				AB39E5311D58EE0B00CC2F30 /* Main.storyboard */,
 				AB39E5321D58EE0B00CC2F30 /* LaunchScreen.storyboard */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -321,7 +318,6 @@
 				AB39E5331D58EE0B00CC2F30 /* Main.storyboard in Resources */,
 				AB39E5351D58EE0B00CC2F30 /* LaunchScreen.storyboard in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				AB9D7ED81D57D7FA005B8A26 /* Books.xcassets in Resources */,
 				AB9D7ECF1D57CFFD005B8A26 /* Authors.plist in Resources */,
 				AB9D7EDB1D57D861005B8A26 /* Authors.json in Resources */,
 			);
@@ -438,6 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABA96C681D808B3B0025813E /* BooksByAuthorController.swift in Sources */,
 				AB9D7EC61D57CE43005B8A26 /* Book.swift in Sources */,
 				AB9D7EC11D57CD95005B8A26 /* UIImage+ModelmaticAdditions.swift in Sources */,
 				AB9D7ED51D57D5A0005B8A26 /* StringArrayTransformer.swift in Sources */,
@@ -452,7 +449,6 @@
 				AB39E52C1D58E7B400CC2F30 /* DateTransformer.swift in Sources */,
 				ABA96C661D80345D0025813E /* AddBookController.swift in Sources */,
 				AB39E52F1D58ED9600CC2F30 /* EditBookController.swift in Sources */,
-				AB9D7EBE1D57CD95005B8A26 /* BooksController.swift in Sources */,
 				AB704A2B1D76FADC006CC7C6 /* EditableCell.swift in Sources */,
 				AB39E5291D58E74A00CC2F30 /* Authors.xcdatamodeld in Sources */,
 				AB9D7EBC1D57CD95005B8A26 /* AuthorObjectStore.swift in Sources */,
