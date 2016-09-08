@@ -32,7 +32,6 @@ class Book: ModelObject
 
 
 // MARK: - Wrapping and Unwrapping Optional Structs
-
 extension Book
 {
     var kvc_favorite: Bool {
@@ -48,5 +47,13 @@ extension Book
     var kvc_retailPrice: Double {
         get { return retailPrice ?? 0.0 }
         set { retailPrice = Optional(newValue) }
+    }
+}
+
+// MARK: - Keys
+extension Book
+{
+    enum Keys: String {
+        case bookId, title, year, tags, favorite, rating, retailPrice, pricing, author
     }
 }

@@ -20,7 +20,8 @@ enum StorageMode {
 class AuthorObjectStore: NSObject
 {
     let model: NSManagedObjectModel!
-    let entity: NSEntityDescription!
+    let authorEntity: NSEntityDescription!
+    let bookEntity: NSEntityDescription!
     var version: NSNumber = 0
     var authors: [Author]?
     
@@ -32,11 +33,12 @@ class AuthorObjectStore: NSObject
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    required  override init()
+    required override init()
     {
         let modelURL = NSBundle(forClass: AuthorObjectStore.self).URLForResource(authorsModelName, withExtension: "momd")
         model = NSManagedObjectModel(contentsOfURL: modelURL!) // Crash here if model URL is invalid.
-        entity = model.entitiesByName[Author.entityName]
+        authorEntity = model.entitiesByName[Author.entityName]
+        bookEntity = model.entitiesByName[Book.entityName]
         super.init()
     }
     
@@ -66,7 +68,7 @@ extension AuthorObjectStore
         guard let data = data, dict = try? data.deserializeJson(),
             authorDicts = dict["authors"] as? [JsonDictionary] else { return }
         version = dict["version"] as? NSNumber ?? NSNumber(int: 0)
-        authors = authorDicts.map { Author(dictionary: $0, entity: entity) }
+        authors = authorDicts.map { Author(dictionary: $0, entity: authorEntity) }
     }
 }
 
@@ -86,7 +88,7 @@ extension AuthorObjectStore
             return
         }
         version = dict["version"] as? NSNumber ?? NSNumber(int: 0)
-        authors = authorDicts.map { Author(dictionary: $0, entity: self.entity) }
+        authors = authorDicts.map { Author(dictionary: $0, entity: self.authorEntity) }
         completion()
     }
     
@@ -107,8 +109,7 @@ extension AuthorObjectStore
         task.resume()
     }
     
-    func save()
-    {
+    func save() {
         if case StorageMode.webService = storageMode {
             save(toWeb: restUrlString) } else {
             save(toFile: authorsFileName) }
@@ -175,12 +176,14 @@ extension AuthorObjectStore
     func numberOfSections() -> NSInteger {
         return authors?.count ?? 0
     }
-    
     func numberOfRows(inSection section: NSInteger) -> NSInteger {
         return authors?[section].books?.count ?? 0
     }
     
     func bookAtIndexPath(indexPath: NSIndexPath) -> Book? {
         return authors?[indexPath.section].books?[indexPath.row]
+    }
+    func removeBookAtIndexPath(indexPath: NSIndexPath) {
+        authors?[indexPath.section].books?.removeAtIndex(indexPath.row)
     }
 }

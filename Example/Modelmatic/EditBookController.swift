@@ -9,7 +9,6 @@ class EditBookController: UITableViewController
 {
     var book: Book!
     
-    @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var yearField: UITextField!
     @IBOutlet weak var priceField: UITextField!
@@ -29,7 +28,6 @@ class EditBookController: UITableViewController
         yearField.text = book.year
         priceField.text = String(format: "%.2f", book.retailPrice ?? 0.0)
         tagsLabel.text = book.tags?.csvString
-        bookImageView.image = UIImage.image(forBook: book)
         favoriteButton.setTitle(book.favorite.description, forState: .Normal)
         ratingLabel.text = book.rating.description
         ratingStepper.value = Double(book.rating.rawValue ?? 0)
