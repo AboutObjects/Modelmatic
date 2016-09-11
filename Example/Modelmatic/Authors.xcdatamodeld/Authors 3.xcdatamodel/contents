@@ -33,9 +33,6 @@
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Author" inverseName="books" inverseEntity="Author" syncable="YES"/>
         <relationship name="pricing" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pricing" inverseName="book" inverseEntity="Pricing" syncable="YES"/>
-        <userInfo>
-            <entry key="key" value="value"/>
-        </userInfo>
     </entity>
     <entity name="Pricing" representedClassName="MDLPricing" syncable="YES">
         <attribute name="discountedPrice" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -55,8 +52,8 @@
         </userInfo>
     </entity>
     <elements>
-        <element name="Author" positionX="-468" positionY="-81" width="128" height="118"/>
-        <element name="Book" positionX="-252" positionY="-96" width="128" height="178"/>
-        <element name="Pricing" positionX="-63" positionY="-36" width="128" height="103"/>
+        <element name="Author" positionX="-245" positionY="-189" width="128" height="118"/>
+        <element name="Book" positionX="-74" positionY="-115" width="128" height="178"/>
+        <element name="Pricing" positionX="-245" positionY="-40" width="128" height="103"/>
     </elements>
 </model>

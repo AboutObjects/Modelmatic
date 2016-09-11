@@ -16,7 +16,7 @@ class Author: ModelObject
     var lastName: String?
     var dateOfBirth: NSDate?
     
-    // Strong reference to children, one-to-many relationship
+    // Strong reference to children, to-many relationship
     var books: [Book]?
 }
 

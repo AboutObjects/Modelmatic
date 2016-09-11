@@ -13,22 +13,22 @@ slidenumbers: true
 
 * Reston, VA
 * Full-stack consulting and training
-* Roots: NeXT, OpenStep, WebObjects
+* Roots in NeXT, OpenStep, WebObjects + enterprise middleware and backend
 * iOS from day one
 
 ---
 
-## Why So Many Frameworks?
+## [fit] So Many Frameworks
 
 Number of hits yielded by a recent Github search for _swift json_:
 
-### [fit] 574
+### [fit] 576
 
 Seems it's on a lot of peoples' radar.
 
 ---
 
-## Goal: Automatic Encode/Decode
+## Automating Encode/Decode
 
 ```json
 { "book_id": 42,
@@ -43,13 +43,17 @@ public class Book: NSObject {
 }
 ```
 
-1. Mapping between keys and property names
-2. Performing value transformations
-3. Encoding and decoding model objects
+1. Map keys to property names
+2. Perform value transformations
+3. Encode and decode model objects
+
+<br/>
+
 
 ---
+##  [fit] JSON <--> Object Graph
 
-## Stretch Goal: Object Graphs
+<br/>
 
 ```json
 { "author_id": 98,
@@ -62,25 +66,17 @@ public class Book: NSObject {
   ...    
 ```
 
-Automatic encoding and decoding of:
 
-1. Model objects nested to any depth
-1. Nested arrays of model objects 
+![right 100%](images/ObjectGraph.eps)
 
 ---
 
-##  Object Graph in Memory
-
-![inline 125%](images/ObjectGraph.eps)
-
----
-
-## Popular Mapping Frameworks
+## Mapping Frameworks
 
 You define mappings programmatically by:
 
-* Providing a dictionary describing the mappings for a given class (e.g., RestKit)
-* Defining mappings for each property in code (e.g., ObjectMapper, SwiftJSON)
+* Defining mappings per property in code (ObjectMapper, SwiftJSON)
+* Providing dictionaries of mappings per class (RestKit)
 
 ---
 
@@ -130,21 +126,39 @@ class Book: Mappable {
 
 ## Issues
 
-* Model is hard to visualize
-* Maintenance can be awkward
+* Maintenance is awkward
+* Model hard to visualize
 * Strings in code reduce safety
 
 ---
 
-# A Thought Experiment
+# The
+# Modelmatic
+# Framework
+
+
+### [fit] www.github.com/AboutObjects/modelmatic
 
 ---
 
-Assumptions:
+## Model Needs to Capture:
 
-* Many popular frameworks require mappings to be defined programmatically
-* A few allow mappings to be externalized as plist metadata
-* This may seem unrelated, but **most iOS teams don't seem to be using Core Data**
+* Relationship info: to-many, target type
+* Nice to have: inverse relationships
+* Mapping keys to property names
+* Value transformations
+
+---
+
+## Framework Needs to:
+
+* Traverse relationships defined in model
+* Construct nested objects
+* Use introspection to get and set values
+* Map keys and transform values
+
+<br/>
+**Do all the above without manual coding (except for custom transformations)**
 
 ---
 ## Core Data Model Editor
@@ -158,23 +172,6 @@ Assumptions:
 Heh, heh
 
 ---
-
-## [fit] Thought Experiment, Step 1
-
-* Verify that the Model Editor and associated framework classes can be used independently
-* The rest is a slam dunk
-* We'll just need one other thing...
-
----
-
-## Key-Value Coding (KVC)
-
-* Introspection mechanism built into `NSObject`
-* Allows properties to be accessed by name (key)
-* Is the straw that stirs the drink
-
----
-
 ## Managed Object Model (MOM)
 
 * Defines mappings between model objects and their external data representation
@@ -182,7 +179,6 @@ Heh, heh
 * **Can be loaded as `NSManagedObjectModel` instance at runtime**
 
 ---
-
 ## Entities
 
 * Metadata description of domain object
@@ -191,7 +187,6 @@ Heh, heh
 * **Instances of `NSEntityDescription` in `NSManagedObjectModel`**
 
 ---
-
 ## Attributes
 
 * Metadata descriptions of individual values
@@ -213,17 +208,7 @@ Heh, heh
 
 ---
 
-## Add a Dash of KVC, Then Stir
-
-Back to the thought experiment, we wondered:
-
-* Could a managed object model (MOM) fully describe JSON mappings? (Hint: duh!)
-* Could we use Key-Value Coding (KVC) to automate encode/decode? (Hint: duh!)
-* Could JSON + MOM + KVC = +1?
-
----
-
-## So, What's KVC?
+## Encode/Decode Via KVC
 
 **Quick definition:**
 
@@ -247,8 +232,45 @@ let name = author.value(forKey: "firstName")
 
 ## Modelmatic Cocoapod
 
-* ModelObject base class that uses MOM + KVC to encode/decode automatically
-* Example app + unit tests illustrate usage
+* ModelObject base class
+* Uses MOM + KVC to encode/decode
+* Simple API
+* Example app + unit tests show usage
+
+---
+
+## Subclassing
+
+```swift
+@objc (MDLAuthor)
+class Author: ModelObject
+{
+    static let entityName = "Author"
+    
+    var authorId: NSNumber?
+    var firstName: String?
+    var lastName: String?
+    
+    // Strong reference to children, to-many relationship
+    var books: [Book]?
+}
+```
+
+---
+
+## Basic Usage
+
+
+```swift
+
+// Decoding
+
+let author = Author(dictionary: json, entity: entity)
+
+// Encoding
+
+let jsonDict = author.dictionaryRepresentation
+```
 
 ---
 
@@ -281,10 +303,26 @@ let newJson = author.dictionaryRepresentation
     ]
 }
 ```
+
 ---
+## Managing Relationships
 
+Setting to-one relationships
+
+```swift
+public func set(modelObject: ModelObject, forKey: String) throws
+```
+
+Adding objects to to-many relationships
+
+```swift
+public func add(modelObject: ModelObject, forKey: String) throws
+
+public func add(modelObjects: [ModelObject], forKey: String) throws
+```
+
+---
 ## KVC and Swift Types
-
 
 **KVC handles automatically:**
 
@@ -297,7 +335,6 @@ let newJson = author.dictionaryRepresentation
 * Non-bridged Swift types 👎🏻
 
 ---
-
 ## Working with Swift Types
 
 For non-Objc properties, add a computed property prefixed with **_kvc**, as shown below:
@@ -312,26 +349,68 @@ For non-Objc properties, add a computed property prefixed with **_kvc**, as show
 ```
 
 ---
+# Transforming 
+# Values
 
-## Customizing Key Paths
+To define custom transformation:
+
+* Subclass `NSValueTransformer`
+* Register subclass
+
+```swift
+NSValueTransformer.setValueTransformer(
+    MyTransformer(),
+    forName: MyTransformer.transformerName)
+```
+
+Apply to attributes by setting type to *Transformable*
+
+![right 140%](images/ValueTransformer.png)
 
 ---
+## Value Transformer Example
 
-## Value Transformations
+```swift
+private let delimiterString = ","
+
+@objc (MDLStringArrayTransformer)
+class StringArrayTransformer: NSValueTransformer
+{
+    static let transformerName = "StringArray"
+    
+    override class func transformedValueClass() -> AnyClass { return NSString.self }
+    override class func allowsReverseTransformation() -> Bool { return true }
+    
+    override func transformedValue(value: AnyObject?) -> AnyObject? {
+        guard let values = value as? NSArray else { return value }
+        return values.componentsJoinedByString(delimiterString)
+    }
+    
+    override func reverseTransformedValue(value: AnyObject?) -> AnyObject? {
+        guard let stringVal = value as? String else { return nil }
+        return stringVal.componentsSeparatedByString(delimiterString)
+    }
+}
+```
 
 ---
+# Mapping
+# Key Paths
 
-## Flattened Attributes
 
----
+Set value for key *jsonKeyPath* in attribute's UserInfo dictionary
 
-## Managing Relationships
-
-* Setting to-one relationship values
-* Adding values to to-many relationships
+![right 140%](images/MappedKey.png)
 
 ---
+# Flattened
+# Attributes
 
+Preserving JSON structure during encoding requires modeled relationship.
+
+![right 140%](images/DataModel2.png)
+
+---
 # Example App
 
 ---
@@ -343,18 +422,37 @@ For non-Objc properties, add a computed property prefixed with **_kvc**, as show
 * Can switch modes to directly access local storage
 
 ---
-
 ## Example App Data Model
 
-![inline 120%](images/DataModel.png)
+![inline 150%](images/DataModel1.png)
 
 ---
+## Sample JSON
 
+```json
+  "version" : 0,
+  "authors" : [
+    {
+      "books" : [
+        {
+          "title" : "The Tempest",
+          "year" : "2013",
+          "tags" : "drama,fantasy",
+          "pricing" : {
+            "retail_price" : 14.99
+          },
+          "favorite" : true,
+          "book_id" : "3001",
+          "rating" : 4
+        },
+```
+
+---
 # [fit] Demo: Example App
 
 ---
 
-# Benefits
+# Modelmatic
 
 * Comprehensive visual model
 * Automates:
@@ -376,17 +474,13 @@ For non-Objc properties, add a computed property prefixed with **_kvc**, as show
 
 ## To Do:
 
-* Lights-out property access for non-bridged types (dependent on Swift introspection)
+* Testing and documentation
+* Fully automate non-bridged types (dependent on Swift introspection)
 * Add support for `NSManagedObject` subclasses
 * Do clever things with model versions (TBD)
 * Proposed: auto generate model from JSON
 
----
-
-## Modelmatic Status
-
-* Needs more unit tests
-* Contributors welcome
+**Contributors welcome!**
 
 ---
 
@@ -407,13 +501,14 @@ For non-Objc properties, add a computed property prefixed with **_kvc**, as show
 #  Upcoming Classes
 ### Reston
 
-#### 10/1 – 10/10  • iOS Development in Swift: Comprehensive
-#### 10/1 – 10/10 • iOS Development in Objective-C: Comprehensive
+#### 10/3 – 10/7  • Advanced iOS Development
+#### 10/22 – 10/28 • iOS Development in Swift: Comprehensive
+#### 12/10 – 12/16 • iOS Development in Objective-C: Comprehensive
 
 ### Cupertino
 
-#### `10/1 – 10/10 ` • iOS Development in Swift: Comprehensive
-#### `10/1 – 10/10 ` • iOS Development in Objective-C: Comprehensive
+#### 11/21 – 11/22 • WatchKit Development
+#### 1/30 – 2/3 • iOS Development in Swift: Comprehensive
 
 * View online: [Public schedule](www.aboutobjects.com/training/schedule.html)
 

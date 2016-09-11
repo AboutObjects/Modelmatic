@@ -42,7 +42,7 @@ class AuthorObjectStore: NSObject
         super.init()
     }
     
-    override  class func initialize() {
+    override class func initialize() {
         guard self === AuthorObjectStore.self else { return }
         configureValueTransformers()
         configureURLProtocols()
@@ -155,8 +155,8 @@ extension AuthorObjectStore
 {
     class func configureValueTransformers()
     {
-        NSValueTransformer.setValueTransformer(DateTransformer(), forName: String(DateTransformer.transformerName))
-        NSValueTransformer.setValueTransformer(StringArrayTransformer(), forName: String(StringArrayTransformer.transformerName))
+        NSValueTransformer.setValueTransformer(DateTransformer(), forName: DateTransformer.transformerName)
+        NSValueTransformer.setValueTransformer(StringArrayTransformer(), forName: StringArrayTransformer.transformerName)
     }
     
     class func configureURLProtocols()

@@ -101,7 +101,7 @@ To add a custom mapping, select an attribute or relationship in the model editor
 
 #### Defining Relationships
 
-Core Data allows you to define one-to-one and one-to-many relationships between entities. Modelmatic will automatically create and populate nested objects for which you've defined relationships. For instance, the Modelmatic example app defines a one-to-many relationship from the `Author` entity to the `Book` entity. To create an `Author` instance along with its nested array of books, you simply initialize an `Author` with a JSON dictionary as follows:
+Core Data allows you to define to-one and to-many relationships between entities. Modelmatic will automatically create and populate nested objects for which you've defined relationships. For instance, the Modelmatic example app defines a to-many relationship from the `Author` entity to the `Book` entity. To create an `Author` instance along with its nested array of books, you simply initialize an `Author` with a JSON dictionary as follows:
 
 ```swift
 let author = Author(dictionary: $0, entity: entity)
@@ -238,12 +238,12 @@ While inverse relationships aren't required, they're often convenient. Just be s
 
 Even if you're not currently using inverse relationships, it's a good idea to use the convenience methods provided by `ModelObject` for modifying relationship values. That way, if you change your mind later, you won't need to change your code to add support for setting parent references.
 
-### One-To-Many Relationships
+### To-Many Relationships
 
-`ModelObject` provides two methods for modifying one-to-many relationships, as shown in the following examples:
+`ModelObject` provides two methods for modifying to-many relationships, as shown in the following examples:
 
 ```swift
-// Adding an object to a one-to-many relationship
+// Adding an object to a to-many relationship
 let author = Author(dictionary: authorDict, entity: authorEntity)
 let book = Book(dictionary: bookDict, entity: bookEntity)
 do {
@@ -254,7 +254,7 @@ catch MappingError.unknownRelationship(let name) {
     print("Unknown relationship \(name)")
 }
 
-// Adding an array of objects to a one-to-many relationship
+// Adding an array of objects to a to-many relationship
 let books = [Book(dictionary: bookDict2, entity: bookEntity),
              Book(dictionary: bookDict3, entity: bookEntity)]
 do {
@@ -266,12 +266,12 @@ catch MappingError.unknownRelationship(let name) {
 }
 ```
 
-### One-To-One Relationships
+### To-One Relationships
 
-An additional method is provided for setting the value of a one-to-one relationship, as shown here:
+An additional method is provided for setting the value of a to-one relationship, as shown here:
 
 ```swift
-// Set the value of a one-to-one relationship
+// Set the value of a to-one relationship
 let book = Book(dictionary: bookDict1, entity: bookEntity)
 let pricing = Pricing(dictionary: ["retailPrice": expectedPrice], entity: pricingEntity)
 do {
