@@ -6,7 +6,7 @@
 import Foundation
 import Modelmatic
 
-@objc (MDLBook)
+@objc(MDLBook)
 class Book: ModelObject
 {
     static let entityName = "Book"

@@ -18,7 +18,7 @@ class EditBookController: UITableViewController
     @IBOutlet weak var ratingStepper: UIStepper!
     @IBOutlet weak var favoriteButton: UIButton!
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         populateViews();
     }
@@ -28,9 +28,9 @@ class EditBookController: UITableViewController
         yearField.text = book.year
         priceField.text = String(format: "%.2f", book.retailPrice ?? 0.0)
         tagsLabel.text = book.tags?.csvString
-        favoriteButton.setTitle(book.favorite.description, forState: .Normal)
+        favoriteButton.setTitle(book.favorite.description, for: UIControlState())
         ratingLabel.text = book.rating.description
-        ratingStepper.value = Double(book.rating.rawValue ?? 0)
+        ratingStepper.value = Double(book.rating.rawValue)
     }
     
     func updateBook() {
@@ -41,19 +41,19 @@ class EditBookController: UITableViewController
     
     func toggleFavorite() {
         book.favorite.toggle()
-        favoriteButton.setTitle(book.favorite.description, forState: .Normal)
+        favoriteButton.setTitle(book.favorite.description, for: UIControlState())
     }
 }
 
 // MARK: - Action Methods
 extension EditBookController
 {
-    @IBAction func rate(sender: UIStepper) {
+    @IBAction func rate(_ sender: UIStepper) {
         book.rating = Stars(rawValue: Int(sender.value)) ?? .zero
         ratingLabel.text = book.rating.description
     }
     
-    @IBAction func favorite(sender: UIButton) {
+    @IBAction func favorite(_ sender: UIButton) {
         toggleFavorite()
     }
 }
@@ -61,7 +61,7 @@ extension EditBookController
 // MARK: - Performing Segues
 extension EditBookController
 {
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier ?? "" {
         case "Done": updateBook()
         case "EditTags": prepareToEditTags(segue)
@@ -69,21 +69,21 @@ extension EditBookController
         }
     }
     
-    func prepareToEditTags(segue: UIStoryboardSegue) {
-        if let controller = segue.destinationViewController as? TagsController { controller.book = book }
+    func prepareToEditTags(_ segue: UIStoryboardSegue) {
+        if let controller = segue.destination as? TagsController { controller.book = book }
     }
 }
 
 // MARK: - UITableViewDelegate
 extension EditBookController
 {
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 && indexPath.row == 0 {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).section == 0 && (indexPath as NSIndexPath).row == 0 {
             toggleFavorite()
         }
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return section == 0 ? book.author?.fullName ?? "" : nil
     }
 }
@@ -91,17 +91,17 @@ extension EditBookController
 // MARK: - UITextFieldDelegate
 extension EditBookController: UITextFieldDelegate
 {
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 }
 
 // MARK: - Formatting CSV
-extension SequenceType where Self.Generator.Element == String
+extension Sequence where Self.Iterator.Element == String
 {
     var csvString: String? {
         guard let values = self as? NSArray else { return nil }
-        return values.componentsJoinedByString(", ")
+        return values.componentsJoined(by: ", ")
     }
 }

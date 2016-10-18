@@ -5,7 +5,7 @@
 
 import CoreData
 
-public typealias JsonDictionary = [String: AnyObject]
+public typealias JsonDictionary = [String: Any]
 
 extension NSPropertyDescription
 {
@@ -21,12 +21,12 @@ public extension Array where Element: ModelObject
     }
 }
 
-public extension NSData
+public extension Data
 {
-    public func deserializeJson() throws -> AnyObject
+    public func deserializeJson() throws -> Any
     {
         do {
-            return try NSJSONSerialization.JSONObjectWithData(self, options: NSJSONReadingOptions(rawValue: 0))
+            return try JSONSerialization.jsonObject(with: self, options: JSONSerialization.ReadingOptions(rawValue: 0))
         }
         catch let error as NSError {
             print("Unable to deserialize JSON due to error: \(error)")
@@ -37,10 +37,10 @@ public extension NSData
 
 public extension NSDictionary
 {
-    public func serializeAsJson(pretty pretty: Bool) throws -> NSData
+    public func serializeAsJson(pretty: Bool) throws -> Data
     {
         do {
-            return try NSJSONSerialization.dataWithJSONObject(self, options: pretty ? .PrettyPrinted : NSJSONWritingOptions(rawValue: 0))
+            return try JSONSerialization.data(withJSONObject: self, options: pretty ? .prettyPrinted : JSONSerialization.WritingOptions(rawValue: 0))
         }
         catch let error as NSError {
             print("Unable to deserialize as JSON due to error: \(error)")
@@ -48,10 +48,10 @@ public extension NSDictionary
         }
     }
     
-    public class func dictionary(contentsOf url: NSURL) -> NSDictionary?
+    public class func dictionary(contentsOf url: URL) -> NSDictionary?
     {
-        guard let data = NSData(contentsOfURL: url),
-            dict = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) else {
+        guard let data = try? Data(contentsOf: url),
+            let dict = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) else {
                 return nil
         }
         return dict as? NSDictionary
@@ -61,6 +61,6 @@ public extension NSDictionary
 public extension String
 {
     public var keyPathComponents: [String] {
-        return (self as NSString).componentsSeparatedByString(".")
+        return (self as NSString).components(separatedBy: ".")
     }
 }

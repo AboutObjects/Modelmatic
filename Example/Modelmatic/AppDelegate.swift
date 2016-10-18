@@ -13,7 +13,7 @@ class AppDelegate: UIResponder
 
 extension AppDelegate: UIApplicationDelegate
 {
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         configureAppearance()
         return true
@@ -27,8 +27,8 @@ extension AppDelegate
     {
         UITableView.appearance().backgroundColor = UIColor.headerColor()
         UITableViewCell.appearance().backgroundColor = UIColor.oddRowColor()
-        UITextField.appearanceWhenContainedInInstancesOfClasses([UITableViewCell.self]).textColor = UIColor.textColor()
-        ValueLabel.appearanceWhenContainedInInstancesOfClasses([UITableViewCell.self]).defaultTextColor = UIColor.textColor()
+        UITextField.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).textColor = UIColor.textColor()
+        ValueLabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).defaultTextColor = UIColor.textColor()
     }
 }
 

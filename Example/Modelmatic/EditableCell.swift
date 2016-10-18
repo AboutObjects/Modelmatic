@@ -11,7 +11,7 @@ class EditableCell: UITableViewCell
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func editingBegan() {
-        let indexPath = tableView.indexPathForCell(self)
-        tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+        let indexPath = tableView.indexPath(for: self)
+        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
     }
 }

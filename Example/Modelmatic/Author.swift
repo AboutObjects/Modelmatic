@@ -6,7 +6,7 @@
 import Foundation
 import Modelmatic
 
-@objc (MDLAuthor)
+@objc(MDLAuthor)
 class Author: ModelObject
 {
     static let entityName = "Author"
@@ -14,7 +14,7 @@ class Author: ModelObject
     var authorId: NSNumber?
     var firstName: String?
     var lastName: String?
-    var dateOfBirth: NSDate?
+    var dateOfBirth: Date?
     
     // Strong reference to children, to-many relationship
     var books: [Book]?

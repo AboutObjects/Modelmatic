@@ -16,7 +16,7 @@ class AddBookController: UITableViewController
     @IBOutlet weak var priceField: UITextField!
     
     var authors: [Author]! { return dataSource.authors }
-    var author: Author { return authors[authorPicker.selectedRowInComponent(0)] }
+    var author: Author { return authors[authorPicker.selectedRow(inComponent: 0)] }
     lazy var book: Book = Book(dictionary: [:], entity: self.dataSource.objectStore.bookEntity)
     
     func populateBook() {
@@ -33,8 +33,8 @@ class AddBookController: UITableViewController
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier where identifier == "Done" {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier, identifier == "Done" {
             populateBook()
             addBookToAuthor()
             dataSource.save()
@@ -46,14 +46,14 @@ class AddBookController: UITableViewController
 // MARK: - UIPickerViewDataSource
 extension AddBookController: UIPickerViewDataSource
 {
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int { return 1 }
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int { return authors.count }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int { return authors.count }
 }
 
 // MARK: - UIPickerViewDelegate
 extension AddBookController: UIPickerViewDelegate
 {
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return authors[row].fullName
     }
 }

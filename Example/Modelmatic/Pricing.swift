@@ -10,7 +10,7 @@ import Foundation
 
 import Modelmatic
 
-@objc (MDLPricing)
+@objc(MDLPricing)
 class Pricing: ModelObject
 {
     static let entityName = "Pricing"
