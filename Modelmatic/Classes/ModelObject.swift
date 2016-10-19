@@ -26,7 +26,7 @@ open class ModelObject : NSObject
 }
 
 // MARK: - Setting/Adding Child Model Objects Programmatically
-public extension ModelObject
+extension ModelObject
 {
     open func relationship(forKey key: String) -> NSRelationshipDescription? {
         return entity.relationshipsByName[key]
@@ -60,7 +60,7 @@ public extension ModelObject
 }
 
 // MARK: - KVC Customization
-public extension ModelObject
+extension ModelObject
 {
     override open func setNilValueForKey(_ key: String) {
         if !key.hasPrefix(KVCPropertyPrefix) {
@@ -84,7 +84,7 @@ public extension ModelObject
 }
 
 // MARK: - Encoding
-public extension ModelObject
+extension ModelObject
 {
     open var dictionaryRepresentation: JsonDictionary {
         return encodedValues(parent: self)
@@ -162,7 +162,7 @@ public extension ModelObject
 }
 
 // MARK: - Decoding
-public extension ModelObject
+extension ModelObject
 {
     open override func setValue(_ value: Any?, forKey key: String)
     {

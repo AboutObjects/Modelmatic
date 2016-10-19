@@ -9,21 +9,21 @@ public typealias JsonDictionary = [String: Any]
 
 extension NSPropertyDescription
 {
-    open var keyPath: String {
+    public var keyPath: String {
         return userInfo?["jsonKeyPath"] as? String ?? name
     }
 }
 
 public extension Array where Element: ModelObject
 {
-    open var dictionaryRepresentation: [JsonDictionary] {
+    public var dictionaryRepresentation: [JsonDictionary] {
         return self.map { $0.encodedValues(parent: nil) }
     }
 }
 
 public extension Data
 {
-    open func deserializeJson() throws -> Any
+    public func deserializeJson() throws -> Any
     {
         do {
             return try JSONSerialization.jsonObject(with: self, options: JSONSerialization.ReadingOptions(rawValue: 0))
@@ -37,7 +37,7 @@ public extension Data
 
 public extension NSDictionary
 {
-    open func serializeAsJson(pretty: Bool) throws -> Data
+    public func serializeAsJson(pretty: Bool) throws -> Data
     {
         do {
             return try JSONSerialization.data(withJSONObject: self, options: pretty ? .prettyPrinted : JSONSerialization.WritingOptions(rawValue: 0))
@@ -48,7 +48,7 @@ public extension NSDictionary
         }
     }
     
-    open class func dictionary(contentsOf url: URL) -> NSDictionary?
+    public class func dictionary(contentsOf url: URL) -> NSDictionary?
     {
         guard let data = try? Data(contentsOf: url),
             let dict = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) else {
@@ -60,7 +60,7 @@ public extension NSDictionary
 
 public extension String
 {
-    open var keyPathComponents: [String] {
+    public var keyPathComponents: [String] {
         return (self as NSString).components(separatedBy: ".")
     }
 }

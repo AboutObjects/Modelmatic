@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'Jonathan Lehr' => 'jlehr@aboutobjects.com' }
     s.source           = { :git => 'https://github.com/AboutObjects/Modelmatic.git', :tag => s.version.to_s }
-    s.ios.deployment_target = '8.3'
+    s.ios.deployment_target = '10.0'
     s.source_files = 'Modelmatic/Classes/**/*'
     s.frameworks = 'CoreData'
     # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
