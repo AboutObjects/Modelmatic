@@ -6,16 +6,16 @@
 import Foundation
 import CoreData
 
-public enum MappingError: ErrorType {
+public enum MappingError: Error {
     case unknownRelationship(String)
 }
 
 // TODO: Make configurable
 public let KVCPropertyPrefix = "kvc_"
 
-public class ModelObject : NSObject
+open class ModelObject : NSObject
 {
-    public let entity: NSEntityDescription
+    open let entity: NSEntityDescription
     
     public required init(dictionary: JsonDictionary, entity: NSEntityDescription) {
         self.entity = entity
@@ -26,31 +26,31 @@ public class ModelObject : NSObject
 }
 
 // MARK: - Setting/Adding Child Model Objects Programmatically
-public extension ModelObject
+extension ModelObject
 {
-    public func relationship(forKey key: String) -> NSRelationshipDescription? {
+    open func relationship(forKey key: String) -> NSRelationshipDescription? {
         return entity.relationshipsByName[key]
     }
     
-    public func add(modelObject modelObject: ModelObject, forKey key: String) throws {
+    open func add(modelObject: ModelObject, forKey key: String) throws {
         try self.add(modelObjects: [modelObject], forKey: key)
     }
     
-    public func add(modelObjects modelObjects: [ModelObject], forKey key: String) throws {
+    open func add(modelObjects: [ModelObject], forKey key: String) throws {
         guard let relationship = relationship(forKey: key) else { throw MappingError.unknownRelationship(key) }
         if let inverseKey = relationship.inverseRelationship?.name {
             for modelObj in modelObjects {
                 modelObj.setValue(self, forKey: inverseKey)
             }
         }
-        if valueForKey(key) == nil {
+        if value(forKey: key) == nil {
             setValue(modelObjects, forKey: key)
             return
         }
-        mutableArrayValueForKey(key).addObjectsFromArray(modelObjects)
+        mutableArrayValue(forKey: key).addObjects(from: modelObjects)
     }
     
-    public func set(modelObject modelObject: ModelObject, forKey key: String) throws {
+    open func set(modelObject: ModelObject, forKey key: String) throws {
         guard let relationship = relationship(forKey: key) else { throw MappingError.unknownRelationship(key) }
         if let inverseKey = relationship.inverseRelationship?.name {
             modelObject.setValue(self, forKey: inverseKey)
@@ -60,9 +60,9 @@ public extension ModelObject
 }
 
 // MARK: - KVC Customization
-public extension ModelObject
+extension ModelObject
 {
-    override public func setNilValueForKey(key: String) {
+    override open func setNilValueForKey(_ key: String) {
         if !key.hasPrefix(KVCPropertyPrefix) {
             super.setNilValueForKey(key)
         }
@@ -70,11 +70,11 @@ public extension ModelObject
         // the property value will remain .None.
     }
     
-    override public func valueForUndefinedKey(key: String) -> AnyObject? {
-        return key.hasPrefix(KVCPropertyPrefix) ? nil : super.valueForKey(KVCPropertyPrefix + key)
+    override open func value(forUndefinedKey key: String) -> Any? {
+        return key.hasPrefix(KVCPropertyPrefix) ? nil : super.value(forKey: KVCPropertyPrefix + key)
     }
     
-    override public func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override open func setValue(_ value: Any?, forUndefinedKey key: String) {
         if key.hasPrefix(KVCPropertyPrefix) {
             super.setValue(value, forUndefinedKey: key)
         } else {
@@ -84,13 +84,13 @@ public extension ModelObject
 }
 
 // MARK: - Encoding
-public extension ModelObject
+extension ModelObject
 {
-    public var dictionaryRepresentation: JsonDictionary {
+    open var dictionaryRepresentation: JsonDictionary {
         return encodedValues(parent: self)
     }
     
-    public func encodedValues(parent parent: ModelObject?) -> JsonDictionary {
+    open func encodedValues(parent: ModelObject?) -> JsonDictionary {
         let dict = NSMutableDictionary()
         for (key, value) in encodedRelationshipValues(parent: parent) { dict[key] = value }
         for (_, attribute) in entity.attributesByName { addEncodedValue(forAttribute: attribute, toDictionary: dict, keyPath: attribute.keyPath) }
@@ -100,7 +100,7 @@ public extension ModelObject
     // TODO: Error handling improvements -- primarily better (e.g., clearer) console logging
     
     // MARK: - Attributes
-    public func addEncodedValue(forAttribute attribute: NSAttributeDescription, toDictionary encodedValues: NSMutableDictionary, keyPath: String) {
+    open func addEncodedValue(forAttribute attribute: NSAttributeDescription, toDictionary encodedValues: NSMutableDictionary, keyPath: String) {
         var currDict = encodedValues
         let keys = keyPath.keyPathComponents
         for index in 0..<keys.count - 1 {
@@ -114,25 +114,28 @@ public extension ModelObject
         }
     }
         
-    public func encodeValue(forAttribute attribute: NSAttributeDescription, toDictionary encodedValues: NSMutableDictionary, key: String) {
-        var value = valueForKey(attribute.name)
+    open func encodeValue(forAttribute attribute: NSAttributeDescription, toDictionary encodedValues: NSMutableDictionary, key: String) {
+        var value = self.value(forKey: attribute.name)
         if let val = value,
             let transformerName = attribute.valueTransformerName,
-            let transformer = NSValueTransformer(forName: transformerName) {
+            let transformer = ValueTransformer(forName: NSValueTransformerName(rawValue: transformerName)) {
             value = transformer.transformedValue(val)
         }
         
-        if let val = value where val !== NSNull() {
+        // TODO: Make sure we're encoding null values correctly
+        if let val = value, !(value is NSNull) {
             encodedValues[key] = val
         }
     }
     
     // MARK: - Relationships
-    public func encodedRelationshipValues(parent parent: ModelObject?) -> JsonDictionary
+    open func encodedRelationshipValues(parent: ModelObject?) -> JsonDictionary
     {
         let encodedVals: NSMutableDictionary = NSMutableDictionary()
         for (_, relationship) in entity.relationshipsByName {
             let val = encodedValue(forRelationship: relationship, parent: parent)
+
+            // TODO: Make sure we're encoding null values correctly
             if val !== NSNull() {
                 encodedVals.setValue(val, forKeyPath: relationship.keyPath)
             }
@@ -140,17 +143,18 @@ public extension ModelObject
         return encodedVals.copy() as! JsonDictionary
     }
     
-    public func encodedValue(forRelationship relationship: NSRelationshipDescription, parent: ModelObject?) -> AnyObject
+    open func encodedValue(forRelationship relationship: NSRelationshipDescription, parent: ModelObject?) -> AnyObject
     {
-        guard let value = valueForKey(relationship.name) where value !== NSNull() else {
+        // TODO: Make sure we're encoding null values correctly
+        guard let value = value(forKey: relationship.name), !(value is NSNull) else {
             return NSNull()
         }
         
         var encodedVal: AnyObject = NSNull()
-        if let modelObjs = value as? [ModelObject] where relationship.toMany {
-            encodedVal = modelObjs.dictionaryRepresentation
-        } else if let obj = value as? ModelObject, destinationEntity = relationship.destinationEntity, parentEntity = parent?.entity where destinationEntity.name != parentEntity.name {
-            encodedVal = obj.encodedValues(parent: parent)
+        if let modelObjs = value as? [ModelObject], relationship.isToMany {
+            encodedVal = modelObjs.dictionaryRepresentation as AnyObject
+        } else if let obj = value as? ModelObject, let destinationEntity = relationship.destinationEntity, let parentEntity = parent?.entity, destinationEntity.name != parentEntity.name {
+            encodedVal = obj.encodedValues(parent: parent) as AnyObject
         }
         
         return encodedVal
@@ -158,53 +162,54 @@ public extension ModelObject
 }
 
 // MARK: - Decoding
-public extension ModelObject
+extension ModelObject
 {
-    public override func setValue(value: AnyObject?, forKey key: String)
+    open override func setValue(_ value: Any?, forKey key: String)
     {
-        let val = (value === NSNull() ? nil : value)
+        // TODO: Make sure we're decoding null values correctly
+        let val = (value is NSNull ? nil : value)
         super.setValue(val, forKey: key)
     }
     
-    public func decodeAttributeValues(dictionary: JsonDictionary)
+    open func decodeAttributeValues(_ dictionary: JsonDictionary)
     {
         for (_, attribute) in entity.attributesByName {
-            let val = (dictionary as NSDictionary).valueForKeyPath(attribute.keyPath)
-            decode(val, forAttribute: attribute)
+            let val = (dictionary as NSDictionary).value(forKeyPath: attribute.keyPath)
+            decode(val as AnyObject?, forAttribute: attribute)
         }
     }
     
-    public func decodeRelationshipValues(dictionary: JsonDictionary)
+    open func decodeRelationshipValues(_ dictionary: JsonDictionary)
     {
         for (_, relationship) in entity.relationshipsByName {
-            if let val = (dictionary as NSDictionary).valueForKeyPath(relationship.keyPath) {
-                if let dicts = val as? [JsonDictionary] where relationship.toMany {
+            if let val = (dictionary as NSDictionary).value(forKeyPath: relationship.keyPath) {
+                if let dicts = val as? [JsonDictionary], relationship.isToMany {
                     addObjects(toRelationship: relationship, withValuesFromDictionaries: dicts)
                 }
-                else if let dict = val as? JsonDictionary where valueForKey(relationship.name) == nil {
+                else if let dict = val as? JsonDictionary, value(forKey: relationship.name) == nil {
                     setObject(forRelationship: relationship, withValuesFromDictionary: dict)
                 }
             }
         }
     }
     
-    public func decode(value: AnyObject?, forAttribute attribute: NSAttributeDescription)
+    open func decode(_ value: AnyObject?, forAttribute attribute: NSAttributeDescription)
     {
         var newValue = value
-        if let value = value where value !== NSNull(),
+        if let value = value, value !== NSNull(),
             let transformerName = attribute.valueTransformerName,
-            let transformer = NSValueTransformer(forName: transformerName) where
-            transformer.dynamicType.allowsReverseTransformation() {
-            newValue = transformer.reverseTransformedValue(value) ?? NSNull()
+            let transformer = ValueTransformer(forName: NSValueTransformerName(rawValue: transformerName)),
+            type(of: transformer).allowsReverseTransformation() {
+            newValue = transformer.reverseTransformedValue(value) as AnyObject?? ?? NSNull()
         }
         setValue(newValue, forKey: attribute.name)
     }
     
-    public func modelObject(withDictionary dictionary: JsonDictionary, relationship: NSRelationshipDescription) -> ModelObject
+    open func modelObject(withDictionary dictionary: JsonDictionary, relationship: NSRelationshipDescription) -> ModelObject
     {
         guard let targetEntity = relationship.destinationEntity,
-            className = targetEntity.managedObjectClassName,
-            targetClass: ModelObject.Type = NSClassFromString(className) as? ModelObject.Type
+            let className = targetEntity.managedObjectClassName,
+            let targetClass: ModelObject.Type = NSClassFromString(className) as? ModelObject.Type
             else {
                 print("Unable to resolve target class for \(relationship.destinationEntity)")
                 abort()
@@ -213,7 +218,7 @@ public extension ModelObject
         return targetClass.init(dictionary: dictionary, entity: targetEntity)
     }
     
-    public func addObjects(toRelationship relationship: NSRelationshipDescription, withValuesFromDictionaries dictionaries: [JsonDictionary])
+    open func addObjects(toRelationship relationship: NSRelationshipDescription, withValuesFromDictionaries dictionaries: [JsonDictionary])
     {
         let modelObjects = dictionaries.map { dict -> ModelObject in
             let modelObj = modelObject(withDictionary: dict, relationship: relationship)
@@ -225,10 +230,10 @@ public extension ModelObject
         setValue(modelObjects, forKey: relationship.name)
     }
     
-    public func setObject(forRelationship relationship: NSRelationshipDescription, withValuesFromDictionary dictionary: JsonDictionary)
+    open func setObject(forRelationship relationship: NSRelationshipDescription, withValuesFromDictionary dictionary: JsonDictionary)
     {
         var dict = dictionary
-        if let nestedDict = (dictionary as NSDictionary).valueForKeyPath(relationship.keyPath) as? JsonDictionary {
+        if let nestedDict = (dictionary as NSDictionary).value(forKeyPath: relationship.keyPath) as? JsonDictionary {
             dict = nestedDict
         }
         

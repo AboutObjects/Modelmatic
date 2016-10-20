@@ -13,12 +13,12 @@ class BooksByAuthorController: UITableViewController
         dataSource.fetch { [weak self] in self?.tableView.reloadData() }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         switch segue.identifier ?? "" {
         case "Edit":
@@ -34,7 +34,7 @@ class BooksByAuthorController: UITableViewController
 // MARK: - Action Methods
 extension BooksByAuthorController
 {
-    @IBAction func toggleStorageMode(sender: AnyObject) {
+    @IBAction func toggleStorageMode(_ sender: AnyObject) {
         dataSource.toggleStorageMode()
         dataSource.fetch { [weak self] in self?.tableView.reloadData() }
     }
@@ -43,16 +43,16 @@ extension BooksByAuthorController
 // MARK: - Unwind Segues
 extension BooksByAuthorController
 {
-    @IBAction func doneEditingBook(segue: UIStoryboardSegue) {
+    @IBAction func doneEditingBook(_ segue: UIStoryboardSegue) {
         dataSource.save()
         tableView.reloadData()
     }
-    @IBAction func doneAddingBook(segue: UIStoryboardSegue) {
+    @IBAction func doneAddingBook(_ segue: UIStoryboardSegue) {
         dataSource.save()
         tableView.reloadData()
     }
-    @IBAction func cancelEditingBook(segue: UIStoryboardSegue) { }
-    @IBAction func cancelAddingBook(segue: UIStoryboardSegue) { }
+    @IBAction func cancelEditingBook(_ segue: UIStoryboardSegue) { }
+    @IBAction func cancelAddingBook(_ segue: UIStoryboardSegue) { }
 }
 
 
@@ -60,8 +60,8 @@ extension BooksByAuthorController
 
 extension BooksByAuthorController
 {
-    override  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.oddRowColor() : UIColor.evenRowColor()
+    override  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = (indexPath as NSIndexPath).row % 2 == 0 ? UIColor.oddRowColor() : UIColor.evenRowColor()
     }
 }
 
@@ -69,7 +69,7 @@ extension BooksByAuthorController
 extension UIStoryboardSegue
 {
     var targetViewController: UIViewController? {
-        if let navController = destinationViewController as? UINavigationController { return navController.childViewControllers.first }
-        return destinationViewController
+        if let navController = destination as? UINavigationController { return navController.childViewControllers.first }
+        return destination
     }
 }

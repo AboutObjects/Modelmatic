@@ -10,9 +10,9 @@ class TagsController: UITableViewController
     var book: Book!
     lazy var tags: [String] = self.book.tags ?? [String]()
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.sharedApplication().sendAction(#selector(resignFirstResponder), to: nil, from: nil, forEvent: nil)
+        UIApplication.shared.sendAction(#selector(resignFirstResponder), to: nil, from: nil, for: nil)
         book.tags = tags.filter { $0 != "" }
     }
 }
@@ -20,19 +20,19 @@ class TagsController: UITableViewController
 // MARK: - Action Methods
 extension TagsController
 {
-    @IBAction func addTag(sender: AnyObject) {
-        let lastIndexPath = NSIndexPath(forRow: tags.count, inSection: 0)
+    @IBAction func addTag(_ sender: AnyObject) {
+        let lastIndexPath = IndexPath(row: tags.count, section: 0)
         tags.append("")
-        tableView.insertRowsAtIndexPaths([lastIndexPath], withRowAnimation: .Automatic)
-        tableView.selectRowAtIndexPath(lastIndexPath, animated: true, scrollPosition: .Middle)
+        tableView.insertRows(at: [lastIndexPath], with: .automatic)
+        tableView.selectRow(at: lastIndexPath, animated: true, scrollPosition: .middle)
         
-        if let cell = tableView.cellForRowAtIndexPath(lastIndexPath) as? EditableCell {
+        if let cell = tableView.cellForRow(at: lastIndexPath) as? EditableCell {
             cell.textField.becomeFirstResponder()
         }
     }
 
-    @IBAction func modifyTag(textField: UITextField) {
-        guard let indexPath = tableView.indexPathForSelectedRow, cell = tableView.cellForRowAtIndexPath(indexPath) as? EditableCell else {
+    @IBAction func modifyTag(_ textField: UITextField) {
+        guard let indexPath = tableView.indexPathForSelectedRow, let cell = tableView.cellForRow(at: indexPath) as? EditableCell else {
             return
         }
         tags[indexPath.row] = cell.textField.text ?? ""
@@ -43,30 +43,30 @@ extension TagsController
 // MARK: - UITableViewDelegate
 extension TagsController
 {
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard let cell = tableView.cellForRowAtIndexPath(indexPath) as? EditableCell else { return }
-        cell.textField.text = tags[indexPath.row] ?? ""
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? EditableCell else { return }
+        cell.textField.text = tags[indexPath.row]
     }
 }
 
 // MARK: - UITableViewDataSource
 extension TagsController
 {
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tags.count ?? 0;
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tags.count;
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("TagCell") as? EditableCell else {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell") as? EditableCell else {
             fatalError("Unable to dequeue instance of EditableCell. Make sure identifier is set in storyboard.")
         }
         cell.textField.text = tags[indexPath.row]
         return cell
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        guard case .Delete = editingStyle else { return }
-        tags.removeAtIndex(indexPath.row)
-        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        guard case .delete = editingStyle else { return }
+        tags.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
     }
 }

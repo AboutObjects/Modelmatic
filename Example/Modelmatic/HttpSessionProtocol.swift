@@ -7,120 +7,122 @@ import Foundation
 
 private let handled = "ModelmaticRequestHandled"
 private let handledKey = handled + "Key"
-private let resourceKey = "resource"
+private let resourceKey = "resource" as NSString
 
 // MARK: - NSInputStream
-extension NSInputStream
+extension InputStream
 {
-    func data() -> NSData? {
+    func data() -> Data? {
         let data = NSMutableData()
-        var buf = [UInt8](count: 4096, repeatedValue: 0)
+        var buf = [UInt8](repeating: 0, count: 4096)
         while hasBytesAvailable {
             let length = read(&buf, maxLength: buf.count)
             if length > 0 {
-                data.appendBytes(buf, length: length)
+                data.append(buf, length: length)
             }
         }
-        return data
+        return data as Data
     }
 }
 
 // MARK: NSURLProtocol
-class HttpSessionProtocol: NSURLProtocol, NSURLSessionTaskDelegate, NSURLSessionDataDelegate
+class HttpSessionProtocol: URLProtocol, URLSessionTaskDelegate, URLSessionDataDelegate
 {
-    var session: NSURLSession!
+    var session: Foundation.URLSession!
     var data: NSMutableData?
     
-    lazy var serialQueue: NSOperationQueue = {
-        let queue = NSOperationQueue()
+    lazy var serialQueue: OperationQueue = {
+        let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
     
-    override init(request: NSURLRequest, cachedResponse: NSCachedURLResponse?, client: NSURLProtocolClient?) {
-        let mutableRequest = request.mutableCopy()
-        mutableRequest.setValue(handled, forHTTPHeaderField: handledKey)
-        super.init(request: mutableRequest as! NSURLRequest, cachedResponse: cachedResponse, client: client)
+    override init(request: URLRequest, cachedResponse: CachedURLResponse?, client: URLProtocolClient?) {
+        let mutableRequest = (request as NSURLRequest).mutableCopy()
+        (mutableRequest as AnyObject).setValue(handled, forHTTPHeaderField: handledKey)
+        super.init(request: mutableRequest as! URLRequest, cachedResponse: cachedResponse, client: client)
     }
     
-    override class func canInitWithRequest(request: NSURLRequest) -> Bool {
-        let isHttpRequest = request.URL?.scheme.caseInsensitiveCompare("http") == .OrderedSame
-        guard let handledField: String = request.valueForHTTPHeaderField(handledKey) else {
+    override class func canInit(with request: URLRequest) -> Bool {
+        let isHttpRequest = request.url?.scheme?.caseInsensitiveCompare("http") == .orderedSame
+        guard let handledField: String = request.value(forHTTPHeaderField: handledKey) else {
             return true
         }
         return isHttpRequest && handledField != handled
     }
     
-    override class func canonicalRequestForRequest(request: NSURLRequest) -> NSURLRequest {
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }
 }
 
 extension HttpSessionProtocol
 {
-    func loadData(url: NSURL) {
-        if let data = NSMutableData(contentsOfURL: url) {
+    func loadData(_ url: URL) {
+        if let data = NSMutableData(contentsOf: url) {
             self.data = data
             return
         }
-        guard let fileName = request.URL?.parameterValue(resourceKey),
-            bundleUrl = NSURL.bundleDirectoryURL(forFileName: fileName, type: "json") else { return }
-        self.data = NSMutableData(contentsOfURL: bundleUrl)
+        guard let fileName = request.url?.parameterValue(resourceKey),
+            let bundleUrl = URL.bundleDirectoryURL(forFileName: fileName, type: "json") else { return }
+        self.data = NSMutableData(contentsOf: bundleUrl)
     }
     
-    func loadFile(url: NSURL) {
-        serialQueue.suspended = true
-        serialQueue.addOperationWithBlock { self.loadData(url) }
-        serialQueue.addOperationWithBlock { self.finishLoading() }
-        serialQueue.suspended = false
+    func loadFile(_ url: URL) {
+        serialQueue.isSuspended = true
+        serialQueue.addOperation { self.loadData(url) }
+        serialQueue.addOperation { self.finishLoading() }
+        serialQueue.isSuspended = false
     }
     
-    func save(data: NSData?, url: NSURL) {
+    func save(_ data: Data?, url: URL) {
         guard let data = data else { print("WARNING: data was nil"); return }
-        data.writeToURL(url, atomically: true)
+        try? data.write(to: url, options: [.atomic])
     }
     
     override func startLoading()
     {
-        guard let fileName = request.URL?.parameterValue(resourceKey) else { print("WARNING: resource (filename) is nil"); return }
-        var fileUrl: NSURL? = NSURL.libraryDirectoryURL(forFileName: fileName, type: "json")
+        guard let fileName = request.url?.parameterValue(resourceKey) else { print("WARNING: resource (filename) is nil"); return }
+        var fileUrl: URL? = URL.libraryDirectoryURL(forFileName: fileName, type: "json")
         if fileUrl == nil {
-            fileUrl = NSURL.bundleDirectoryURL(forFileName: fileName, type: "json")
+            fileUrl = URL.bundleDirectoryURL(forFileName: fileName, type: "json")
             if fileUrl == nil {
                 print("WARNING: Unable to find file \(fileName)")
-                let task = session.dataTaskWithRequest(request) { data, response, error in
-                    self.notifyClient(data!, response: response!, error: error)
+                let task = session.dataTask(with: request) { data, response, error in
+                    if let d = data {
+                        self.notifyClient(data: d, response: response!, error: error)
+                    }
                 }
                 task.resume(); return
             }
         }
         
-        if let httpMethod: String = request.HTTPMethod where httpMethod == "POST" || httpMethod == "PUT" {
-            guard let stream = request.HTTPBodyStream else { print("WARNING: Stream is empty"); return }
+        if let httpMethod: String = request.httpMethod, httpMethod == "POST" || httpMethod == "PUT" {
+            guard let stream = request.httpBodyStream else { print("WARNING: Stream is empty"); return }
             stream.open()
             save(stream.data(), url: fileUrl!)
         }
         loadFile(fileUrl!)
     }
     
-    func notifyClient(data: NSData, response: NSURLResponse, error: NSError?) {
-        guard error == nil else { client?.URLProtocol(self, didFailWithError: error!); return }
-        client?.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .Allowed)
-        client?.URLProtocol(self, didLoadData: data)
-        client?.URLProtocolDidFinishLoading(self)
+    func notifyClient(data: Data, response: URLResponse, error: Error?) {
+        guard error == nil else { client?.urlProtocol(self, didFailWithError: error!); return }
+        client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .allowed)
+        client?.urlProtocol(self, didLoad: data)
+        client?.urlProtocolDidFinishLoading(self)
     }
     
     func finishLoading()
     {
-        guard let data = data, url = request.URL,
-            response = NSHTTPURLResponse(URL: url, statusCode: 200, HTTPVersion: nil, headerFields: nil) else {
-                client?.URLProtocol(self, didFailWithError: NSError(domain: "ModelmaticNetworkDomain", code: 42, userInfo: nil))
+        guard let data = data, let url = request.url,
+            let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil) else {
+                client?.urlProtocol(self, didFailWithError: NSError(domain: "ModelmaticNetworkDomain", code: 42, userInfo: nil))
                 return
         }
         
-        client?.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .Allowed)
-        client?.URLProtocol(self, didLoadData: data)
-        client?.URLProtocolDidFinishLoading(self)
+        client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .allowed)
+        client?.urlProtocol(self, didLoad: data as Data)
+        client?.urlProtocolDidFinishLoading(self)
     }
     
     override func stopLoading() {
@@ -132,7 +134,7 @@ extension HttpSessionProtocol
 // MARK: - NSURLSessionTaskDelegate
 extension HttpSessionProtocol
 {
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+    func urlSession(session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         data = nil
     }
 }
@@ -140,9 +142,9 @@ extension HttpSessionProtocol
 // MARK: - NSURLSessionDataDelegate
 extension HttpSessionProtocol
 {
-    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
-        data.enumerateByteRangesUsingBlock { bytes, byteRange, stop in
-            self.data?.appendBytes(bytes, length: byteRange.length)
+    func URLSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: NSData) {
+        data.enumerateBytes { bytes, byteRange, stop in
+            self.data?.append(bytes, length: byteRange.length)
         }
     }
 }

@@ -15,26 +15,26 @@ class AuthorDataSource: NSObject
     var authors: [Author]? { return objectStore.authors }
     
     func toggleStorageMode() { objectStore.toggleStorageMode() }
-    func fetch(completion: () -> Void) { objectStore.fetch(completion) }
+    func fetch(_ completion: @escaping () -> Void) { objectStore.fetch(completion) }
     func save() { objectStore.save() }
 }
 
 extension AuthorDataSource: UITableViewDataSource
 {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return objectStore.numberOfSections()
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return objectStore.titleForSection(section)
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objectStore.numberOfRows(inSection: section)
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as? BookCell else {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as? BookCell else {
             fatalError("Unable to dequeue a cell with identifier \(cellId)")
         }
         self.populateCell(cell, atIndexPath: indexPath)
@@ -42,11 +42,11 @@ extension AuthorDataSource: UITableViewDataSource
         return cell
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
-        if editingStyle == .Delete {
+        if editingStyle == .delete {
             objectStore.removeBookAtIndexPath(indexPath)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
             save()
         }
     }
@@ -55,16 +55,16 @@ extension AuthorDataSource: UITableViewDataSource
 // MARK: - Populating Cells
 extension AuthorDataSource
 {
-    func configureCell(cell: BookCell, atIndexPath indexPath: NSIndexPath) {
+    func configureCell(_ cell: BookCell, atIndexPath indexPath: IndexPath) {
         guard let book = objectStore.bookAtIndexPath(indexPath) else { return }
         cell.ratingLabel.alpha = book.rating == .zero ? 0.3 : 1
-        cell.favoriteLabel.transform = book.favorite.boolValue ? CGAffineTransformMakeScale(1.2, 1.2) : CGAffineTransformIdentity
+        cell.favoriteLabel.transform = book.favorite.boolValue ? CGAffineTransform(scaleX: 1.2, y: 1.2) : CGAffineTransform.identity
     }
     
-    func populateCell(cell: BookCell, atIndexPath indexPath: NSIndexPath) {
+    func populateCell(_ cell: BookCell, atIndexPath indexPath: IndexPath) {
         guard let book = objectStore.bookAtIndexPath(indexPath) else { return }
         cell.titleLabel.text = book.title
-        cell.priceLabel.text = priceFormatter.stringFromNumber(NSNumber(double: book.retailPrice ?? 0))
+        cell.priceLabel.text = priceFormatter.string(from: NSNumber(value: book.retailPrice ?? 0 as Double))
         cell.ratingLabel.text = book.rating.description
         cell.favoriteLabel.text = book.favorite.description
     }
@@ -86,23 +86,23 @@ enum Heart: Int, CustomStringConvertible {
 enum Stars: Int, CustomStringConvertible {
     case zero, one, two, three, four, five
     init(rating: Int?) {
-        self = Stars(rawValue: rating ?? 0) ?? zero
+        self = Stars(rawValue: rating ?? 0) ?? .zero
     }
     var description: String {
         switch self {
-        case zero:  return "☆☆☆☆☆"
-        case one:   return "★☆☆☆☆"
-        case two:   return "★★☆☆☆"
-        case three: return "★★★☆☆"
-        case four:  return "★★★★☆"
-        case five:  return "★★★★★"
+        case .zero:  return "☆☆☆☆☆"
+        case .one:   return "★☆☆☆☆"
+        case .two:   return "★★☆☆☆"
+        case .three: return "★★★☆☆"
+        case .four:  return "★★★★☆"
+        case .five:  return "★★★★★"
         }
     }
 }
 
 // MARK: - Formatting Prices
-let priceFormatter: NSNumberFormatter = {
-    let formatter = NSNumberFormatter()
-    formatter.numberStyle = .CurrencyStyle
+let priceFormatter: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
     return formatter
 }()

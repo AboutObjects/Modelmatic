@@ -7,20 +7,20 @@ import Foundation
 private let delimiterString = ","
 
 @objc (MDLStringArrayTransformer)
-class StringArrayTransformer: NSValueTransformer
+class StringArrayTransformer: ValueTransformer
 {
-    static let transformerName = "StringArray"
+    static let transformerName = NSValueTransformerName("StringArray")
     
     override class func transformedValueClass() -> AnyClass { return NSString.self }
     override class func allowsReverseTransformation() -> Bool { return true }
     
-    override func transformedValue(value: AnyObject?) -> AnyObject? {
+    override func transformedValue(_ value: Any?) -> Any? {
         guard let values = value as? NSArray else { return value }
-        return values.componentsJoinedByString(delimiterString)
+        return values.componentsJoined(by: delimiterString)
     }
     
-    override func reverseTransformedValue(value: AnyObject?) -> AnyObject? {
+    override func reverseTransformedValue(_ value: Any?) -> Any? {
         guard let stringVal = value as? String else { return nil }
-        return stringVal.componentsSeparatedByString(delimiterString)
+        return stringVal.components(separatedBy: delimiterString)
     }
 }

@@ -6,7 +6,6 @@ import Modelmatic
 // Makes Example app API visible to XCTest
 @testable import Modelmatic_Example
 
-
 let authorIdKey = "author_id"
 let firstNameKey = "firstName"
 let lastNameKey = "lastName"
@@ -93,8 +92,8 @@ class ModelTests: XCTestCase
     
     override func setUp() {
         super.setUp()
-        let momdURL = NSBundle(forClass: self.dynamicType).URLForResource("Authors", withExtension: "momd")
-        model = NSManagedObjectModel(contentsOfURL: momdURL!)
+        let momdURL = Bundle(for: type(of: self)).url(forResource: "Authors", withExtension: "momd")
+        model = NSManagedObjectModel(contentsOf: momdURL!)
         XCTAssertNotNil(model)
         print("")
     }
@@ -106,7 +105,7 @@ class ModelTests: XCTestCase
     func testPopulateObjectAttributes()
     {
         let book = Book(dictionary: bookDict1, entity: bookEntity)
-        XCTAssertEqual(book.bookId!.integerValue, Int(bookId1))
+        XCTAssertEqual(book.bookId!.intValue, Int(bookId1))
         XCTAssertEqual(book.title, title1)
         XCTAssertEqual(book.year, year1)
     }
@@ -127,7 +126,7 @@ class ModelTests: XCTestCase
             return
         }
         
-        XCTAssertEqual(author.authorId!.integerValue, Int(authorId1))
+        XCTAssertEqual(author.authorId!.intValue, Int(authorId1))
         XCTAssertEqual(author.firstName, firstName1)
         XCTAssertEqual(author.lastName, lastName1)
         XCTAssertEqual(books.count, bookDicts.count)
@@ -228,14 +227,14 @@ class ModelTests: XCTestCase
     func testEncodeObjectAttributes()
     {
         let book = Book(dictionary: JsonDictionary(), entity: bookEntity)
-        book.bookId = NSNumber(integer: Int(bookId1)!)
+        book.bookId = NSNumber(value: Int(bookId1)! as Int)
         book.title = title1
         book.year = year1
         book.rating = Stars(rawValue: rating1) ?? .zero
         book.favorite = Heart(isFavorite: Optional(favorite1))
         
         let dict = book.dictionaryRepresentation
-        XCTAssertTrue(dict[bookIdKey] as! Int == book.bookId!.integerValue &&
+        XCTAssertTrue(dict[bookIdKey] as! Int == book.bookId!.intValue &&
             dict[titleKey] as! String == title1 &&
             dict[yearKey] as! String == year1 &&
             dict[ratingKey] as! Int == rating1 &&
@@ -270,7 +269,7 @@ class ModelTests: XCTestCase
         XCTAssertTrue(dict[authorIdKey] as? String == authorId1 &&
             dict[firstNameKey] as? String == firstName1 &&
             dict[lastNameKey] as? String == lastName1 &&
-            dict[booksKey]?.count == bookDicts.count &&
+            (dict[booksKey] as! [JsonDictionary]).count == bookDicts.count &&
             dict[booksKey]! is [JsonDictionary]
         )
     }
