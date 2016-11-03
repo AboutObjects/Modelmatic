@@ -122,10 +122,7 @@ extension ModelObject
             value = transformer.transformedValue(val)
         }
         
-        // TODO: Make sure we're encoding null values correctly
-        if let val = value, !(value is NSNull) {
-            encodedValues[key] = val
-        }
+        encodedValues[key] = value ?? NSNull()
     }
     
     // MARK: - Relationships
@@ -134,12 +131,9 @@ extension ModelObject
         let encodedVals: NSMutableDictionary = NSMutableDictionary()
         for (_, relationship) in entity.relationshipsByName {
             let val = encodedValue(forRelationship: relationship, parent: parent)
-
-            // TODO: Make sure we're encoding null values correctly
-            if val !== NSNull() {
-                encodedVals.setValue(val, forKeyPath: relationship.keyPath)
-            }
+            encodedVals.setValue(val, forKey: relationship.keyPath)
         }
+        
         return encodedVals.copy() as! JsonDictionary
     }
     
