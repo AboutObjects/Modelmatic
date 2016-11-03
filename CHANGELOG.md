@@ -1,8 +1,39 @@
 # Change Log
 
-## [Unreleased](https://github.com/AboutObjects/Modelmatic/tree/HEAD)
+## [0.6.1](https://github.com/AboutObjects/Modelmatic/tree/0.6.1) (2016-11-03)
+[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.6.0...0.6.1)
 
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.5.0...HEAD)
+**Fixed bugs:**
+
+- Preserve nulls in encoded JSON [\#25](https://github.com/AboutObjects/Modelmatic/issues/25)
+
+**Merged pull requests:**
+
+- Fix/Encode nil values [\#27](https://github.com/AboutObjects/Modelmatic/pull/27) ([jonathanlehr](https://github.com/jonathanlehr))
+
+## [0.6.0](https://github.com/AboutObjects/Modelmatic/tree/0.6.0) (2016-10-20)
+[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.5.3...0.6.0)
+
+**Closed issues:**
+
+- Migrate to Swift 3 [\#24](https://github.com/AboutObjects/Modelmatic/issues/24)
+
+**Merged pull requests:**
+
+- Swift3 migration [\#26](https://github.com/AboutObjects/Modelmatic/pull/26) ([jonathanlehr](https://github.com/jonathanlehr))
+
+## [0.5.3](https://github.com/AboutObjects/Modelmatic/tree/0.5.3) (2016-09-11)
+[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.5.2...0.5.3)
+
+**Merged pull requests:**
+
+- Feature/add book scene [\#23](https://github.com/AboutObjects/Modelmatic/pull/23) ([jonathanlehr](https://github.com/jonathanlehr))
+
+## [0.5.2](https://github.com/AboutObjects/Modelmatic/tree/0.5.2) (2016-09-08)
+[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.5.1...0.5.2)
+
+## [0.5.1](https://github.com/AboutObjects/Modelmatic/tree/0.5.1) (2016-09-06)
+[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.5.0...0.5.1)
 
 **Implemented enhancements:**
 
@@ -11,6 +42,10 @@
 **Fixed bugs:**
 
 - Demo flattened attributes in example app [\#21](https://github.com/AboutObjects/Modelmatic/issues/21)
+
+**Merged pull requests:**
+
+- Fix/flattened attributes [\#22](https://github.com/AboutObjects/Modelmatic/pull/22) ([jonathanlehr](https://github.com/jonathanlehr))
 
 ## [0.5.0](https://github.com/AboutObjects/Modelmatic/tree/0.5.0) (2016-09-05)
 [Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.4.3...0.5.0)
