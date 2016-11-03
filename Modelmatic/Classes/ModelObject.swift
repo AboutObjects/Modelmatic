@@ -10,9 +10,6 @@ public enum MappingError: Error {
     case unknownRelationship(String)
 }
 
-// TODO: Make configurable
-public let KVCPropertyPrefix = "kvc_"
-
 open class ModelObject : NSObject
 {
     open let entity: NSEntityDescription
@@ -28,6 +25,8 @@ open class ModelObject : NSObject
 // MARK: - Setting/Adding Child Model Objects Programmatically
 extension ModelObject
 {
+    class var kvcPrefix: String { return "kvc_" }
+    
     open func relationship(forKey key: String) -> NSRelationshipDescription? {
         return entity.relationshipsByName[key]
     }
@@ -63,7 +62,7 @@ extension ModelObject
 extension ModelObject
 {
     override open func setNilValueForKey(_ key: String) {
-        if !key.hasPrefix(KVCPropertyPrefix) {
+        if !key.hasPrefix(ModelObject.kvcPrefix) {
             super.setNilValueForKey(key)
         }
         // Silently ignore prefixed keys, so if we're initializing a new instance,
@@ -71,14 +70,14 @@ extension ModelObject
     }
     
     override open func value(forUndefinedKey key: String) -> Any? {
-        return key.hasPrefix(KVCPropertyPrefix) ? nil : super.value(forKey: KVCPropertyPrefix + key)
+        return key.hasPrefix(ModelObject.kvcPrefix) ? nil : super.value(forKey: ModelObject.kvcPrefix + key)
     }
     
     override open func setValue(_ value: Any?, forUndefinedKey key: String) {
-        if key.hasPrefix(KVCPropertyPrefix) {
+        if key.hasPrefix(ModelObject.kvcPrefix) {
             super.setValue(value, forUndefinedKey: key)
         } else {
-            super.setValue(value, forKey: KVCPropertyPrefix + key)
+            super.setValue(value, forKey: ModelObject.kvcPrefix + key)
         }
     }
 }
