@@ -281,7 +281,7 @@ class ModelTests: XCTestCase
         XCTAssertTrue(dict[authorIdKey] as? String == authorId1 &&
             dict[firstNameKey] as? String == firstName1 &&
             dict[lastNameKey] as? String == lastName1 &&
-            dict[booksKey] == nil
+            dict[booksKey] is Optional<NSNull>
         )
     }
 }
