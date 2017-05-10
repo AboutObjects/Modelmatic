@@ -61,7 +61,7 @@ extension BooksByAuthorController
 extension BooksByAuthorController
 {
     override  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = (indexPath as NSIndexPath).row % 2 == 0 ? UIColor.oddRowColor() : UIColor.evenRowColor()
+        cell.backgroundColor = (indexPath as NSIndexPath).row % 2 == 0 ? UIColor.oddRowColor : UIColor.evenRowColor
     }
 }
 

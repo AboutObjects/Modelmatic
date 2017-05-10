@@ -25,33 +25,35 @@ extension AppDelegate
 {
     func configureAppearance()
     {
-        UITableView.appearance().backgroundColor = UIColor.headerColor()
-        UITableViewCell.appearance().backgroundColor = UIColor.oddRowColor()
-        UITextField.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).textColor = UIColor.textColor()
-        ValueLabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).defaultTextColor = UIColor.textColor()
+        // Default background color for table views
+        UITableView.appearance().backgroundColor = UIColor.headerColor
+        // Default background color for table cells
+        UITableViewCell.appearance().backgroundColor = UIColor.oddRowColor
+        // Default text color for text fields contained in table cells
+        UITextField.appearance(whenContainedInInstancesOf: [UITableViewCell.self])
+            .textColor = UIColor.textColor
+        // Default text color for ValueLabel (subclass of UILabel) contained in table cells
+        ValueLabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self])
+            .defaultTextColor = UIColor.textColor
     }
 }
 
-// MARK: - Codex Color Scheme
+// MARK: - Color Scheme
 extension UIColor
 {
-    class func oddRowColor() -> UIColor {
+    class var oddRowColor: UIColor {
         return UIColor(red: 1.0, green: 0.99, blue: 0.97, alpha: 1.0)
     }
-    
-    class func evenRowColor() -> UIColor {
+    class var evenRowColor: UIColor {
         return UIColor(red: 0.98, green: 0.96, blue: 0.93, alpha: 1.0)
     }
-    
-    class func headerColor() -> UIColor {
+    class var headerColor: UIColor {
         return UIColor(red: 0.93, green: 0.91, blue: 0.87, alpha: 1.0)
     }
-    
-    class func textColor() -> UIColor {
+    class var textColor: UIColor {
         return UIColor(red: 0.25, green: 0.125, blue: 0.0, alpha: 1.0)
     }
 }
-
 
 class ValueLabel: UILabel
 {
