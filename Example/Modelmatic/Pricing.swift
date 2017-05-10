@@ -23,7 +23,7 @@ class Pricing: ModelObject
     weak var book: Book?
     
     override  var description: String {
-        return "\(super.description) retail: \(retailPrice); discounted price: \(discountedPrice))"
+        return "\(super.description) retail: \(String(describing: retailPrice)); discounted price: \(String(describing: discountedPrice)))"
     }
 }
 

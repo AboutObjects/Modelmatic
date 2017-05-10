@@ -193,7 +193,7 @@ extension ModelObject
             let transformerName = attribute.valueTransformerName,
             let transformer = ValueTransformer(forName: NSValueTransformerName(rawValue: transformerName)),
             type(of: transformer).allowsReverseTransformation() {
-            newValue = transformer.reverseTransformedValue(value) as AnyObject?? ?? NSNull()
+            newValue = transformer.reverseTransformedValue(value) as AnyObject? ?? NSNull()
         }
         setValue(newValue, forKey: attribute.name)
     }
@@ -204,7 +204,7 @@ extension ModelObject
             let className = targetEntity.managedObjectClassName,
             let targetClass: ModelObject.Type = NSClassFromString(className) as? ModelObject.Type
             else {
-                print("Unable to resolve target class for \(relationship.destinationEntity)")
+                print("Unable to resolve target class for \(String(describing: relationship.destinationEntity))")
                 abort()
         }
         

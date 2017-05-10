@@ -26,7 +26,7 @@ class Book: ModelObject
     weak var author: Author?
     
     override var description: String {
-        return "\(super.description) title: \(title); year: \(year), tags: \(tags), bookId: \(bookId)"
+        return "\(super.description) title: \(title); year: \(String(describing: year)), tags: \(String(describing: tags)), bookId: \(String(describing: bookId))"
     }
 }
 

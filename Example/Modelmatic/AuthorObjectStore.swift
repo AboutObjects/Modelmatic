@@ -40,13 +40,13 @@ class AuthorObjectStore: NSObject
         authorEntity = model.entitiesByName[Author.entityName]
         bookEntity = model.entitiesByName[Book.entityName]
         super.init()
+        AuthorObjectStore.initialization
     }
     
-    override class func initialize() {
-        guard self === AuthorObjectStore.self else { return }
+    static let initialization: Void = {
         configureValueTransformers()
         configureURLProtocols()
-    }
+    }()
     
     func toggleStorageMode() {
         storageMode = storageMode == .file ? .webService : .file
@@ -98,7 +98,7 @@ extension AuthorObjectStore
         
         let task = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
             guard let response = response as? HTTPURLResponse , error == nil && response.valid else {
-                print("WARNING: unable to fetch from web service with url \(urlString); error was \(error)")
+                print("WARNING: unable to fetch from web service with url \(urlString); error was \(String(describing: error))")
                 return
             }
             self.decodeAuthors(data)
@@ -129,7 +129,7 @@ extension AuthorObjectStore
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
             guard let response = response as? HTTPURLResponse , error == nil && response.valid else {
-                print("WARNING: unable to save to web service with url \(urlString); error was \(error)")
+                print("WARNING: unable to save to web service with url \(urlString); error was \(String(describing: error))")
                 return
             }
         }
