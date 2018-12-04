@@ -3,7 +3,7 @@
 //  Modelmatic
 //
 //  Created by Jonathan Lehr on 8/26/16.
-//  Copyright © 2016 CocoaPods. All rights reserved.
+//  Copyright © 2016 About Objects. All rights reserved.
 //
 
 import Foundation
@@ -15,12 +15,14 @@ class Pricing: ModelObject
 {
     static let entityName = "Pricing"
     
-    var pricingId: NSNumber!
+    @objc var pricingId: NSNumber!
+    
+    // Broken in Swift 4 with `Swift 3 @objc inference` disabled
     var retailPrice: Double?
     var discountedPrice: Double?
     
-    // IMPORTANT: Use weak reference when modeling inverse relationship.
-    weak var book: Book?
+    // IMPORTANT: Use weak references when modeling inverse relationship.
+    @objc weak var book: Book?
     
     override  var description: String {
         return "\(super.description) retail: \(String(describing: retailPrice)); discounted price: \(String(describing: discountedPrice)))"

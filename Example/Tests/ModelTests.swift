@@ -86,9 +86,9 @@ class ModelTests: XCTestCase
     var model: NSManagedObjectModel!
     var responseDict: JsonDictionary!
     
-    lazy var bookEntity: NSEntityDescription = self.model.entitiesByName["Book"]!
-    lazy var authorEntity: NSEntityDescription = self.model.entitiesByName["Author"]!
-    lazy var pricingEntity: NSEntityDescription = self.model.entitiesByName["Pricing"]!
+    lazy var bookEntity: NSEntityDescription = model.entitiesByName["Book"]!
+    lazy var authorEntity: NSEntityDescription = model.entitiesByName["Author"]!
+    lazy var pricingEntity: NSEntityDescription = model.entitiesByName["Pricing"]!
     
     override func setUp() {
         super.setUp()
@@ -171,14 +171,14 @@ class ModelTests: XCTestCase
             return
         }
         book.setObject(forRelationship: relationship, withValuesFromDictionary: ["pricing": [retailPriceJsonKey: retailPrice1]])
-        XCTAssertEqualWithAccuracy(book.pricing!.retailPrice!, retailPrice1, accuracy: 0.1)
+        XCTAssertEqual(book.pricing!.retailPrice!, retailPrice1, accuracy: 0.1)
     }
     
     func testFlattenedAttribute()
     {
         let book = Book(dictionary: bookDictWithPricingDict, entity: bookEntity)
         XCTAssertNotNil(book.retailPrice)
-        XCTAssertEqualWithAccuracy(book.pricing!.retailPrice!, retailPrice1, accuracy: 0.1)
+        XCTAssertEqual(book.pricing!.retailPrice!, retailPrice1, accuracy: 0.1)
     }
     
     func testAddObjectToExistingRelationship()
@@ -212,7 +212,7 @@ class ModelTests: XCTestCase
         let book = Book(dictionary: bookDict1, entity: bookEntity)
         let pricing = Pricing(dictionary: [retailPriceJsonKey: expectedPrice], entity: pricingEntity)
         try! book.set(modelObject: pricing, forKey: "pricing")
-        XCTAssertEqualWithAccuracy(book.pricing!.retailPrice!, expectedPrice, accuracy: 0.1)
+        XCTAssertEqual(book.pricing!.retailPrice!, expectedPrice, accuracy: 0.1)
         XCTAssertEqual(pricing.book, book)
     }
     

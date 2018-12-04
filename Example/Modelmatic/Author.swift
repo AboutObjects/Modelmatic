@@ -11,13 +11,13 @@ class Author: ModelObject
 {
     static let entityName = "Author"
     
-    var authorId: NSNumber?
-    var firstName: String?
-    var lastName: String?
-    var dateOfBirth: Date?
+    @objc var authorId: NSNumber?
+    @objc var firstName: String?
+    @objc var lastName: String?
+    @objc var dateOfBirth: Date?
     
     // Strong reference to children, to-many relationship
-    var books: [Book]?
+    @objc var books: [Book]?
 }
 
 

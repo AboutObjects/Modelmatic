@@ -69,7 +69,7 @@ extension BooksByAuthorController
 extension UIStoryboardSegue
 {
     var targetViewController: UIViewController? {
-        if let navController = destination as? UINavigationController { return navController.childViewControllers.first }
+        if let navController = destination as? UINavigationController { return navController.children.first }
         return destination
     }
 }

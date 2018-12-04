@@ -13,7 +13,7 @@ class AppDelegate: UIResponder
 
 extension AppDelegate: UIApplicationDelegate
 {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
         configureAppearance()
         return true
@@ -57,7 +57,7 @@ extension UIColor
 
 class ValueLabel: UILabel
 {
-    dynamic var defaultTextColor: UIColor? {
+    @objc dynamic var defaultTextColor: UIColor? {
         get { return textColor }
         set { textColor = newValue }
     }

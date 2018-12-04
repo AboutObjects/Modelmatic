@@ -12,7 +12,7 @@ public enum MappingError: Error {
 
 open class ModelObject : NSObject
 {
-    open let entity: NSEntityDescription
+    public let entity: NSEntityDescription
     
     public required init(dictionary: JsonDictionary, entity: NSEntityDescription) {
         self.entity = entity

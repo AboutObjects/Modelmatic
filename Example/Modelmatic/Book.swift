@@ -11,22 +11,24 @@ class Book: ModelObject
 {
     static let entityName = "Book"
     
-    var bookId: NSNumber?
-    var title: String!
-    var year: String?
-    var tags: [String]?
+    @objc var bookId: NSNumber?
+    @objc var title: String!
+    @objc var year: String?
+    @objc var tags: [String]?
+    
+    // Broken in Swift 4 with `Swift 3 @objc inference` disabled
     var favorite: Heart = .no
     var rating: Stars = .zero
     var retailPrice: Double?
     
     // Strong reference to child object, one-to-one relationship
-    var pricing: Pricing?
+    @objc var pricing: Pricing?
     
     // Weak reference to parent object, inverse of one-to-many relationship
-    weak var author: Author?
+    @objc weak var author: Author?
     
     override var description: String {
-        return "\(super.description) title: \(title); year: \(String(describing: year)), tags: \(String(describing: tags)), bookId: \(String(describing: bookId))"
+        return "\(super.description) title: \(String(describing: title)); year: \(String(describing: year)), tags: \(String(describing: tags)), bookId: \(String(describing: bookId))"
     }
 }
 

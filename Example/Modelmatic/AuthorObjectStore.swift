@@ -35,8 +35,11 @@ class AuthorObjectStore: NSObject
     
     required override init()
     {
-        let modelURL = Bundle(for: AuthorObjectStore.self).url(forResource: authorsModelName, withExtension: "momd")
-        model = NSManagedObjectModel(contentsOf: modelURL!) // Crash here if model URL is invalid.
+        let bundle = Bundle(for: AuthorObjectStore.self)
+        guard let modelURL = bundle.url(forResource: authorsModelName, withExtension: "momd") else {
+            fatalError("Unable to find model named \(authorsModelName).momd in bundle \(bundle)")
+        }
+        model = NSManagedObjectModel(contentsOf: modelURL)
         authorEntity = model.entitiesByName[Author.entityName]
         bookEntity = model.entitiesByName[Book.entityName]
         super.init()
@@ -77,7 +80,7 @@ extension AuthorObjectStore
 {
     func fetch(_ completion: @escaping () -> Void) {
         if case StorageMode.webService = storageMode {
-            fetchObjects(fromWeb: restUrlString, completion: completion) } else {
+            fetchObjects(fromWeb: restUrlString, mainQueueHandler: completion) } else {
             fetchObjects(fromFile: authorsFileName, completion: completion)
         }
     }
@@ -92,7 +95,7 @@ extension AuthorObjectStore
         completion()
     }
     
-    func fetchObjects(fromWeb urlString: String, completion: @escaping () -> Void)
+    func fetchObjects(fromWeb urlString: String, mainQueueHandler: @escaping () -> Void)
     {
         guard let url = URL(string: urlString) else { fatalError("Invalid url string: \(urlString)") }
         
@@ -103,7 +106,7 @@ extension AuthorObjectStore
             }
             self.decodeAuthors(data)
             OperationQueue.main.addOperation {
-                completion()
+                mainQueueHandler()
             }
         }) 
         task.resume()

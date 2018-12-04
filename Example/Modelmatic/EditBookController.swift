@@ -28,7 +28,7 @@ class EditBookController: UITableViewController
         yearField.text = book.year
         priceField.text = String(format: "%.2f", book.retailPrice ?? 0.0)
         tagsLabel.text = book.tags?.csvString
-        favoriteButton.setTitle(book.favorite.description, for: UIControlState())
+        favoriteButton.setTitle(book.favorite.description, for: UIControl.State())
         ratingLabel.text = book.rating.description
         ratingStepper.value = Double(book.rating.rawValue)
     }
@@ -41,7 +41,7 @@ class EditBookController: UITableViewController
     
     func toggleFavorite() {
         book.favorite.toggle()
-        favoriteButton.setTitle(book.favorite.description, for: UIControlState())
+        favoriteButton.setTitle(book.favorite.description, for: UIControl.State())
     }
 }
 
