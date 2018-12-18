@@ -24,19 +24,19 @@ class Pricing: ModelObject
     // IMPORTANT: Use weak references when modeling inverse relationship.
     @objc weak var book: Book?
     
-    override  var description: String {
+    override var description: String {
         return "\(super.description) retail: \(String(describing: retailPrice)); discounted price: \(String(describing: discountedPrice)))"
     }
 }
 
 extension Pricing
 {
-    var kvc_retailPrice: Double {
+    @objc var kvc_retailPrice: Double {
         get { return retailPrice ?? 0.0 }
         set { retailPrice = Optional(newValue) }
     }
 
-    var kvc_discountedPrice: Double {
+    @objc var kvc_discountedPrice: Double {
         get { return discountedPrice ?? 0.0 }
         set { discountedPrice = Optional(newValue) }
     }
