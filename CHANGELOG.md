@@ -1,137 +1,262 @@
-# Change Log
-
-## [0.6.1](https://github.com/AboutObjects/Modelmatic/tree/0.6.1) (2016-11-03)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.6.0...0.6.1)
-
-**Fixed bugs:**
-
-- Preserve nulls in encoded JSON [\#25](https://github.com/AboutObjects/Modelmatic/issues/25)
-
-**Merged pull requests:**
-
-- Fix/Encode nil values [\#27](https://github.com/AboutObjects/Modelmatic/pull/27) ([jonathanlehr](https://github.com/jonathanlehr))
-
-## [0.6.0](https://github.com/AboutObjects/Modelmatic/tree/0.6.0) (2016-10-20)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.5.3...0.6.0)
-
-**Closed issues:**
-
-- Migrate to Swift 3 [\#24](https://github.com/AboutObjects/Modelmatic/issues/24)
-
-**Merged pull requests:**
-
-- Swift3 migration [\#26](https://github.com/AboutObjects/Modelmatic/pull/26) ([jonathanlehr](https://github.com/jonathanlehr))
-
-## [0.5.3](https://github.com/AboutObjects/Modelmatic/tree/0.5.3) (2016-09-11)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.5.2...0.5.3)
-
-**Merged pull requests:**
-
-- Feature/add book scene [\#23](https://github.com/AboutObjects/Modelmatic/pull/23) ([jonathanlehr](https://github.com/jonathanlehr))
-
-## [0.5.2](https://github.com/AboutObjects/Modelmatic/tree/0.5.2) (2016-09-08)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.5.1...0.5.2)
-
-## [0.5.1](https://github.com/AboutObjects/Modelmatic/tree/0.5.1) (2016-09-06)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.5.0...0.5.1)
-
-**Implemented enhancements:**
-
-- Demo flattened attributes in example app [\#21](https://github.com/AboutObjects/Modelmatic/issues/21)
-
-**Fixed bugs:**
-
-- Demo flattened attributes in example app [\#21](https://github.com/AboutObjects/Modelmatic/issues/21)
-
-**Merged pull requests:**
-
-- Fix/flattened attributes [\#22](https://github.com/AboutObjects/Modelmatic/pull/22) ([jonathanlehr](https://github.com/jonathanlehr))
-
-## [0.5.0](https://github.com/AboutObjects/Modelmatic/tree/0.5.0) (2016-09-05)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.4.3...0.5.0)
-
-**Implemented enhancements:**
-
-- Coalesce BookDetail and EditBook scenes [\#20](https://github.com/AboutObjects/Modelmatic/issues/20)
-- Dynamically setting/adding child objects [\#18](https://github.com/AboutObjects/Modelmatic/issues/18)
-- Add a URLTransformer class [\#6](https://github.com/AboutObjects/Modelmatic/issues/6)
-- Rename ModelObject methods containing the words 'serialize' and 'deserialize' [\#5](https://github.com/AboutObjects/Modelmatic/issues/5)
-
-## [0.4.3](https://github.com/AboutObjects/Modelmatic/tree/0.4.3) (2016-08-27)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.4.2...0.4.3)
-
-**Merged pull requests:**
-
-- Dynamically setting/adding child objects [\#19](https://github.com/AboutObjects/Modelmatic/pull/19) ([jonathanlehr](https://github.com/jonathanlehr))
-
-## [0.4.2](https://github.com/AboutObjects/Modelmatic/tree/0.4.2) (2016-08-25)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.4.1...0.4.2)
-
-**Merged pull requests:**
-
-- Rename ModelObject methods containing 'serialize' and 'deserialize' \#5 [\#16](https://github.com/AboutObjects/Modelmatic/pull/16) ([jonathanlehr](https://github.com/jonathanlehr))
-
-## [0.4.1](https://github.com/AboutObjects/Modelmatic/tree/0.4.1) (2016-08-10)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.4.0...0.4.1)
-
-**Implemented enhancements:**
-
-- Add UI to allow users to toggle between web and file system storage [\#14](https://github.com/AboutObjects/Modelmatic/issues/14)
-- Mock web services with NSURLProtocol instead of Mocky.io [\#13](https://github.com/AboutObjects/Modelmatic/issues/13)
-- Integrate with mock web service [\#12](https://github.com/AboutObjects/Modelmatic/issues/12)
-
-**Merged pull requests:**
-
-- \#13 Mock web services with NSURLProtocol instead of Mocky.io [\#15](https://github.com/AboutObjects/Modelmatic/pull/15) ([jonathanlehr](https://github.com/jonathanlehr))
-
-## [0.4.0](https://github.com/AboutObjects/Modelmatic/tree/0.4.0) (2016-08-09)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.3.3...0.4.0)
-
-## [0.3.3](https://github.com/AboutObjects/Modelmatic/tree/0.3.3) (2016-08-09)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.3.2...0.3.3)
-
-**Merged pull requests:**
-
-- Feature/json storage [\#10](https://github.com/AboutObjects/Modelmatic/pull/10) ([jonathanlehr](https://github.com/jonathanlehr))
-
-## [0.3.2](https://github.com/AboutObjects/Modelmatic/tree/0.3.2) (2016-08-09)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.3.1...0.3.2)
-
-**Implemented enhancements:**
-
-- Switch storage type from plist to json [\#9](https://github.com/AboutObjects/Modelmatic/issues/9)
-
-**Merged pull requests:**
-
-- Add enhancements to example app from Codex HEAD [\#8](https://github.com/AboutObjects/Modelmatic/pull/8) ([jonathanlehr](https://github.com/jonathanlehr))
-
-## [0.3.1](https://github.com/AboutObjects/Modelmatic/tree/0.3.1) (2016-08-08)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.3.0...0.3.1)
-
-**Implemented enhancements:**
-
-- Merge Example from current Codex baseline [\#7](https://github.com/AboutObjects/Modelmatic/issues/7)
-- Add a change log \(CHANGELOG.md\) [\#4](https://github.com/AboutObjects/Modelmatic/issues/4)
-
-## [0.3.0](https://github.com/AboutObjects/Modelmatic/tree/0.3.0) (2016-08-08)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.2.0...0.3.0)
-
-**Implemented enhancements:**
-
-- Publish Cocoapod [\#2](https://github.com/AboutObjects/Modelmatic/issues/2)
-- Version 0.2.0 - Publish Cocoapod [\#3](https://github.com/AboutObjects/Modelmatic/pull/3) ([jonathanlehr](https://github.com/jonathanlehr))
-
-## [0.2.0](https://github.com/AboutObjects/Modelmatic/tree/0.2.0) (2016-08-07)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/0.1.0...0.2.0)
-
-**Merged pull requests:**
-
-- Feature/add example [\#1](https://github.com/AboutObjects/Modelmatic/pull/1) ([jonathanlehr](https://github.com/jonathanlehr))
-
-## [0.1.0](https://github.com/AboutObjects/Modelmatic/tree/0.1.0) (2016-08-05)
-[Full Changelog](https://github.com/AboutObjects/Modelmatic/compare/v0.1.0...0.1.0)
-
-## [v0.1.0](https://github.com/AboutObjects/Modelmatic/tree/v0.1.0) (2016-08-05)
+Changelog
+=========
 
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+(unreleased)
+------------
+- Swift 4.2+readme (#30) [Jonathan Lehr]
+
+  * Updated README
+- Swift 4.2 (#29) [Jonathan Lehr]
+
+  Swift 4.2 support --  no longer relies on Swift 3 ObjC inference.
+
+  * Added missing `@objc` annotations
+  * Fixed a crasher where `setValue(forKey:)` was being called with a nil transformed value.
+  * Disabled Swift 3 ObjC inference
+  * Version 0.6.4
+
+
+0.6.4 (2018-12-18)
+------------------
+- Updated README. [Jonathan Lehr]
+- Version 0.6.4. [Jonathan Lehr]
+- Disabled Swift 3 ObjC inference. [Jonathan Lehr]
+- Fixed a crasher where `setValue(forKey:)` was being called with a nil
+  transformed value. [Jonathan Lehr]
+- Added missing `@objc` annotations. [Jonathan Lehr]
+
+
+0.6.3 (2018-12-04)
+------------------
+- Swift 4.2. [Jonathan Lehr]
+
+
+0.6.2 (2017-05-10)
+------------------
+- Swift 3.1 (#28) [Jonathan Lehr]
+- Update changelog for 0.6.1. [Jonathan Lehr]
+
+
+0.6.1 (2016-11-03)
+------------------
+- Fix/Encode nil values (#27) [Jonathan Lehr]
+
+  * We now explicitly encode nil values as `NSNull`
+  * Configurable KVC prefix
+  * Update Xcode build
+
+
+0.6.0 (2016-10-20)
+------------------
+- Swift3 migration (#26) [Jonathan Lehr]
+
+  ## Swift 3 Migration
+  * Changed `JsonDictionary` type from `[String: AnyObject]` to `[String: Any]`
+  * Changed framework method visibility from `public` to `open`
+
+  ## Cocoapods/Travis Swift 3 updates/configuration
+  * Updated podspec for 0.6.0
+  * Updated xcode project version number
+  * Updated Travis config for Xcode 8 and iOS 10.0
+  * Modified Travis xcodebuild command to use `-destination` flag instead of `-sdk`
+
+
+0.5.3 (2016-09-11)
+------------------
+- Version 0.5.3. [Jonathan Lehr]
+- CocoaConf final slides. [Jonathan Lehr]
+- Feature/add book scene (#23) [Jonathan Lehr]
+
+  * Update podspec to Version 0.5.2
+  * Make ModelObject visibility public universally so subclasses can customize behavior.
+  * New AddBook scene - adding and deleting books
+  * Cruft removal
+
+
+0.5.2 (2016-09-08)
+------------------
+- Update podspec to Version 0.5.2. [Jonathan Lehr]
+- Cruft removal. [Jonathan Lehr]
+- Removed cover images. [Jonathan Lehr]
+- Adding and deleting books. [Jonathan Lehr]
+
+  * New AddBook scene
+  * Deletion support in AuthorDataSource, plus cleanups
+  * BooksController segues for AddBook scene, plus cleanups
+- CocoaConf WIP. [Jonathan Lehr]
+- ModelObject cleanup. [Jonathan Lehr]
+
+  Make visibility public universally so subclasses can customize behavior.
+
+
+0.5.1 (2016-09-06)
+------------------
+- Version 0.5.1. [Jonathan Lehr]
+- Merge branch 'master' of https://github.com/AboutObjects/Modelmatic.
+  [Jonathan Lehr]
+- Fix/flattened attributes (#22) [Jonathan Lehr]
+
+  * Moved unwind segue
+
+  * Cleanups
+
+  * Tags UI + enum properties
+
+  * externalID and externalKeyPath renaming
+
+  * Coalesce BookDetail and EditBook scenes #20
+
+  * Eliminated BookDetailController to streamline code and user interaction
+  * General UI cleanups
+
+  * Demo flattened attributes in example app #21
+
+  Encoding fixes for to-one related objects, including:
+  * Auto-creation of nested dictionaries based on key paths specified in model
+  * Setting flattened attribute values during encoding
+
+  * Fix travis build warning
+- Fix warning. [Jonathan Lehr]
+- Change log updates. [Jonathan Lehr]
+
+
+0.5.0 (2016-09-05)
+------------------
+- Demo flattened attributes in example app #21. [Jonathan Lehr]
+
+  Encoding fixes for to-one related objects, including:
+  * Auto-creation of nested dictionaries based on key paths specified in model
+  * Setting flattened attribute values during encoding
+- Coalesce BookDetail and EditBook scenes #20. [Jonathan Lehr]
+
+  * Eliminated BookDetailController to streamline code and user interaction
+  * General UI cleanups
+- ExternalID and externalKeyPath renaming. [Jonathan Lehr]
+- Tags UI + enum properties. [Jonathan Lehr]
+- Cleanups. [Jonathan Lehr]
+- Moved unwind segue. [Jonathan Lehr]
+- Codefencing fix. [Jonathan Lehr]
+- Version 0.4.3. [Jonathan Lehr]
+
+
+0.4.3 (2016-08-27)
+------------------
+- Dynamically setting/adding child objects (#19) [Jonathan Lehr]
+
+  Added methods to ModelObject for dynamically setting/adding children that also set parent references for any inverse relationships defined in the model.
+
+
+0.4.2 (2016-08-25)
+------------------
+- Rename ModelObject methods containing the words 'serialize' and
+  'deserialize' #5 (#16) [Jonathan Lehr]
+
+  Also:
+  * Cleaned up unit tests and added several new ones
+  * Removed `public` modifier throughout example app codebase.
+  * Plus other minor cleanups
+- Replace 'encoding' with 'serialization'. [Jonathan Lehr]
+- Update version to 0.4.1. [Jonathan Lehr]
+- Update changelog. [Jonathan Lehr]
+
+
+0.4.1 (2016-08-10)
+------------------
+- Small README fix. [Jonathan Lehr]
+- #13 Mock web services with NSURLProtocol instead of Mocky.io (#15)
+  [Jonathan Lehr]
+
+  #14 Add UI to allow users to toggle between web and file system storage
+  * Also, significant additions to the README documentation
+
+
+0.4.0 (2016-08-09)
+------------------
+- Update for 0.3.3. [Jonathan Lehr]
+
+
+0.3.3 (2016-08-09)
+------------------
+- Feature/json storage (#10) [Jonathan Lehr]
+
+  * Fix changelog merge conflict
+
+  * Remove merge artifact
+
+
+0.3.2 (2016-08-09)
+------------------
+- Remove merge artifact. [Jonathan Lehr]
+- Fix changelog merge conflict. [Jonathan Lehr]
+- Switched storage type from plist to json. [Jonathan Lehr]
+- Update CHANGELOG.md. [Jonathan Lehr]
+- Add enhancements to example app from Codex HEAD (#8) [Jonathan Lehr]
+
+  * Add enhancements to example app from Codex HEAD
+
+  * Removed bogus tests.
+
+
+0.3.1 (2016-08-08)
+------------------
+- Removed bogus tests. [Jonathan Lehr]
+
+
+0.3.0 (2016-08-08)
+------------------
+- Add enhancements to example app from Codex HEAD. [Jonathan Lehr]
+- Update README.md. [Jonathan Lehr]
+- Update README.md. [Jonathan Lehr]
+- Update travis-cocoapods link. [Jonathan Lehr]
+- Update travis link. [Jonathan Lehr]
+- Update travis and cocoapod links. [Jonathan Lehr]
+- Version 0.2.0 (#3) [Jonathan Lehr]
+
+
+0.2.0 (2016-08-07)
+------------------
+- Feature/add example (#1) [Jonathan Lehr]
+
+  * Document technical requirements
+
+  * Add example and tests
+- Add ModelObject. [Jonathan Lehr]
+- Revert image fix. [Jonathan Lehr]
+- Image fix. [Jonathan Lehr]
+- Podspec cleanup. [Jonathan Lehr]
+- Fix library path warning. [Jonathan Lehr]
+- Merge branch 'master' of https://github.com/AboutObjects/Modelmatic.
+  [Jonathan Lehr]
+- Rename modelmatic.podspec to Modelmatic.podspec. [Jonathan Lehr]
+- Updated copyright. [Jonathan Lehr]
+- Changed capitalization. [Jonathan Lehr]
+- Move xcscheme to workspace. [Jonathan Lehr]
+- Switch to Swift 2.3. [Jonathan Lehr]
+- Switch to iPhone 6s simulator. [Jonathan Lehr]
+- Pbxproj cleanup. [Jonathan Lehr]
+- Configure Swift version in Podfile. [Jonathan Lehr]
+- Disable ‘Legacy Swift Language Version’ [Jonathan Lehr]
+- Add xcsheme. [Jonathan Lehr]
+- Revert deployment target. [Jonathan Lehr]
+- Update build target. [Jonathan Lehr]
+- Update travis and xcodeproj settings. [Jonathan Lehr]
+- Changed summary. [Jonathan Lehr]
+- Remove ‘v’ from version tag. [Jonathan Lehr]
+
+
+0.1.0 (2016-08-05)
+------------------
+- Update version number. [Jonathan Lehr]
+- Add Cocoapod-based Xcode project. [Jonathan Lehr]
+- Update AO link. [Jonathan Lehr]
+- Fixed image height. [Jonathan Lehr]
+- Image size. [Jonathan Lehr]
+- Change image spec. [Jonathan Lehr]
+- Reduce image size. [Jonathan Lehr]
+- Update README text. [Jonathan Lehr]
+- Add project icon. [Jonathan Lehr]
+- Update README. [Jonathan Lehr]
+- Initial commit. [Jonathan Lehr]
+
+
