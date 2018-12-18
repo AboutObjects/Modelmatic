@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'Modelmatic'
-    s.version          = '0.6.3'
+    s.version          = '0.6.4'
     s.swift_version    = '4.2'
     s.summary          = 'JSON serialization and deserialization for Swift model objects.'
     s.description      = <<-DESC

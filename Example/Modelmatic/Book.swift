@@ -36,17 +36,17 @@ class Book: ModelObject
 // MARK: - Wrapping and Unwrapping Optional Structs
 extension Book
 {
-    var kvc_favorite: Bool {
+    @objc var kvc_favorite: Bool {
         get { return favorite == .yes }
         set { favorite = newValue ? .yes : .no }
     }
     
-    var kvc_rating: Int {
+    @objc var kvc_rating: Int {
         get { return rating.rawValue }
         set { rating = Stars(rawValue: newValue) ?? .zero }
     }
     
-    var kvc_retailPrice: Double {
+    @objc var kvc_retailPrice: Double {
         get { return retailPrice ?? 0.0 }
         set { retailPrice = Optional(newValue) }
     }

@@ -71,7 +71,7 @@ extension AuthorDataSource
 }
 
 // MARK: - Enums
-enum Heart: Int, CustomStringConvertible {
+@objc enum Heart: Int, CustomStringConvertible {
     case yes, no
     init(isFavorite: Bool?) {
         self = (isFavorite != nil && isFavorite!) ? .yes : .no
@@ -83,7 +83,7 @@ enum Heart: Int, CustomStringConvertible {
     }
 }
 
-enum Stars: Int, CustomStringConvertible {
+@objc enum Stars: Int, CustomStringConvertible {
     case zero, one, two, three, four, five
     init(rating: Int?) {
         self = Stars(rawValue: rating ?? 0) ?? .zero
