@@ -195,7 +195,9 @@ extension ModelObject
             type(of: transformer).allowsReverseTransformation() {
             newValue = transformer.reverseTransformedValue(value) as AnyObject? ?? NSNull()
         }
-        setValue(newValue, forKey: attribute.name)
+        if newValue != nil {
+            setValue(newValue, forKey: attribute.name)
+        }
     }
     
     open func modelObject(withDictionary dictionary: JsonDictionary, relationship: NSRelationshipDescription) -> ModelObject
