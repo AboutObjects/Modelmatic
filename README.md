@@ -11,7 +11,7 @@ Modelmatic automates JSON serialization and deserialization of your app's model 
 
 Please note that the current version of Modelmatic works only for model objects that *don't* depend on Core Data. Support for `NSManagedObject` subclasses will be added in a future release.
 
-<img src="robo-small.png" height=320/>
+<img src="robo-small.png" height=120/>
 
 *Image courtesy Christopher T. Howlett, the Noun Project*
 
@@ -56,20 +56,20 @@ import Foundation
 import Modelmatic
 
 @objc (MDLAuthor)
- class Author: ModelObject
+class Author: ModelObject
 {
     // Name of the Core Data entity
     static let entityName = "Author"
     
     // Mapped to 'author_id' in the corresponding attribute's User Info dictionary
-    var authorId: NSNumber!
-    var firstName: String?
-    var lastName: String?
-    var dateOfBirth: NSDate?
-    var imageURL: UIImage?
+    @objc var authorId: NSNumber!
+    @objc var firstName: String?
+    @objc var lastName: String?
+    @objc var dateOfBirth: NSDate?
+    @objc var imageURL: UIImage?
     
     // Modeled relationship to 'Book' entity
-    var books: [Book]?
+    @objc var books: [Book]?
 }
 ```
 
@@ -77,10 +77,11 @@ Key points:
 
 * import `Modelmatic`.
 * Subclass `ModelObject`.
-* Use `@objc()` to avoid potential namespacing issues.
+* Prefix classes with `@objc(ObjCClassName)` to avoid potential namespacing issues, and for better bridging to Objective-C.
+* Prefix properties with `@objc`.
 * Define a static let constant named `entityName` to specify the name of the associated entity in the Core Data model file.
-* `authorId` is mapped to `author_id` in the model (see the attribute definition's User Info dictionary).
-* Modelmatic automatically maps all the other properties, included the nested `books` property.
+* `authorId` is mapped to `author_id` in the model (see the attribute definition's **User Info** dictionary).
+* Modelmatic automatically maps all the other properties, included nested objects in the `books` property.
 
 #### Customizing Mappings
 
@@ -96,7 +97,7 @@ A custom mapping is provided in the model file, binding the `authorId` attribute
 
 ![Customizing a property mapping](Screenshots/custom-mapping.png)
 
-To add a custom mapping, select an attribute or relationship in the model editor, and add an entry to it's *User Info* dictionary. The key should be **jsonKeyPath**, and the value should be the key or key path (dot-separated property path) used in the JSON dictionary. During encoding and decoding, Modelmatic will automatically map between your object's property, as defined by its attribute or relationship name, and the custom key path you specified to access JSON values.
+To add a custom mapping, select an attribute or relationship in the model editor, and add an entry to its **User Info** dictionary. The key should be **jsonKeyPath**, and the value should be the key or key path (dot-separated property path) used in the JSON dictionary. During encoding and decoding, Modelmatic will automatically map between your object's property, as defined by its attribute or relationship name, and the custom key path you specified to access JSON values.
 
 
 #### Defining Relationships
@@ -139,12 +140,12 @@ Modelmatic uses methods defined in the `NSKeyValueCoding` (KVC) protocol to set 
 If your `ModelObject` subclasses uses a Swift type that KVC can't directly handle, you can provide a computed property of the same name, prefixed with `kvc_`, to provide your own custom handling. For example, to make the `rating` property work with Modelmatic, add the following:
 
 ```swift
-    var kvc_rating: Int {
+    @objc var kvc_rating: Int {
         get { return rating ?? 0 }
         set { rating = Optional(newValue) }
     }
 ```
-If Modelmatic is unable to set a property directly (in this case the `rating` property), it will automatically call the `kvc_` prefixed variant (`kvc_rating`, in this example).
+If Modelmatic is unable to set a property directly (in this case the `rating` property), it will automatically call the `kvc_` prefixed variant (`kvc_rating`, in this example). NOTE: Make sure the original property (`rating`, in this example), is *not* prefixed with `@objc`, and that the wrapper property (e.g., `kvc_rating`) *is* prefixed.
 
 #### Specifying Value Transformations
 
