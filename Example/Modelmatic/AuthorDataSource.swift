@@ -2,23 +2,27 @@
 // Copyright (C) 2015 About Objects, Inc. All Rights Reserved.
 // See LICENSE.txt for this example's licensing information.
 //
-
 import UIKit
 import Modelmatic
 
+/// Storyboard ID for prototype cell
 let cellId = "Book"
 
 class AuthorDataSource: NSObject
 {
-    @IBOutlet var objectStore: AuthorObjectStore!
-    
+    @IBOutlet private var objectStore: AuthorObjectStore!
     var authors: [Author]? { return objectStore.authors }
-    
-    func toggleStorageMode() { objectStore.toggleStorageMode() }
-    func fetch(_ completion: @escaping () -> Void) { objectStore.fetch(completion) }
-    func save() { objectStore.save() }
 }
 
+// MARK: - Persistence API
+extension AuthorDataSource
+{
+    func fetch(_ completion: @escaping () -> Void) { objectStore.fetch(completion) }
+    func save() { objectStore.save() }
+    func toggleStorageMode() { objectStore.toggleStorageMode() }
+}
+
+// MARK: - UITableViewDataSource conformance
 extension AuthorDataSource: UITableViewDataSource
 {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -52,10 +56,17 @@ extension AuthorDataSource: UITableViewDataSource
     }
 }
 
-// MARK: - Populating Cells
+// MARK: - Configuring and populating cells
 extension AuthorDataSource
 {
-    func configureCell(_ cell: BookCell, atIndexPath indexPath: IndexPath) {
+    /// Formatter for currency values
+    static let currencyFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return formatter
+    }()
+    
+   func configureCell(_ cell: BookCell, atIndexPath indexPath: IndexPath) {
         guard let book = objectStore.bookAtIndexPath(indexPath) else { return }
         cell.ratingLabel.alpha = book.rating == .zero ? 0.3 : 1
         cell.favoriteLabel.transform = book.favorite.boolValue ? CGAffineTransform(scaleX: 1.2, y: 1.2) : CGAffineTransform.identity
@@ -64,13 +75,14 @@ extension AuthorDataSource
     func populateCell(_ cell: BookCell, atIndexPath indexPath: IndexPath) {
         guard let book = objectStore.bookAtIndexPath(indexPath) else { return }
         cell.titleLabel.text = book.title
-        cell.priceLabel.text = priceFormatter.string(from: NSNumber(value: book.retailPrice ?? 0 as Double))
+        cell.priceLabel.text = AuthorDataSource.currencyFormatter.string(from: NSNumber(value: book.retailPrice ?? 0 as Double))
         cell.ratingLabel.text = book.rating.description
         cell.favoriteLabel.text = book.favorite.description
     }
 }
 
 // MARK: - Enums
+
 @objc enum Heart: Int, CustomStringConvertible {
     case yes, no
     init(isFavorite: Bool?) {
@@ -99,10 +111,3 @@ extension AuthorDataSource
         }
     }
 }
-
-// MARK: - Formatting Prices
-let priceFormatter: NumberFormatter = {
-    let formatter = NumberFormatter()
-    formatter.numberStyle = .currency
-    return formatter
-}()
