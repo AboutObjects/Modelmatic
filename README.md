@@ -195,7 +195,7 @@ Somewhere in your app (you only need to do this once during the app's lifecycle)
 ```swift
 let modelName = "Authors"
     
-guard let modelURL = NSBundle(forClass: self.dynamicType).URLForResource(modelName, withExtension: "momd"),
+    guard let modelURL = NSBundle(forClass: type(of: self).URLForResource(modelName, withExtension: "momd"),
     model = NSManagedObjectModel(contentsOfURL: modelURL) else {
         print("Unable to load model \(modelName)")
         return
