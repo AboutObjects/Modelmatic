@@ -2,8 +2,25 @@ Changelog
 =========
 
 
-(unreleased)
-------------
+0.6.6 (2018-12-19)
+------------------
+- Cleanups (#31) [Jonathan Lehr]
+
+  * Update pod version to 0.6.6
+  * Clarified comments
+  * Added URLRequest extension
+  * Added visibility modifiers
+  * Added callback methods for web requests
+  * Improve data source encapsulation
+  * `self.` cleanup
+  * Replace `dynamicType` reference
+
+
+0.6.5 (2018-12-18)
+------------------
+- Tag fixup. [Jonathan Lehr]
+- Updated changelog. [Jonathan Lehr]
+- Updated changelog. [Jonathan Lehr]
 - Swift 4.2+readme (#30) [Jonathan Lehr]
 
   * Updated README
