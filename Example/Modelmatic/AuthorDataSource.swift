@@ -3,6 +3,7 @@
 // See LICENSE.txt for this example's licensing information.
 //
 import UIKit
+import CoreData
 import Modelmatic
 
 /// Storyboard ID for prototype cell
@@ -20,6 +21,19 @@ extension AuthorDataSource
     func fetch(_ completion: @escaping () -> Void) { objectStore.fetch(completion) }
     func save() { objectStore.save() }
     func toggleStorageMode() { objectStore.toggleStorageMode() }
+}
+
+// MARK: - Accessing the model
+extension AuthorDataSource
+{
+    var bookEntity: NSEntityDescription { return objectStore.bookEntity }
+    
+    func bookAtIndexPath(_ indexPath: IndexPath) -> Book? {
+        return objectStore.bookAtIndexPath(indexPath)
+    }
+    func removeBookAtIndexPath(_ indexPath: IndexPath) {
+        objectStore.removeBookAtIndexPath(indexPath)
+    }
 }
 
 // MARK: - UITableViewDataSource conformance
@@ -41,15 +55,15 @@ extension AuthorDataSource: UITableViewDataSource
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as? BookCell else {
             fatalError("Unable to dequeue a cell with identifier \(cellId)")
         }
-        self.populateCell(cell, atIndexPath: indexPath)
-        self.configureCell(cell, atIndexPath: indexPath)
+        populateCell(cell, atIndexPath: indexPath)
+        configureCell(cell, atIndexPath: indexPath)
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {
         if editingStyle == .delete {
-            objectStore.removeBookAtIndexPath(indexPath)
+            removeBookAtIndexPath(indexPath)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             save()
         }

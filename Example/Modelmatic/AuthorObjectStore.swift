@@ -82,7 +82,7 @@ extension AuthorObjectStore
             return
         }
         version = dict["version"] as? NSNumber ?? NSNumber(value: 0)
-        authors = authorDicts.map { Author(dictionary: $0, entity: self.authorEntity) }
+        authors = authorDicts.map { Author(dictionary: $0, entity: authorEntity) }
         completion()
     }
     
@@ -152,7 +152,7 @@ extension AuthorObjectStore
 {
     private func encodeAuthors() -> Data?
     {
-        guard let authors = self.authors else { return nil }
+        guard let authors = authors else { return nil }
         let dict: NSDictionary = ["version": version, "authors": authors.dictionaryRepresentation]
         return try? dict.serializeAsJson(pretty: true)
     }
