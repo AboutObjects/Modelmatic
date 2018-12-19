@@ -36,7 +36,7 @@
 		ABA96C681D808B3B0025813E /* BooksByAuthorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D7EB61D57CD95005B8A26 /* BooksByAuthorController.swift */; };
 		ABD1A1751D6E28F7008552F9 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* ModelTests.swift */; };
 		ABD5ADE71D5B343F008C69C5 /* HttpSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5ADE61D5B343F008C69C5 /* HttpSessionProtocol.swift */; };
-		ABD5ADE91D5B42CA008C69C5 /* NSURL+ModelmaticAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5ADE81D5B42CA008C69C5 /* NSURL+ModelmaticAdditions.swift */; };
+		ABD5ADE91D5B42CA008C69C5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5ADE81D5B42CA008C69C5 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +84,7 @@
 		AB9D7EDA1D57D861005B8A26 /* Authors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Authors.json; sourceTree = "<group>"; };
 		ABA96C651D80345D0025813E /* AddBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookController.swift; sourceTree = "<group>"; };
 		ABD5ADE61D5B343F008C69C5 /* HttpSessionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpSessionProtocol.swift; sourceTree = "<group>"; };
-		ABD5ADE81D5B42CA008C69C5 /* NSURL+ModelmaticAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+ModelmaticAdditions.swift"; sourceTree = "<group>"; };
+		ABD5ADE81D5B42CA008C69C5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B83A21C0E329B499A5302035 /* Pods-Modelmatic_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Modelmatic_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Modelmatic_Example/Pods-Modelmatic_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D2865B2F5896318140F5597C /* Pods_Modelmatic_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Modelmatic_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F68DB0B063205CDF24771D42 /* Pods-Modelmatic_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Modelmatic_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Modelmatic_Tests/Pods-Modelmatic_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 				AB704A281D75D1D4006CC7C6 /* TagsController.swift */,
 				AB704A2A1D76FADC006CC7C6 /* EditableCell.swift */,
 				AB9D7EB81D57CD95005B8A26 /* BookCell.swift */,
-				ABD5ADE81D5B42CA008C69C5 /* NSURL+ModelmaticAdditions.swift */,
+				ABD5ADE81D5B42CA008C69C5 /* Extensions.swift */,
 				AB9D7ED41D57D5A0005B8A26 /* StringArrayTransformer.swift */,
 				AB39E52B1D58E7B400CC2F30 /* DateTransformer.swift */,
 				ABD5ADE61D5B343F008C69C5 /* HttpSessionProtocol.swift */,
@@ -443,7 +443,7 @@
 				AB9D7EC71D57CE43005B8A26 /* Author.swift in Sources */,
 				AB704A291D75D1D4006CC7C6 /* TagsController.swift in Sources */,
 				AB9D7EBB1D57CD95005B8A26 /* AppDelegate.swift in Sources */,
-				ABD5ADE91D5B42CA008C69C5 /* NSURL+ModelmaticAdditions.swift in Sources */,
+				ABD5ADE91D5B42CA008C69C5 /* Extensions.swift in Sources */,
 				AB9D7EBD1D57CD95005B8A26 /* AuthorDataSource.swift in Sources */,
 				ABD5ADE71D5B343F008C69C5 /* HttpSessionProtocol.swift in Sources */,
 				AB39E52C1D58E7B400CC2F30 /* DateTransformer.swift in Sources */,

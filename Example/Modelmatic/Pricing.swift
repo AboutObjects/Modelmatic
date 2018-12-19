@@ -17,11 +17,10 @@ class Pricing: ModelObject
     
     @objc var pricingId: NSNumber!
     
-    // Broken in Swift 4 with `Swift 3 @objc inference` disabled
     var retailPrice: Double?
     var discountedPrice: Double?
     
-    // IMPORTANT: Use weak references when modeling inverse relationship.
+    // IMPORTANT: Use weak references when modeling inverse relationships.
     @objc weak var book: Book?
     
     override var description: String {
@@ -29,6 +28,7 @@ class Pricing: ModelObject
     }
 }
 
+// MARK: - KVC compliance
 extension Pricing
 {
     @objc var kvc_retailPrice: Double {

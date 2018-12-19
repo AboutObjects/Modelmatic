@@ -17,7 +17,7 @@ class AddBookController: UITableViewController
     
     var authors: [Author]! { return dataSource.authors }
     var author: Author { return authors[authorPicker.selectedRow(inComponent: 0)] }
-    lazy var book: Book = Book(dictionary: [:], entity: self.dataSource.objectStore.bookEntity)
+    lazy var book: Book = Book(dictionary: [:], entity: dataSource.bookEntity)
     
     func populateBook() {
         book.title = titleField.text

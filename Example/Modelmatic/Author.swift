@@ -16,11 +16,11 @@ class Author: ModelObject
     @objc var lastName: String?
     @objc var dateOfBirth: Date?
     
-    // Strong reference to children, to-many relationship
+    // One-to-many relationship
     @objc var books: [Book]?
 }
 
-
+// Computed properties
 extension Author
 {
     var fullName: String {

@@ -23,7 +23,7 @@ class BooksByAuthorController: UITableViewController
         switch segue.identifier ?? "" {
         case "Edit":
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            (segue.targetViewController as? EditBookController)?.book = dataSource.objectStore.bookAtIndexPath(indexPath)
+            (segue.targetViewController as? EditBookController)?.book = dataSource.bookAtIndexPath(indexPath)
         case "Add":
             (segue.targetViewController as? AddBookController)?.dataSource = dataSource
         default: break

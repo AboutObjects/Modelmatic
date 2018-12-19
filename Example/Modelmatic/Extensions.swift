@@ -38,8 +38,27 @@ extension URL
     }
 }
 
+extension URLRequest
+{
+    struct Method {
+        static let get = "GET"
+        static let put = "PUT"
+        static let post = "POST"
+        static let delete = "DELETE"
+    }
+    
+    static func putRequest(url: URL, data: Data) -> URLRequest {
+        var request = URLRequest(url: url)
+        request.httpMethod = Method.put
+        request.httpBody = data
+        request.setValue(String(data.count), forHTTPHeaderField: "Content-Length")
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        return request
+    }
+}
 
-extension HTTPURLResponse {
+extension HTTPURLResponse
+{
     var valid: Bool { return statusCode == 200 }
 }
 

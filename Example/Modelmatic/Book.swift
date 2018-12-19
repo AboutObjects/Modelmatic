@@ -16,7 +16,15 @@ class Book: ModelObject
     @objc var year: String?
     @objc var tags: [String]?
     
-    // Broken in Swift 4 with `Swift 3 @objc inference` disabled
+    // Swift enums (e.g., Heart and Stars, below) can't
+    // be directly handled via ObjC introspection, and can't be annotated `@objc`.
+    // The ObjC runtime also cannot deal with Swift scalar types (e.g., Int, Double, etc.)
+    // wrapped in Optionals, since Objective-C scalars can't be null.
+    //
+    // A workaround in these situations is to provide appropriately typed wrapper properties,
+    // prefixed with `kvc_` (for example, `kvc_favorite`, of type `Bool`, `kvc_rating`,
+    // of type `Int`, etc.).
+    //
     var favorite: Heart = .no
     var rating: Stars = .zero
     var retailPrice: Double?
@@ -32,8 +40,9 @@ class Book: ModelObject
     }
 }
 
-
-// MARK: - Wrapping and Unwrapping Optional Structs
+// MARK: - KVC compliance
+// Custom handling for Swift enums, scalars wrapped in Optionals,
+// and any unbridged Swift structs.
 extension Book
 {
     @objc var kvc_favorite: Bool {

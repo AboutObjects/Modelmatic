@@ -32,7 +32,7 @@ extension ModelObject
     }
     
     open func add(modelObject: ModelObject, forKey key: String) throws {
-        try self.add(modelObjects: [modelObject], forKey: key)
+        try add(modelObjects: [modelObject], forKey: key)
     }
     
     open func add(modelObjects: [ModelObject], forKey key: String) throws {

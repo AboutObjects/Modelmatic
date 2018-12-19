@@ -17,7 +17,7 @@ extension NSPropertyDescription
 public extension Array where Element: ModelObject
 {
     public var dictionaryRepresentation: [JsonDictionary] {
-        return self.map { $0.encodedValues(parent: nil) }
+        return map { $0.encodedValues(parent: nil) }
     }
 }
 

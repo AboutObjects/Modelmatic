@@ -65,13 +65,13 @@ extension HttpSessionProtocol
         }
         guard let fileName = request.url?.parameterValue(resourceKey),
             let bundleUrl = URL.bundleDirectoryURL(forFileName: fileName, type: "json") else { return }
-        self.data = NSMutableData(contentsOf: bundleUrl)
+        data = NSMutableData(contentsOf: bundleUrl)
     }
     
     func loadFile(_ url: URL) {
         serialQueue.isSuspended = true
-        serialQueue.addOperation { self.loadData(url) }
-        serialQueue.addOperation { self.finishLoading() }
+        serialQueue.addOperation { [weak self] in self?.loadData(url) }
+        serialQueue.addOperation { [weak self] in self?.finishLoading() }
         serialQueue.isSuspended = false
     }
     
