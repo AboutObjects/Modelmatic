@@ -8,7 +8,7 @@ import UIKit
 class TagsController: UITableViewController
 {
     var book: Book!
-    lazy var tags: [String] = self.book.tags ?? [String]()
+    lazy var tags: [String] = book.tags ?? [String]()
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
