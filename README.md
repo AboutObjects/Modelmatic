@@ -295,7 +295,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-* Swift 2.3 and iOS 8.3 (or greater)
+* Swift 4.2 and iOS 11 (or greater)
 * Core Data (CoreData.framework)
 
 ## Installation
